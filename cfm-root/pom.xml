@@ -10,5 +10,6 @@
     <module>cfm-web</module>
     <module>cfm-ejb</module>
     <module>cfm-ear</module>
+    <module>cfm-commons</module>
   </modules>
 </project>
