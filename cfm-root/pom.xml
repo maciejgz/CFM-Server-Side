@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>pl.mg</groupId>
-  <artifactId>cfm-root</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>cfm-root</name>
-  <modules>
-    <module>cfm-web</module>
-    <module>cfm-ejb</module>
-    <module>cfm-ear</module>
-    <module>cfm-commons</module>
-  </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>pl.mg</groupId>
+	<artifactId>cfm-root</artifactId>
+	<version>${cfm.version}</version>
+	<packaging>pom</packaging>
+	<name>cfm-root</name>
+	<modules>
+		<module>cfm-web</module>
+		<module>cfm-ejb</module>
+		<module>cfm-ear</module>
+		<module>cfm-commons</module>
+	</modules>
+
+
+	<properties>
+		<junit.version>4.11</junit.version>
+		<cfm.version>0.0.1</cfm.version>
+	</properties>
+
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+		</dependency>
+	</dependencies>
 </project>

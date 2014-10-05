@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>pl.mg</groupId>
 		<artifactId>cfm-root</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.1</version>
 	</parent>
 	<artifactId>cfm-ejb</artifactId>
 	<name>cfm-ejb</name>
@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -44,7 +44,18 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.jboss.logging</groupId>
+			<artifactId>jboss-logging</artifactId>
+			<version>3.1.4.GA</version>
+			<scope>provided</scope>
+		</dependency>
 
+		<dependency>
+			<groupId>pl.mg</groupId>
+			<artifactId>cfm-commons</artifactId>
+			<version>${cfm.version}</version>
+		</dependency>
 
 	</dependencies>
 </project>

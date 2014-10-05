@@ -3,6 +3,7 @@ package pl.mg.cfm.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,8 +23,8 @@ public class EmployeeRole implements Serializable {
     private String name;
 
     
-    @OneToMany
-    private Set<Employee> employees;
+//    @OneToMany(cascade=CascadeType.ALL)
+//    private Set<Employee> employees;
 
 
     public int getId() {
@@ -46,12 +47,12 @@ public class EmployeeRole implements Serializable {
     }
 
 
-    public Set<Employee> getEmployees() {
+    /*public Set<Employee> getEmployees() {
         return employees;
     }
 
 
     public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
-    }
+    }*/
 }

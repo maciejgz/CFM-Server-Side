@@ -2,5 +2,14 @@
     <wb-module deploy-name="cfm-ear-0.0.1-SNAPSHOT">
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
+        <dependent-module archiveName="javaee-api-7.0.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/javaee-api/7.0/javaee-api-7.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javax.mail-1.5.0.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/com/sun/mail/javax.mail/1.5.0/javax.mail-1.5.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activation-1.1.jar" deploy-path="/lib" handle="module:/classpath/var/M2_REPO/javax/activation/activation/1.1/activation-1.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
     </wb-module>
 </project-modules>
