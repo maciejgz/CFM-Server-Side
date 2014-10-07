@@ -1,5 +1,8 @@
 package pl.mg.cfm.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -16,7 +20,6 @@ public class Employee {
 
     @Id
     @Column(name = "idemployee")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int idemployee;
 
     @Column(name = "first_name")
@@ -33,6 +36,9 @@ public class Employee {
 
     @Column(name = "password")
     private String password;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="owner")
+    private Collection<Car> cars = new ArrayList<Car>();
 
     public int getIdemployee() {
         return idemployee;
@@ -72,6 +78,14 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Collection<Car> getCars() {
+        return cars;
+    }
+
+    public void setCars(Collection<Car> cars) {
+        this.cars = cars;
     }
 
 }

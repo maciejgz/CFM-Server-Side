@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 
 @Embeddable
 public class CarPK implements Serializable {
@@ -15,12 +14,12 @@ public class CarPK implements Serializable {
     protected Integer id;
 
     @Column(name = "car_id")
-    protected Integer car_id;
+    protected String car_id;
 
     public CarPK() {
     };
 
-    public CarPK(Integer id, Integer carId) {
+    public CarPK(Integer id, String carId) {
         this.id = id;
         this.car_id = carId;
     }

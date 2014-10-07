@@ -7,13 +7,19 @@ import javax.persistence.Persistence;
 
 import org.junit.Test;
 
+import pl.mg.cfm.model.Car;
+import pl.mg.cfm.model.CarPK;
 import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.model.EmployeeRole;
 
-public class EmployeeTests {
+public class AddDeleteCar {
 
-    // @Test
-    public void addEmployee() {
+    @Test
+    public void deleteCar() {
+
+        AddDeleteCar obj = new AddDeleteCar();
+        obj.addCar();
+
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("cfm-ejb");
         EntityManager em = emf.createEntityManager();
         EntityTransaction trx = null;
@@ -21,22 +27,33 @@ public class EmployeeTests {
             trx = em.getTransaction();
             trx.begin();
 
+            // userRole
             EmployeeRole userRole = new EmployeeRole();
-
             userRole.setId(8888);
             userRole.setName("test_role");
-            // em.persist(userRole);
-            // trx.commit();
             userRole = em.merge(userRole);
-            em.flush();
+            em.merge(userRole);
 
-            Employee userAdminSecond = new Employee();
-            userAdminSecond.setIdemployee(9996);
-            userAdminSecond.setFirstName("Robert");
-            userAdminSecond.setSecondName("Administracyjny");
-            userAdminSecond.setRole(userRole);
-            userAdminSecond.setPassword("testPass");
-            em.persist(userAdminSecond);
+            // Employee
+            Employee userAdminFirst = new Employee();
+            userAdminFirst.setIdemployee(9994);
+            userAdminFirst.setFirstName("Robert");
+            userAdminFirst.setSecondName("Administracyjny");
+            userAdminFirst.setRole(userRole);
+            userAdminFirst.setPassword("testPass");
+            em.merge(userAdminFirst);
+
+            // CAR
+            Car carForTest = new Car();
+            carForTest.setCarPk(new CarPK(9992, "wsc1235"));
+            carForTest.setDistance(0);
+            carForTest.setLatitude(null);
+            carForTest.setLongitude(null);
+            carForTest.setOwner(userAdminFirst);
+            em.merge(carForTest);
+
+            em.remove(em.contains(carForTest) ? carForTest : em.merge(carForTest));
+
             trx.commit();
         } catch (RuntimeException e) {
             if (trx != null && trx.isActive()) {
@@ -50,8 +67,7 @@ public class EmployeeTests {
         }
     }
 
-    @Test
-    public void deleteEmployee() {
+    public void addCar() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("cfm-ejb");
         EntityManager em = emf.createEntityManager();
         EntityTransaction trx = null;
@@ -59,19 +75,31 @@ public class EmployeeTests {
             trx = em.getTransaction();
             trx.begin();
 
+            // userRole
             EmployeeRole userRole = new EmployeeRole();
-
             userRole.setId(8888);
             userRole.setName("test_role");
             userRole = em.merge(userRole);
+            em.persist(userRole);
 
+            // Employee
             Employee userAdminFirst = new Employee();
-            userAdminFirst.setIdemployee(9996);
+            userAdminFirst.setIdemployee(9994);
             userAdminFirst.setFirstName("Robert");
             userAdminFirst.setSecondName("Administracyjny");
             userAdminFirst.setRole(userRole);
             userAdminFirst.setPassword("testPass");
-            em.remove(em.contains(userAdminFirst) ? userAdminFirst : em.merge(userAdminFirst));
+            em.persist(userAdminFirst);
+
+            // CAR
+            Car carForTest = new Car();
+            carForTest.setCarPk(new CarPK(9992, "wsc1235"));
+            carForTest.setDistance(0);
+            carForTest.setLatitude(null);
+            carForTest.setLongitude(null);
+            carForTest.setOwner(userAdminFirst);
+            em.persist(carForTest);
+
             trx.commit();
         } catch (RuntimeException e) {
             if (trx != null && trx.isActive()) {

@@ -1,7 +1,8 @@
 package pl.mg.cfm.model;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -22,37 +23,30 @@ public class EmployeeRole implements Serializable {
     @Column(name = "name")
     private String name;
 
-    
-//    @OneToMany(cascade=CascadeType.ALL)
-//    private Set<Employee> employees;
-
+    @OneToMany(cascade = CascadeType.ALL, mappedBy="role")
+    private Collection<Employee> employees = new ArrayList<Employee>();
 
     public int getId() {
         return id;
     }
 
-
     public void setId(int id) {
         this.id = id;
     }
-
 
     public String getName() {
         return name;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
 
-
-    /*public Set<Employee> getEmployees() {
+    public Collection<Employee> getEmployees() {
         return employees;
     }
 
-
-    public void setEmployees(Set<Employee> employees) {
+    public void setEmployees(Collection<Employee> employees) {
         this.employees = employees;
-    }*/
+    }
 }
