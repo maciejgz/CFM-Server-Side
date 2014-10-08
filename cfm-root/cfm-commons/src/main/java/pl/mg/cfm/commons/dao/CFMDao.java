@@ -9,7 +9,7 @@ import pl.mg.cfm.pojo.CarPojo;
 /**
  * Interfejs DAO JPA dla CFM
  * 
- * @author m
+ * @author Maciej Gzik
  *
  */
 @Remote
@@ -19,6 +19,7 @@ public interface CFMDao {
     // TODO mozna zrobic sesje po zalogowaniu z id przekazywanym na liscie
     // parametrow, aby zapobiec zmianom, ktore sa niedozwolone dla uzytkownika
 
+    
     /**
      * Listowanie wszystkich samochodów
      * 

@@ -1,12 +1,18 @@
-package pl.mg.cfm.dao;
+package pl.mg.cfm.commons.dao;
 
 import java.util.List;
 
-import pl.mg.cfm.commons.dao.CFMDao;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import pl.mg.cfm.pojo.CarPojo;
 
-public class CFMDaoImpl implements CFMDao {
+public class CFMDaoAbstract implements CFMDao {
 
+    
+    @PersistenceContext(unitName="cfm-ejb")
+    private EntityManager em;
+    
     @Override
     public List<CarPojo> getAllCars() {
         // TODO Auto-generated method stub
@@ -34,7 +40,7 @@ public class CFMDaoImpl implements CFMDao {
     @Override
     public void setCarOwner(int newCarUserId, String carId) {
         // TODO Auto-generated method stub
-        
+
     }
 
 }
