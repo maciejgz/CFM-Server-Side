@@ -10,7 +10,6 @@
 	</parent>
 
 
-	<groupId>pl.mg</groupId>
 	<artifactId>cfm-commons</artifactId>
 	<version>${cfm.version}</version>
 	<name>cfm-commons</name>
@@ -19,23 +18,31 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+
 	<dependencies>
-
-
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.jboss.logging</groupId>
 			<artifactId>jboss-logging</artifactId>
 			<version>3.1.4.GA</version>
 			<scope>provided</scope>
 		</dependency>
-
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
