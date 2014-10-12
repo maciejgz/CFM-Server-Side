@@ -18,74 +18,75 @@ import javax.persistence.Table;
 @Table(name = "Employee")
 public class Employee {
 
-    @Id
-    @Column(name = "idemployee")
-    private int idemployee;
+	@Id
+	@Column(name = "idemployee")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int idemployee;
 
-    @Column(name = "first_name")
-    private String firstName;
+	@Column(name = "first_name")
+	private String firstName;
 
-    @Column(name = "second_name")
-    private String secondName;
+	@Column(name = "second_name")
+	private String secondName;
 
-    // relacja jest wiele do jednego, bo wielu pracowników moze byc przypisanych
-    // do jednego typu
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "role_id")
-    private EmployeeRole role;
+	// relacja jest wiele do jednego, bo wielu pracowników moze byc przypisanych
+	// do jednego typu
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "role_id")
+	private EmployeeRole role;
 
-    @Column(name = "password")
-    private String password;
-    
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="owner")
-    private Collection<Car> cars = new ArrayList<Car>();
+	@Column(name = "password")
+	private String password;
 
-    public int getIdemployee() {
-        return idemployee;
-    }
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+	private Collection<Car> cars = new ArrayList<Car>();
 
-    public void setIdemployee(int idemployee) {
-        this.idemployee = idemployee;
-    }
+	public int getIdemployee() {
+		return idemployee;
+	}
 
-    public String getFirstName() {
-        return firstName;
-    }
+	public void setIdemployee(int idemployee) {
+		this.idemployee = idemployee;
+	}
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+	public String getFirstName() {
+		return firstName;
+	}
 
-    public String getSecondName() {
-        return secondName;
-    }
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
 
-    public void setSecondName(String secondName) {
-        this.secondName = secondName;
-    }
+	public String getSecondName() {
+		return secondName;
+	}
 
-    public EmployeeRole getRole() {
-        return role;
-    }
+	public void setSecondName(String secondName) {
+		this.secondName = secondName;
+	}
 
-    public void setRole(EmployeeRole role) {
-        this.role = role;
-    }
+	public EmployeeRole getRole() {
+		return role;
+	}
 
-    public String getPassword() {
-        return password;
-    }
+	public void setRole(EmployeeRole role) {
+		this.role = role;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public Collection<Car> getCars() {
-        return cars;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
-    public void setCars(Collection<Car> cars) {
-        this.cars = cars;
-    }
+	public Collection<Car> getCars() {
+		return cars;
+	}
+
+	public void setCars(Collection<Car> cars) {
+		this.cars = cars;
+	}
 
 }
