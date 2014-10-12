@@ -15,7 +15,7 @@ public class EmployeeRoleTest {
     /**
      * Dodanie obiektu przez EntityManager
      */
-    //@Test
+    @Test
     public void createRole() {
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("cfm-ejb");
@@ -86,7 +86,7 @@ public class EmployeeRoleTest {
     /**
      * usuwanie testowego obiektu poprzez standardowe zapytanie sql przy zachowaniu standardów JPA
      */
-    @Test
+    //@Test
     public void deleteRoleByQuery() {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("cfm-ejb");
         EntityManager em = emf.createEntityManager();

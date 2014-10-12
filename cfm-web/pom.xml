@@ -6,10 +6,11 @@
 		<groupId>pl.mg</groupId>
 		<artifactId>cfm-root</artifactId>
 		<version>0.0.1</version>
+		<relativePath>../cfm-root/pom.xml</relativePath>
 	</parent>
-	<groupId>pl.mg</groupId>
+
+
 	<artifactId>cfm-web</artifactId>
-	<version>${cfm.version}</version>
 	<packaging>war</packaging>
 	<name>cfm-web</name>
 	<dependencies>
@@ -19,6 +20,24 @@
 			<artifactId>gson</artifactId>
 			<version>2.3</version>
 		</dependency>
+
+		<dependency>
+			<groupId>pl.mg</groupId>
+			<artifactId>cfm-commons</artifactId>
+			<version>${cfm.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>jsr311-api</artifactId>
+			<version>1.1.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+
+		<!-- <dependency> <groupId>org.glassfish.jersey.core</groupId> <artifactId>jersey-server</artifactId> 
+			<version>2.13</version> </dependency> -->
 
 
 	</dependencies>

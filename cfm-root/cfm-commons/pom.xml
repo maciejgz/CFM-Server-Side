@@ -11,7 +11,6 @@
 
 
 	<artifactId>cfm-commons</artifactId>
-	<version>${cfm.version}</version>
 	<name>cfm-commons</name>
 
 

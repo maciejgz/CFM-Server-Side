@@ -42,7 +42,7 @@ public class AddCarTest {
             
             //CAR
             Car carForTest = new Car();
-            carForTest.setCarPk(new CarPK(9991, "wsc1234"));
+            carForTest.setCarPk(new CarPK("wsc1234"));
             carForTest.setDistance(0);
             carForTest.setLatitude(-50.123456789);
             carForTest.setLongitude(50.123456789);
