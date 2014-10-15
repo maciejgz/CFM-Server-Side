@@ -1,3 +1,3 @@
-default.configuration=cfm-ejb
+default.configuration=league-ejb
 eclipse.preferences.version=1
 hibernate3.enabled=true
