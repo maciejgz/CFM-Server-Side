@@ -42,4 +42,20 @@ public class CarPK implements Serializable {
 		// TODO Auto-generated method stub
 		return super.hashCode();
 	}
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getCar_id() {
+        return car_id;
+    }
+
+    public void setCar_id(String car_id) {
+        this.car_id = car_id;
+    }
 }
