@@ -2,18 +2,18 @@ package pl.mg.cfm.pojo;
 
 public class CarPojo {
 
-    private int id;
+    private Integer id;
     private String carId;
-    private long distance;
+    private Long distance;
     private Double latitude;
     private Double longitude;
-    private int ownerId;
+    private Integer ownerId;
 
     public CarPojo() {
 
     }
 
-    public CarPojo(int id, String carId, long distance, Double latitude, Double longitude, int ownerId) {
+    public CarPojo(Integer id, String carId, long distance, Double latitude, Double longitude, int ownerId) {
         this.id = id;
         this.carId = carId;
         this.distance = distance;
@@ -26,7 +26,7 @@ public class CarPojo {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -42,7 +42,7 @@ public class CarPojo {
         return distance;
     }
 
-    public void setDistance(long distance) {
+    public void setDistance(Long distance) {
         this.distance = distance;
     }
 
@@ -66,7 +66,7 @@ public class CarPojo {
         return ownerId;
     }
 
-    public void setOwnerId(int ownerId) {
+    public void setOwnerId(Integer ownerId) {
         this.ownerId = ownerId;
     }
 

@@ -2,19 +2,19 @@ package pl.mg.cfm.pojo;
 
 public class EmployeeRolePojo {
 
-    private int roleId;
+    private Integer roleId;
     private String roleName;
 
-    public EmployeeRolePojo(int roleId, String roleName) {
+    public EmployeeRolePojo(Integer roleId, String roleName) {
         this.roleId = roleId;
         this.roleName = roleName;
     }
 
-    public int getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 

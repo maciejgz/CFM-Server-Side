@@ -2,17 +2,17 @@ package pl.mg.cfm.pojo;
 
 public class EmployeePojo {
 
-    private int id;
+    private Integer id;
     private String firstName;
     private String secondName;
-    private int roleId;
+    private Integer roleId;
     private String password;
     
     
-    public int getId() {
+    public Integer getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
     public String getFirstName() {
@@ -27,10 +27,10 @@ public class EmployeePojo {
     public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
-    public int getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
-    public void setRoleId(int roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
     public String getPassword() {
