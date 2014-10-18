@@ -10,10 +10,6 @@ import pl.mg.cfm.pojo.EmployeePojo;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-/**
- * @author m
- *
- */
 public class GsonEmployeeTest {
 
     @Test

@@ -14,25 +14,20 @@ import pl.mg.cfm.commons.dao.CFMDao;
 @Path("/employee")
 public class EmployeeService {
 
-	private static final Logger LOGGER = Logger
-			.getLogger(EmployeeService.class);
+    private static final Logger LOGGER = Logger.getLogger(EmployeeService.class);
 
-	@EJB(beanName = "CFMDaoHibernate")
-	CFMDao dao;
+    @EJB(beanName = "CFMDaoHibernate")
+    CFMDao dao;
 
-	@POST
-	@Path("/register")
-	@Consumes("application/json")
-	public Response registerUser(@PathParam("firstName") String firstName,
-			@PathParam("lastName") String lastName,
-			@PathParam("roleId") int roleId,
-			@PathParam("password") String password) {
-		LOGGER.debug("register_user;firstName=" + firstName + ",lastName="
-				+ lastName + ";roleId=" + roleId + ";password=" + password);
-		
-		
-		
-		return null;
-	}
-
+    @POST
+    @Path("/register")
+    @Consumes("application/json")
+    public Response registerUser(@PathParam("firstName") String firstName, @PathParam("lastName") String lastName,
+            @PathParam("roleId") int roleId, @PathParam("password") String password) {
+        LOGGER.debug("register_user;firstName=" + firstName + ",lastName=" + lastName + ";roleId=" + roleId
+                + ";password=" + password);
+        return null;
+        
+        
+    }
 }

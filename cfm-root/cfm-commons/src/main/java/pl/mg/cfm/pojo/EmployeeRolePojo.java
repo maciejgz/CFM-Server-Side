@@ -1,7 +1,10 @@
 package pl.mg.cfm.pojo;
 
-public class EmployeeRolePojo {
+import java.io.Serializable;
 
+public class EmployeeRolePojo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private Integer roleId;
     private String roleName;
 

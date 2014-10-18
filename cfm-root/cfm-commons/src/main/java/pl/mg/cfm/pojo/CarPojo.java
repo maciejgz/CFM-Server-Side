@@ -1,7 +1,10 @@
 package pl.mg.cfm.pojo;
 
-public class CarPojo {
+import java.io.Serializable;
 
+public class CarPojo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private Integer id;
     private String carId;
     private Long distance;
