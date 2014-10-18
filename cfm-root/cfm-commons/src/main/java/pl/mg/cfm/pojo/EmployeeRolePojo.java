@@ -10,6 +10,11 @@ public class EmployeeRolePojo {
         this.roleName = roleName;
     }
 
+    public EmployeeRolePojo() {
+        this.roleId = null;
+        this.roleName = null;
+    }
+
     public Integer getRoleId() {
         return roleId;
     }
@@ -24,6 +29,10 @@ public class EmployeeRolePojo {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    public String toString() {
+        return "roleId=" + roleId + ";roleName=" + roleName;
     }
 
 }

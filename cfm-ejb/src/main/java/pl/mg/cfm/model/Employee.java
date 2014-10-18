@@ -26,8 +26,8 @@ public class Employee {
 	@Column(name = "first_name")
 	private String firstName;
 
-	@Column(name = "second_name")
-	private String secondName;
+	@Column(name = "last_name")
+	private String lastName;
 
 	// relacja jest wiele do jednego, bo wielu pracowników moze byc przypisanych
 	// do jednego typu
@@ -57,12 +57,12 @@ public class Employee {
 		this.firstName = firstName;
 	}
 
-	public String getSecondName() {
-		return secondName;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setSecondName(String secondName) {
-		this.secondName = secondName;
+	public void setSecondName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public EmployeeRole getRole() {
