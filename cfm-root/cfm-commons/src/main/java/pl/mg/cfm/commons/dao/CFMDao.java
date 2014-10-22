@@ -36,7 +36,7 @@ public interface CFMDao {
      * @param carId
      * @return
      */
-    public CarPojo findCar(String carId) throws UnsupportedOperationException;
+    public CarPojo getCar(String carId) throws UnsupportedOperationException;
 
     public List<CarPojo> findUserCars(int userId) throws UnsupportedOperationException;
 

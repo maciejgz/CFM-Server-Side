@@ -4,10 +4,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
 
@@ -18,7 +21,8 @@ import pl.mg.cfm.model.Car;
 import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.pojo.CarPojo;
 
-@Stateless
+@Stateless(name = "CFMDaoHibernate")
+@EJB(name = "java:global/cfm/CFMDaoHibernate", beanInterface = CFMDao.class, beanName = "CFMDaoHibernate")
 public class CFMDaoHibernate implements CFMDao {
 
     Logger logger = Logger.getLogger(CFMDaoHibernate.class);
@@ -36,27 +40,31 @@ public class CFMDaoHibernate implements CFMDao {
 
     @Override
     public List<CarPojo> getAllCars() throws UnsupportedOperationException {
-        List<Car> cars =  em.createQuery("SELECT e FROM Car e").getResultList();
-        
+        List<Car> cars = em.createQuery("SELECT e FROM Car e").getResultList();
         ArrayList<CarPojo> carsPojoList = new ArrayList<CarPojo>();
-        if(cars!=null)
-        {
+        if (cars != null) {
             Iterator it = cars.iterator();
-            while(it.hasNext()){
+            while (it.hasNext()) {
                 Car car = (Car) it.next();
-                if(car!=null){
-                    carsPojoList.add(new CarPojo(car.getCarPk().getId(),car.getCarPk().getCar_id(), car.getDistance(), car.getLatitude(), car.getLongitude(), car.getOwner().getIdemployee()));
+                if (car != null) {
+                    carsPojoList.add(new CarPojo(car.getCarPk().getId(), car.getCarPk().getCar_id(), car.getDistance(),
+                            car.getLatitude(), car.getLongitude(), car.getOwner().getIdemployee()));
                 }
             }
         }
-        
         return carsPojoList;
     }
 
     @Override
-    public CarPojo findCar(String carId) throws UnsupportedOperationException {
-        // TODO Auto-generated method stub
-        return null;
+    public CarPojo getCar(String carId) throws UnsupportedOperationException {
+        String sqlQuery = "select * from car where car_id like ?";
+        Query query = em.createNativeQuery(sqlQuery, Car.class);
+        query.setParameter(1, carId);
+
+        Car car = (Car) query.getSingleResult();
+        return new CarPojo(car.getCarPk().getId(), car.getCarPk().getCar_id(), car.getDistance(), car.getLatitude(),
+                car.getLongitude(), car.getOwner().getIdemployee());
+
     }
 
     @Override

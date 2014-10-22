@@ -10,12 +10,14 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
 import org.jboss.logging.Logger;
+import org.jboss.resteasy.annotations.interception.ServerInterceptor;
 import org.jboss.resteasy.core.Headers;
 import org.jboss.resteasy.core.ResourceMethodInvoker;
 import org.jboss.resteasy.core.ServerResponse;
 import org.jboss.resteasy.util.Base64;
 
 @Provider
+@ServerInterceptor
 public class SecurityInterceptor implements javax.ws.rs.container.ContainerRequestFilter {
 
     private Logger logger = Logger.getLogger(SecurityInterceptor.class);
@@ -28,6 +30,7 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
     private static final ServerResponse SERVER_ERROR = new ServerResponse("INTERNAL SERVER ERROR", 500,
             new Headers<Object>());;
 
+            
     @Override
     public void filter(ContainerRequestContext requestContext) {
         logger.debug("preProvider preprocess");
