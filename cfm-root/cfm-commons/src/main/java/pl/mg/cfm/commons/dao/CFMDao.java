@@ -55,8 +55,11 @@ public interface CFMDao {
 
     /**
      * Walidacja logowania
-     * @param username nazwa uzytkownika. Wstepnie jako max 11-cyfowa liczba
-     * @param password skrot hasla porownywany z baza danych
+     * 
+     * @param username
+     *            nazwa uzytkownika. Wstepnie jako max 11-cyfowa liczba
+     * @param password
+     *            skrot hasla porownywany z baza danych
      * @return
      * @throws UnsupportedOperationException
      * @throws UserNotFoundException
