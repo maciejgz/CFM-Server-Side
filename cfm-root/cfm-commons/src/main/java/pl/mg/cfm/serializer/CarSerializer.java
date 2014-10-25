@@ -20,16 +20,12 @@ public class CarSerializer implements JsonDeserializer<CarPojo> {
             throws JsonParseException {
 
         final JsonObject jsonObject = json.getAsJsonObject();
-        Integer id = null;
         String carId = null;
         Long distance = null;
         Double latitude = null;
         Double longitude = null;
         Integer ownerId = null;
 
-        if (!jsonObject.get("id").isJsonNull()) {
-            id = jsonObject.get("id").getAsInt();
-        }
         if (!jsonObject.get("carId").isJsonNull()) {
             carId = jsonObject.get("carId").getAsString();
         }
@@ -48,7 +44,6 @@ public class CarSerializer implements JsonDeserializer<CarPojo> {
         }
 
         final CarPojo car = new CarPojo();
-        car.setId(id);
         car.setCarId(carId);
         car.setDistance(distance);
         car.setLatitude(latitude);

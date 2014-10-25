@@ -39,7 +39,6 @@ public class AddCarTest {
             userAdminFirst.setPassword("testPass");
             em.merge(userAdminFirst);
             
-            
             //CAR
             Car carForTest = new Car();
             carForTest.setCarPk(new CarPK("wsc1234"));

@@ -5,7 +5,6 @@ import java.io.Serializable;
 public class CarPojo implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private Integer id;
     private String carId;
     private Long distance;
     private Double latitude;
@@ -16,21 +15,12 @@ public class CarPojo implements Serializable {
 
     }
 
-    public CarPojo(Integer id, String carId, long distance, Double latitude, Double longitude, int ownerId) {
-        this.id = id;
+    public CarPojo(String carId, long distance, Double latitude, Double longitude, int ownerId) {
         this.carId = carId;
         this.distance = distance;
         this.latitude = latitude;
         this.longitude = longitude;
         this.ownerId = ownerId;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public String getCarId() {
@@ -41,7 +31,7 @@ public class CarPojo implements Serializable {
         this.carId = carId;
     }
 
-    public long getDistance() {
+    public Long getDistance() {
         return distance;
     }
 
@@ -65,7 +55,7 @@ public class CarPojo implements Serializable {
         this.longitude = longitude;
     }
 
-    public int getOwnerId() {
+    public Integer getOwnerId() {
         return ownerId;
     }
 
@@ -75,7 +65,7 @@ public class CarPojo implements Serializable {
 
     @Override
     public String toString() {
-        StringBuffer buffer = new StringBuffer("id=" + this.id + ";carID=" + this.carId + ";distance=" + distance
+        StringBuffer buffer = new StringBuffer("carID=" + this.carId + ";distance=" + distance
                 + ";latitude=" + latitude + ";longitude=" + longitude + ";ownerID=" + ownerId);
         return buffer.toString();
     }

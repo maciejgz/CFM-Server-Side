@@ -68,4 +68,6 @@ public interface CFMDao {
     public boolean login(String username, String password) throws UnsupportedOperationException, UserNotFoundException,
             InvalidPasswordException;
 
+    
+    public void insertCar(CarPojo car);
 }

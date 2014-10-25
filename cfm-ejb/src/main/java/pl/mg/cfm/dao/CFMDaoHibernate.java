@@ -8,7 +8,6 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
@@ -18,6 +17,7 @@ import pl.mg.cfm.commons.dao.CFMDao;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.model.Car;
+import pl.mg.cfm.model.CarPK;
 import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.pojo.CarPojo;
 
@@ -47,8 +47,8 @@ public class CFMDaoHibernate implements CFMDao {
             while (it.hasNext()) {
                 Car car = (Car) it.next();
                 if (car != null) {
-                    carsPojoList.add(new CarPojo(car.getCarPk().getId(), car.getCarPk().getCar_id(), car.getDistance(),
-                            car.getLatitude(), car.getLongitude(), car.getOwner().getIdemployee()));
+                    carsPojoList.add(new CarPojo(car.getCarPk().getCar_id(), car.getDistance(), car.getLatitude(), car
+                            .getLongitude(), car.getOwner().getIdemployee()));
                 }
             }
         }
@@ -62,9 +62,8 @@ public class CFMDaoHibernate implements CFMDao {
         query.setParameter(1, carId);
 
         Car car = (Car) query.getSingleResult();
-        return new CarPojo(car.getCarPk().getId(), car.getCarPk().getCar_id(), car.getDistance(), car.getLatitude(),
-                car.getLongitude(), car.getOwner().getIdemployee());
-
+        return new CarPojo(car.getCarPk().getCar_id(), car.getDistance(), car.getLatitude(), car.getLongitude(), car
+                .getOwner().getIdemployee());
     }
 
     @Override
@@ -112,6 +111,35 @@ public class CFMDaoHibernate implements CFMDao {
         }
 
         return result;
+
+    }
+
+    @Override
+    public void insertCar(CarPojo car) {
+        try {
+            String sqlQuery = "select * from car where car_id like ?";
+            Query query = em.createNativeQuery(sqlQuery, Car.class);
+            query.setParameter(1, car.getCarId());
+
+            if (query.getSingleResult() != null) {
+                return;
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return;
+        }
+
+        if (car.getOwnerId() != null) {
+//            em.create
+        }
+
+        Car newCar = new Car();
+        CarPK pk = new CarPK(car.getCarId());
+        newCar.setCarPk(pk);
+        newCar.setDistance(car.getDistance());
+        newCar.setLatitude(car.getLatitude());
+        newCar.setLongitude(car.getLongitude());
+        // newCar.setowne
 
     }
 

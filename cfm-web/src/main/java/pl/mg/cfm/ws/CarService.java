@@ -14,6 +14,7 @@ import javax.ws.rs.core.Response;
 import org.jboss.logging.Logger;
 
 import pl.mg.cfm.commons.dao.CFMDao;
+import pl.mg.cfm.pojo.CarPojo;
 
 @Stateless
 @Path("/car")
@@ -54,7 +55,10 @@ public class CarService {
     @POST
     @Path("/{carId}")
     @javax.ws.rs.Produces("application/json")
-    public Response createCar(@PathParam("carId") String id) {
+    public Response createCar(@PathParam("carId") String id, CarPojo car) {
+        logger.debug("updateCar=" + car.toString());
+        logger.debug("carId=" + id);
+                
         return null;
     }
 
@@ -90,16 +94,67 @@ public class CarService {
     /*** LOCATION ******/
 
     /**
-     * Lista samochodów w poblizu
+     * Lista samochodów w poblizu samochodu którego id przekazujemy
      * 
      * @param id
      * @param userId
+     * @param latitude
+     * @param longitude
      * @return
      */
     @GET
     @Path("/{carId}/location")
     @javax.ws.rs.Produces("application/json")
-    public Response getNearestCars(@PathParam("carId") String carId, @QueryParam("latitude") String latitude) {
+    public Response getNearestCars(@PathParam("carId") String carId, @QueryParam("latitude") String latitude,
+            @QueryParam("longitude") String longitude) {
         return null;
     }
+
+    /**
+     * Aktualizacja lokalizacji samochodu
+     * 
+     * @param carId
+     * @param latitude
+     * @param longitude
+     * @return
+     */
+    @PUT
+    @Path("/{carId}/location")
+    @javax.ws.rs.Produces("application/json")
+    public Response updateCarPosition(@PathParam("carId") String carId, @QueryParam("latitude") String latitude,
+            @QueryParam("longitude") String longitude) {
+        return null;
+    }
+
+    /**
+     * Czyszczenie lokalizacji samochodu
+     * 
+     * @param carId
+     * @param latitude
+     * @param longitude
+     * @return
+     */
+    @DELETE
+    @Path("/{carId}/location")
+    @javax.ws.rs.Produces("application/json")
+    public Response clearCarPosition(@PathParam("carId") String carId, @QueryParam("latitude") String latitude,
+            @QueryParam("longitude") String longitude) {
+        return null;
+    }
+
+    /****** DISTANCE ******/
+    @GET
+    @Path("/{carId}/distance")
+    @javax.ws.rs.Produces("application/json")
+    public Response getCarDistance(@PathParam("carId") String carId, @QueryParam("newValue") String newValue) {
+        return null;
+    }
+
+    @POST
+    @Path("/{carId}/distance")
+    @javax.ws.rs.Produces("application/json")
+    public Response setCarDistance(@PathParam("carId") String carId, @QueryParam("newValue") String newValue) {
+        return null;
+    }
+
 }
