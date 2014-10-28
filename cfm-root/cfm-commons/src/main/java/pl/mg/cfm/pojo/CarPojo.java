@@ -15,7 +15,7 @@ public class CarPojo implements Serializable {
 
     }
 
-    public CarPojo(String carId, long distance, Double latitude, Double longitude, int ownerId) {
+    public CarPojo(String carId, Long distance, Double latitude, Double longitude, Integer ownerId) {
         this.carId = carId;
         this.distance = distance;
         this.latitude = latitude;

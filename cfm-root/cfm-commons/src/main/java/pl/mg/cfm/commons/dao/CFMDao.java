@@ -2,11 +2,12 @@ package pl.mg.cfm.commons.dao;
 
 import java.util.List;
 
-import javax.activity.InvalidActivityException;
 import javax.ejb.Remote;
 import javax.persistence.EntityManager;
 
+import pl.mg.cfm.dao.exceptions.CarNotFoundException;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
+import pl.mg.cfm.dao.exceptions.ObjectAlreadyExists;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.pojo.CarPojo;
 
@@ -69,5 +70,7 @@ public interface CFMDao {
             InvalidPasswordException;
 
     
-    public void insertCar(CarPojo car);
+    public void insertCar(CarPojo car)  throws UserNotFoundException, ObjectAlreadyExists;
+    
+    public void updateCar(CarPojo car) throws CarNotFoundException,UserNotFoundException;
 }

@@ -13,8 +13,8 @@ import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.pojo.CarPojo;
 
-@Stateless(name = "CFMJDBCDao")
-@EJB(name = "java:global/cfm/CFMJDBCDao", beanInterface = CFMDao.class, beanName = "CFMJDBCDao")
+/*@Stateless(name = "CFMJDBCDao")
+@EJB(name = "java:global/cfm/CFMJDBCDao", beanInterface = CFMDao.class, beanName = "CFMJDBCDao")*/
 public class CFMJDBCDao {
 
     Logger logger = Logger.getLogger(CFMJDBCDao.class);

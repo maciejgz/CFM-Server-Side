@@ -12,6 +12,7 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.google.gson.reflect.TypeToken;
 
 public class CarSerializer implements JsonDeserializer<CarPojo> {
 
@@ -49,7 +50,6 @@ public class CarSerializer implements JsonDeserializer<CarPojo> {
         car.setLatitude(latitude);
         car.setLongitude(longitude);
         car.setOwnerId(ownerId);
-
         return car;
     }
 
@@ -62,15 +62,24 @@ public class CarSerializer implements JsonDeserializer<CarPojo> {
         Gson gson = new GsonBuilder().serializeNulls().create();
         return gson.toJson(cars);
     }
-    
-    
-    public CarPojo deserialize(String jsonString){
+
+    public CarPojo deserialize(String jsonString) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(CarPojo.class, new CarSerializer());
         builder.serializeNulls();
         Gson gson = builder.create();
-        
+
         return gson.fromJson(jsonString, CarPojo.class);
+    }
+
+    public List<CarPojo> deserializeList(String jsonString) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(CarPojo.class, new CarSerializer());
+        builder.serializeNulls();
+        Gson gson = builder.create();
+
+        return gson.fromJson(jsonString, new TypeToken<List<CarPojo>>() {
+        }.getType());
     }
 
 }

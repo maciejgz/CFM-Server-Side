@@ -45,7 +45,7 @@ public class AddDeleteCar {
 
             // CAR
             Car carForTest = new Car();
-            carForTest.setCarPk(new CarPK("wsc1235"));
+            carForTest.setCar_id("wsc1235");
             carForTest.setDistance(0);
             carForTest.setLatitude(null);
             carForTest.setLongitude(null);
@@ -93,7 +93,7 @@ public class AddDeleteCar {
 
             // CAR
             Car carForTest = new Car();
-            carForTest.setCarPk(new CarPK("wsc1235"));
+            carForTest.setCar_id("wsc1235");
             carForTest.setDistance(0);
             carForTest.setLatitude(null);
             carForTest.setLongitude(null);

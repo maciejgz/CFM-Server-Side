@@ -1,5 +1,7 @@
 package pl.mg.cfm.ws.test;
 
+import static org.junit.Assert.*;
+
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.Invocation;
@@ -13,12 +15,12 @@ import pl.mg.cfm.pojo.CarPojo;
 import pl.mg.cfm.resteasy.util.AllTrustingClientFactory;
 import pl.mg.cfm.serializer.CarSerializer;
 
-public class CreateCarTest {
+public class UpdateCarTest {
 
     @Test
     public void test() {
         String carId = "wscap50";
-        CarPojo carToInsert = new CarPojo(carId, 0L, -50.23232, 0.012, null);
+        CarPojo carToInsert = new CarPojo(carId, 120L, null, 0.012, null);
 
         Client client = AllTrustingClientFactory.createAlltrustedClient();
         WebTarget target = client.target("https://localhost:8444/cfm-web/car/" + carId);
@@ -32,7 +34,7 @@ public class CreateCarTest {
         Entity<String> entity = Entity.entity(car, MediaType.APPLICATION_JSON);
 
         Invocation invocation = invocationBuilder.buildPost(entity);
-        Response response = target.request().post(entity);
+        Response response = target.request().put(entity);
         String responseValue = response.readEntity(String.class);
         response.close();
         System.out.println(responseValue);

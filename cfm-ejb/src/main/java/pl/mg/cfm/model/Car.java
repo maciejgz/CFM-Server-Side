@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -16,11 +16,17 @@ public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @EmbeddedId
-    private CarPK carPk;
-
+   // @EmbeddedId
+   // private CarPK carPk;
+    
+    
+    @Id
+    @Column(name = "car_id")
+    protected String car_id;
+    
+    
     @Column(name = "distance")
-    private long distance;
+    private Long distance;
     
     @Column(name="latitude")
     private Double latitude;
@@ -32,15 +38,15 @@ public class Car implements Serializable {
     @JoinColumn(name="car_owner_id")
     private Employee owner;
 
-    public CarPK getCarPk() {
+    /*public CarPK getCarPk() {
         return carPk;
     }
 
     public void setCarPk(CarPK carPk) {
         this.carPk = carPk;
-    }
+    }*/
 
-    public long getDistance() {
+    public Long getDistance() {
         return distance;
     }
 
@@ -70,6 +76,14 @@ public class Car implements Serializable {
 
     public void setOwner(Employee owner) {
         this.owner = owner;
+    }
+
+    public String getCar_id() {
+        return car_id;
+    }
+
+    public void setCar_id(String car_id) {
+        this.car_id = car_id;
     }
 
 

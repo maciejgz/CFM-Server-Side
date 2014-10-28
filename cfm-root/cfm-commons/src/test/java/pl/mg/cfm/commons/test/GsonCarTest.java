@@ -14,8 +14,8 @@ public class GsonCarTest {
     @Test
     public void test() {
         Gson gson = new GsonBuilder().serializeNulls().create();
-        CarPojo car = new CarPojo("test", 21, 31.0, 31.0, 12);
-        CarPojo car2 = new CarPojo("test", 21, 31.0, 31.0, 12);
+        CarPojo car = new CarPojo("test", new Long(21),new Double(31.0), new Double(31.0), new Integer(12));
+        CarPojo car2 = new CarPojo("test", new Long(21), new Double(31.0), new Double(31.0), new Integer(12));
 
         ArrayList<CarPojo> cars = new ArrayList<CarPojo>();
         cars.add(car2);

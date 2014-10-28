@@ -3,6 +3,7 @@ package pl.mg.cfm.serializer;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import pl.mg.cfm.pojo.CarPojo;
 import pl.mg.cfm.pojo.EmployeePojo;
 
 import com.google.gson.Gson;
@@ -11,6 +12,7 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.reflect.TypeToken;
 
 public class EmployeeSerializer implements JsonDeserializer<EmployeePojo> {
 
@@ -65,6 +67,16 @@ public class EmployeeSerializer implements JsonDeserializer<EmployeePojo> {
         Gson gson = builder.create();
 
         return gson.fromJson(jsonString, EmployeePojo.class);
+    }
+    
+    public List<EmployeePojo> deserializeList(String jsonString) {
+        GsonBuilder builder = new GsonBuilder();
+        builder.registerTypeAdapter(EmployeePojo.class, new EmployeeSerializer());
+        builder.serializeNulls();
+        Gson gson = builder.create();
+
+        return gson.fromJson(jsonString, new TypeToken<List<EmployeePojo>>() {
+        }.getType());
     }
 
 }

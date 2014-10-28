@@ -1,5 +1,7 @@
 package pl.mg.cfm.ws;
 
+import java.util.List;
+
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.ws.rs.DELETE;
@@ -14,7 +16,9 @@ import javax.ws.rs.core.Response;
 import org.jboss.logging.Logger;
 
 import pl.mg.cfm.commons.dao.CFMDao;
+import pl.mg.cfm.message.CFMJsonSimplyMessage;
 import pl.mg.cfm.pojo.CarPojo;
+import pl.mg.cfm.serializer.CarSerializer;
 
 @Stateless
 @Path("/car")
@@ -30,7 +34,26 @@ public class CarService {
     @javax.ws.rs.Produces("application/json")
     public Response getAllCars() {
         logger.debug("CarService: getAllCars");
-        Response.ResponseBuilder rb = Response.ok(dao.getAllCars());
+        CarSerializer serializer = new CarSerializer();
+
+        Integer errorCode = 0;
+        String errorMessage = null;
+        List<CarPojo> cars = null;
+
+        try {
+            cars = dao.getAllCars();
+        } catch (Exception e) {
+            errorCode = 1;
+            errorMessage = e.getLocalizedMessage();
+        }
+
+        CFMJsonSimplyMessage message = new CFMJsonSimplyMessage();
+        message.setErrorCode(errorCode);
+        message.setErrorMessage(errorMessage);
+        message.setData(serializer.serialize(cars));
+
+        Response.ResponseBuilder rb = Response.ok(message);
+
         return rb.build();
     }
 
@@ -39,27 +62,54 @@ public class CarService {
     @Path("/{carId}")
     @javax.ws.rs.Produces("application/json")
     public Response getCar(@PathParam("carId") String carId) {
-        // TODO obsługa błędów zwracanych w JSON
         logger.debug("CarService: trying to find car with id=" + carId);
-        Response.ResponseBuilder rb = Response.ok(dao.getCar(carId));
-        return rb.build();
+        Integer errorCode = 0;
+        String errorMessage = null;
+        CarPojo car = null;
+        try {
+            car = dao.getCar(carId);
+        } catch (Exception e) {
+            errorCode = 1;
+            errorMessage = e.getLocalizedMessage();
+        }
+        CarSerializer serializer = new CarSerializer();
+        CFMJsonSimplyMessage message = new CFMJsonSimplyMessage(errorCode, errorMessage, serializer.serialize(car));
+        return Response.ok(message).build();
     }
 
     @PUT
     @Path("/{carId}")
     @javax.ws.rs.Produces("application/json")
-    public Response updateCar(@PathParam("carId") String carId) {
-        return null;
+    public Response updateCar(@PathParam("carId") String id, CarPojo car) {
+        logger.debug("updateCar=" + car.toString());
+        logger.debug("carId=" + id);
+        Integer errorCode = 0;
+        String errorMessage = null;
+        try {
+            dao.updateCar(car);
+        } catch (Exception e) {
+            errorCode = 1;
+            errorMessage = e.getLocalizedMessage();
+        }
+        CFMJsonSimplyMessage message = new CFMJsonSimplyMessage(errorCode, errorMessage);
+        return Response.ok(message).build();
     }
 
     @POST
     @Path("/{carId}")
     @javax.ws.rs.Produces("application/json")
     public Response createCar(@PathParam("carId") String id, CarPojo car) {
-        logger.debug("updateCar=" + car.toString());
-        logger.debug("carId=" + id);
-                
-        return null;
+        logger.debug("createCar=" + car.toString());
+        Integer errorCode = 0;
+        String errorMessage = null;
+        try {
+            dao.insertCar(car);
+        } catch (Exception e) {
+            errorCode = 1;
+            errorMessage = e.getLocalizedMessage();
+        }
+        CFMJsonSimplyMessage message = new CFMJsonSimplyMessage(errorCode, errorMessage);
+        return Response.ok(message).build();
     }
 
     @DELETE

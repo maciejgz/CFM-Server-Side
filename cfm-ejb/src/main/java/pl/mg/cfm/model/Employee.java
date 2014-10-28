@@ -21,7 +21,7 @@ public class Employee {
 	@Id
 	@Column(name = "idemployee")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int idemployee;
+	private Integer idemployee;
 
 	@Column(name = "first_name")
 	private String firstName;
@@ -41,11 +41,11 @@ public class Employee {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
 	private Collection<Car> cars = new ArrayList<Car>();
 
-	public int getIdemployee() {
+	public Integer getIdemployee() {
 		return idemployee;
 	}
 
-	public void setIdemployee(int idemployee) {
+	public void setIdemployee(Integer idemployee) {
 		this.idemployee = idemployee;
 	}
 

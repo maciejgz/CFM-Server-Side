@@ -1,5 +1,6 @@
 package pl.mg.cfm.dao;
 
+import java.security.acl.Owner;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -14,13 +15,21 @@ import javax.persistence.Query;
 import org.jboss.logging.Logger;
 
 import pl.mg.cfm.commons.dao.CFMDao;
+import pl.mg.cfm.dao.exceptions.CarNotFoundException;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
+import pl.mg.cfm.dao.exceptions.ObjectAlreadyExists;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.model.Car;
 import pl.mg.cfm.model.CarPK;
 import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.pojo.CarPojo;
 
+/**
+ * TODO mozna rozdzielic DAO na samochody i pracownikow
+ * 
+ * @author m
+ *
+ */
 @Stateless(name = "CFMDaoHibernate")
 @EJB(name = "java:global/cfm/CFMDaoHibernate", beanInterface = CFMDao.class, beanName = "CFMDaoHibernate")
 public class CFMDaoHibernate implements CFMDao {
@@ -43,15 +52,28 @@ public class CFMDaoHibernate implements CFMDao {
         List<Car> cars = em.createQuery("SELECT e FROM Car e").getResultList();
         ArrayList<CarPojo> carsPojoList = new ArrayList<CarPojo>();
         if (cars != null) {
-            Iterator it = cars.iterator();
+            Iterator<Car> it = cars.iterator();
             while (it.hasNext()) {
                 Car car = (Car) it.next();
                 if (car != null) {
-                    carsPojoList.add(new CarPojo(car.getCarPk().getCar_id(), car.getDistance(), car.getLatitude(), car
-                            .getLongitude(), car.getOwner().getIdemployee()));
+                    logger.debug(car.getCar_id());
+                    logger.debug(car.getDistance());
+                    logger.debug(car.getLatitude());
+                    logger.debug(car.getLongitude());
+                    logger.debug(car.getOwner());
+
+                    Employee employee = car.getOwner();
+                    Integer ownerId = null;
+
+                    if (employee != null) {
+                        ownerId = employee.getIdemployee();
+                    }
+                    carsPojoList.add(new CarPojo(car.getCar_id(), car.getDistance(), car.getLatitude(), car
+                            .getLongitude(), ownerId));
                 }
             }
         }
+
         return carsPojoList;
     }
 
@@ -62,8 +84,8 @@ public class CFMDaoHibernate implements CFMDao {
         query.setParameter(1, carId);
 
         Car car = (Car) query.getSingleResult();
-        return new CarPojo(car.getCarPk().getCar_id(), car.getDistance(), car.getLatitude(), car.getLongitude(), car
-                .getOwner().getIdemployee());
+        return new CarPojo(car.getCar_id(), car.getDistance(), car.getLatitude(), car.getLongitude(), car.getOwner()
+                .getIdemployee());
     }
 
     @Override
@@ -115,32 +137,82 @@ public class CFMDaoHibernate implements CFMDao {
     }
 
     @Override
-    public void insertCar(CarPojo car) {
-        try {
-            String sqlQuery = "select * from car where car_id like ?";
-            Query query = em.createNativeQuery(sqlQuery, Car.class);
-            query.setParameter(1, car.getCarId());
+    public void insertCar(CarPojo car) throws UserNotFoundException, ObjectAlreadyExists {
 
-            if (query.getSingleResult() != null) {
-                return;
-            }
-        } catch (Exception e) {
-            logger.error(e.getMessage(), e);
-            return;
+        if (!checkIfCarExists(em, car.getCarId())) {
+            throw new ObjectAlreadyExists("Car already exists. Id=" + car.getCarId());
         }
 
+        Employee owner = null;
+
         if (car.getOwnerId() != null) {
-//            em.create
+            if (!checkIfEmployeeExists(em, car.getOwnerId())) {
+                throw new UserNotFoundException("User with id=" + car.getOwnerId() + " not exists!");
+            }
+            owner = em.find(Employee.class, car.getOwnerId());
         }
 
         Car newCar = new Car();
-        CarPK pk = new CarPK(car.getCarId());
-        newCar.setCarPk(pk);
+        newCar.setCar_id(car.getCarId());
         newCar.setDistance(car.getDistance());
         newCar.setLatitude(car.getLatitude());
         newCar.setLongitude(car.getLongitude());
-        // newCar.setowne
+        if (owner != null) {
+            newCar.setOwner(owner);
+        }
 
+        em.persist(newCar);
+    }
+
+    @Override
+    public void updateCar(CarPojo car) throws CarNotFoundException, UserNotFoundException {
+        if (!checkIfCarExists(em, car.getCarId())) {
+            throw new CarNotFoundException("Car not exists. Id=" + car.getCarId());
+        }
+        Car oldCar = em.find(Car.class, car.getCarId());
+
+        Employee owner = null;
+
+        if (car.getOwnerId() != null) {
+            if (!checkIfEmployeeExists(em, car.getOwnerId())) {
+                throw new UserNotFoundException("User with id=" + car.getOwnerId() + " not exists!");
+            }
+            owner = em.find(Employee.class, car.getOwnerId());
+        }
+
+        Car newCar = new Car();
+        newCar.setCar_id(car.getCarId());
+        if (car.getDistance() != null)
+            newCar.setDistance(car.getDistance());
+
+        if (car.getLatitude() != null)
+            newCar.setLatitude(car.getLatitude());
+
+        if (car.getLongitude() != null)
+            newCar.setLongitude(car.getLongitude());
+        if (car.getOwnerId() != null)
+            newCar.setOwner(owner);
+
+        em.merge(newCar);
+
+    }
+
+    private boolean checkIfCarExists(EntityManager em, String carId) {
+        Car oldCar = em.find(Car.class, carId);
+        if (oldCar != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private boolean checkIfEmployeeExists(EntityManager em, Integer employeeId) {
+        Employee employee = em.find(Employee.class, employeeId);
+        if (employee != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
