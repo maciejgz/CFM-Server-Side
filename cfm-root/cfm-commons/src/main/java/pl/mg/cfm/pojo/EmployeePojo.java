@@ -2,14 +2,13 @@ package pl.mg.cfm.pojo;
 
 import java.io.Serializable;
 
-public class EmployeePojo implements Serializable{
+public class EmployeePojo implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String firstName;
     private String lastName;
     private Integer roleId;
-    private String password;
 
     public Integer getId() {
         return id;
@@ -43,18 +42,10 @@ public class EmployeePojo implements Serializable{
         this.roleId = roleId;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer("id=" + this.id + ";firstName=" + this.firstName + ";lastName="
-                + lastName + ";roleId=" + roleId + ";password=" + password);
+                + lastName + ";roleId=" + roleId);
         return buffer.toString();
     }
 
