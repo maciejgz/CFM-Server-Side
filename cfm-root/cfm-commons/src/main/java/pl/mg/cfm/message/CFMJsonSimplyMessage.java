@@ -51,7 +51,13 @@ public class CFMJsonSimplyMessage implements Serializable {
 
     @Override
     public String toString() {
-        return "errorCode=" + errorCode + ";errorMessage=" + errorMessage + ";data=" + data.toString();
+        String result = "errorCode=" + errorCode + ";errorMessage=" + errorMessage + ";data=";
+        if (data == null) {
+            result += "null";
+        } else {
+            result += data.toString();
+        }
+        return result;
     }
 
 }

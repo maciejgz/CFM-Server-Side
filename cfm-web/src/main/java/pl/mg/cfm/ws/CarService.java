@@ -116,7 +116,17 @@ public class CarService {
     @Path("/{carId}")
     @javax.ws.rs.Produces("application/json")
     public Response deleteCar(@PathParam("carId") String carId) {
-        return null;
+        logger.debug("deleteCar=" + carId);
+        Integer errorCode = 0;
+        String errorMessage = null;
+        try {
+            dao.deleteCar(carId);
+        } catch (Exception e) {
+            errorCode = 1;
+            errorMessage = e.getLocalizedMessage();
+        }
+        CFMJsonSimplyMessage message = new CFMJsonSimplyMessage(errorCode, errorMessage);
+        return Response.ok(message).build();
     }
 
     /**** ID USER ***/

@@ -73,4 +73,6 @@ public interface CFMDao {
     public void insertCar(CarPojo car)  throws UserNotFoundException, ObjectAlreadyExists;
     
     public void updateCar(CarPojo car) throws CarNotFoundException,UserNotFoundException;
+    
+    public void deleteCar(String carId) throws CarNotFoundException;
 }

@@ -1,6 +1,5 @@
 package pl.mg.cfm.dao;
 
-import java.security.acl.Owner;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -20,12 +19,10 @@ import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.ObjectAlreadyExists;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.model.Car;
-import pl.mg.cfm.model.CarPK;
 import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.pojo.CarPojo;
 
 /**
- * TODO mozna rozdzielic DAO na samochody i pracownikow
  * 
  * @author m
  *
@@ -169,7 +166,6 @@ public class CFMDaoHibernate implements CFMDao {
         if (!checkIfCarExists(em, car.getCarId())) {
             throw new CarNotFoundException("Car not exists. Id=" + car.getCarId());
         }
-        Car oldCar = em.find(Car.class, car.getCarId());
 
         Employee owner = null;
 
@@ -194,7 +190,6 @@ public class CFMDaoHibernate implements CFMDao {
             newCar.setOwner(owner);
 
         em.merge(newCar);
-
     }
 
     private boolean checkIfCarExists(EntityManager em, String carId) {
@@ -213,6 +208,15 @@ public class CFMDaoHibernate implements CFMDao {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public void deleteCar(String carId) throws CarNotFoundException {
+        if (!checkIfCarExists(em, carId)) {
+            throw new CarNotFoundException("Car already not exists. Id=" + carId);
+        }
+
+        em.remove(em.find(Car.class, carId));
     }
 
 }

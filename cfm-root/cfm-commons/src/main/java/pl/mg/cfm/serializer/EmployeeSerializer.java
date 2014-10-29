@@ -3,7 +3,6 @@ package pl.mg.cfm.serializer;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import pl.mg.cfm.pojo.CarPojo;
 import pl.mg.cfm.pojo.EmployeePojo;
 
 import com.google.gson.Gson;
@@ -23,7 +22,6 @@ public class EmployeeSerializer implements JsonDeserializer<EmployeePojo> {
         String firstName = null;
         String lastName = null;
         Integer roleId = null;
-        String password = null;
 
         if (!jsonObject.get("id").isJsonNull()) {
             id = jsonObject.get("id").getAsInt();
@@ -37,16 +35,12 @@ public class EmployeeSerializer implements JsonDeserializer<EmployeePojo> {
         if (!jsonObject.get("roleId").isJsonNull()) {
             roleId = jsonObject.get("roleId").getAsInt();
         }
-        if (!jsonObject.get("password").isJsonNull()) {
-            password = jsonObject.get("password").getAsString();
-        }
 
         final EmployeePojo employee = new EmployeePojo();
         employee.setId(id);
         employee.setFirstName(firstName);
         employee.setLastName(lastName);
         employee.setRoleId(roleId);
-        employee.setPassword(password);
         return employee;
     }
 
@@ -68,7 +62,7 @@ public class EmployeeSerializer implements JsonDeserializer<EmployeePojo> {
 
         return gson.fromJson(jsonString, EmployeePojo.class);
     }
-    
+
     public List<EmployeePojo> deserializeList(String jsonString) {
         GsonBuilder builder = new GsonBuilder();
         builder.registerTypeAdapter(EmployeePojo.class, new EmployeeSerializer());
