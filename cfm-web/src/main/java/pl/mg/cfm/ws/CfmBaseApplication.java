@@ -7,10 +7,18 @@ import java.util.Set;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
+import org.jboss.logging.Logger;
+
+import pl.mg.cfm.ws.security.SecurityInterceptor;
+
 @ApplicationPath("/")
 public class CfmBaseApplication extends Application {
-    @Override
-    public Set<Class<?>> getClasses() {
-        return new HashSet<Class<?>>(Arrays.asList(SecurityException.class));
-    }
+	private static Logger logger = Logger.getLogger(CfmBaseApplication.class);
+
+	@Override
+	public Set<Class<?>> getClasses() {
+		logger.debug("CfmBaseApplication");
+		System.out.println("CfmBaseApplication");
+		return new HashSet<Class<?>>(Arrays.asList(SecurityInterceptor.class));
+	}
 }

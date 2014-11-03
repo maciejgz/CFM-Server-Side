@@ -17,7 +17,6 @@ import org.jboss.resteasy.core.ServerResponse;
 import org.jboss.resteasy.util.Base64;
 
 @Provider
-@ServerInterceptor
 public class SecurityInterceptor implements javax.ws.rs.container.ContainerRequestFilter {
 
     private Logger logger = Logger.getLogger(SecurityInterceptor.class);

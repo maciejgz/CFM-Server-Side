@@ -136,7 +136,7 @@ public class CFMDaoHibernate implements CFMDao {
     @Override
     public void insertCar(CarPojo car) throws UserNotFoundException, ObjectAlreadyExists {
 
-        if (!checkIfCarExists(em, car.getCarId())) {
+        if (checkIfCarExists(em, car.getCarId())) {
             throw new ObjectAlreadyExists("Car already exists. Id=" + car.getCarId());
         }
 

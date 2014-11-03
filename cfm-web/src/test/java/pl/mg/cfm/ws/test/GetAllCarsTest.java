@@ -23,6 +23,7 @@ public class GetAllCarsTest {
         WebTarget target = client.target("https://localhost:8444/cfm-web/car/");
 
         Response response = target.request().get();
+//        System.out.println(response.toString());
         CFMJsonSimplyMessage message = response.readEntity(CFMJsonSimplyMessage.class);
         System.out.println(message.toString());
 

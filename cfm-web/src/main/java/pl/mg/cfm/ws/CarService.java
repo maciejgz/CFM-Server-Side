@@ -105,6 +105,7 @@ public class CarService {
         try {
             dao.insertCar(car);
         } catch (Exception e) {
+        	logger.error(e.getLocalizedMessage(),e);
             errorCode = 1;
             errorMessage = e.getLocalizedMessage();
         }
