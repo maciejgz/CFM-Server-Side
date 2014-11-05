@@ -111,9 +111,7 @@ public class CFMDaoHibernate implements CFMDao {
         boolean result = false;
 
         try {
-
             Integer empId = Integer.parseInt(username);
-
             Employee employee = em.find(Employee.class, empId);
 
             if (employee != null) {
