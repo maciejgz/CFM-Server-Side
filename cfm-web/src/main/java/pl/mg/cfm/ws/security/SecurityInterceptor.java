@@ -1,22 +1,19 @@
 package pl.mg.cfm.ws.security;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.List;
-import java.util.StringTokenizer;
-
 import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.ext.Provider;
 
 import org.jboss.logging.Logger;
 import org.jboss.resteasy.annotations.interception.ServerInterceptor;
 import org.jboss.resteasy.core.Headers;
-import org.jboss.resteasy.core.ResourceMethodInvoker;
 import org.jboss.resteasy.core.ServerResponse;
-import org.jboss.resteasy.util.Base64;
 
+/**
+ * @author m
+ *
+ */
 @Provider
+//@ServerInterceptor
 public class SecurityInterceptor implements javax.ws.rs.container.ContainerRequestFilter {
 
     private Logger logger = Logger.getLogger(SecurityInterceptor.class);
@@ -34,7 +31,7 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
     public void filter(ContainerRequestContext requestContext) {
         logger.debug("preProvider preprocess");
         System.out.println("preProvider preprocess");
-        ResourceMethodInvoker methodInvoker = (ResourceMethodInvoker) requestContext
+       /* ResourceMethodInvoker methodInvoker = (ResourceMethodInvoker) requestContext
                 .getProperty("org.jboss.resteasy.core.ResourceMethodInvoker");
         Method method = methodInvoker.getMethod();
 
@@ -65,8 +62,7 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
         System.out.println(password);
 
         logger.debug(username);
-        logger.debug(password);
+        logger.debug(password);*/
 
-        return;
     }
 }

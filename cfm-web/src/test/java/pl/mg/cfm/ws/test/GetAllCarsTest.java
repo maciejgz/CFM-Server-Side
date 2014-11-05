@@ -22,8 +22,7 @@ public class GetAllCarsTest {
         Client client = AllTrustingClientFactory.createAlltrustedClient();
         WebTarget target = client.target("https://localhost:8444/cfm-web/car/");
 
-        Response response = target.request().get();
-//        System.out.println(response.toString());
+        Response response = target.request().get(); 
         CFMJsonSimplyMessage message = response.readEntity(CFMJsonSimplyMessage.class);
         System.out.println(message.toString());
 
@@ -35,9 +34,7 @@ public class GetAllCarsTest {
         while (carIt.hasNext()) {
             System.out.println(carIt.next().toString());
         }
-
         response.close();
-
     }
 
 }

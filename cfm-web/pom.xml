@@ -12,6 +12,7 @@
 
 	<properties>
 		<resteasy.version>3.0.9.Final</resteasy.version>
+		<resteasy.version.client>3.0.9.Final</resteasy.version.client>
 	</properties>
 
 	<artifactId>cfm-web</artifactId>
@@ -44,13 +45,20 @@
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-client</artifactId>
-			<version>${resteasy.version}</version>
+			<version>${resteasy.version.client}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jackson-provider</artifactId>
 			<version>${resteasy.version}</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
 		</dependency>
 
 	</dependencies>

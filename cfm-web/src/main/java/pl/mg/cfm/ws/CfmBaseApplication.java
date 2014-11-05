@@ -13,12 +13,16 @@ import pl.mg.cfm.ws.security.SecurityInterceptor;
 
 @ApplicationPath("/")
 public class CfmBaseApplication extends Application {
-	private static Logger logger = Logger.getLogger(CfmBaseApplication.class);
+    private static Logger logger = Logger.getLogger(CfmBaseApplication.class);
 
-	@Override
-	public Set<Class<?>> getClasses() {
-		logger.debug("CfmBaseApplication");
-		System.out.println("CfmBaseApplication");
-		return new HashSet<Class<?>>(Arrays.asList(SecurityInterceptor.class));
-	}
+    @Override
+    public Set<Class<?>> getClasses() {
+        logger.debug("CfmBaseApplication");
+        // System.out.println("CfmBaseApplication");
+        // return Collections.EMPTY_SET;
+        // Set<Class<?>> classess = super.getClasses();
+        // classess.add(SecurityInterceptor.class);
+        // return classess;
+        return new HashSet<Class<?>>(Arrays.asList(SecurityInterceptor.class));
+    }
 }
