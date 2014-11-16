@@ -56,7 +56,9 @@ public class CarService {
 
         return rb.build();
     }
-
+    
+    
+    
     /****** ID ********/
     @GET
     @Path("/{carId}")
@@ -105,7 +107,7 @@ public class CarService {
         try {
             dao.insertCar(car);
         } catch (Exception e) {
-        	logger.error(e.getLocalizedMessage(),e);
+            logger.error(e.getLocalizedMessage(), e);
             errorCode = 1;
             errorMessage = e.getLocalizedMessage();
         }
@@ -130,11 +132,12 @@ public class CarService {
         return Response.ok(message).build();
     }
 
-    /**** ID USER ***/
+    /**** CAR USER ***/
     @GET
     @Path("/{carId}/employee/{employeeId}")
     @javax.ws.rs.Produces("application/json")
     public Response getCarOwner(@PathParam("carId") String carId, @PathParam("employeeId") String userId) {
+
         return null;
     }
 

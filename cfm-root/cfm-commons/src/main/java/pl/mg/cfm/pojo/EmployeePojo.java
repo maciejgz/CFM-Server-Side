@@ -4,11 +4,15 @@ import java.io.Serializable;
 
 public class EmployeePojo implements Serializable {
 
+    public static final String ROLE_ALL = "ALL";
+    public static final String ROLE_USER = "USER";
+    public static final String ROLE_ADMIN = "ADMIN";
+
     private static final long serialVersionUID = 1L;
     private Integer id;
     private String firstName;
     private String lastName;
-    private Integer roleId;
+    private String roleName;
 
     public Integer getId() {
         return id;
@@ -34,18 +38,18 @@ public class EmployeePojo implements Serializable {
         this.lastName = lastName;
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     @Override
     public String toString() {
         StringBuffer buffer = new StringBuffer("id=" + this.id + ";firstName=" + this.firstName + ";lastName="
-                + lastName + ";roleId=" + roleId);
+                + lastName + ";roleId=" + roleName);
         return buffer.toString();
     }
 

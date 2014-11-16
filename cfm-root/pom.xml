@@ -18,6 +18,7 @@
 	<properties>
 		<junit.version>4.11</junit.version>
 		<cfm.version>0.0.1</cfm.version>
+		<spring.version>4.1.2.RELEASE</spring.version>
 	</properties>
 
 

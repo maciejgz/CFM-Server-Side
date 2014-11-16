@@ -19,7 +19,7 @@ public class GsonEmployeeTest {
         empl.setId(1);
         empl.setFirstName("fname");
         empl.setLastName("lname");
-        empl.setRoleId(1);
+        empl.setRoleName("ADMIN");
 
         System.out.println(gson.toJson(empl));
     }

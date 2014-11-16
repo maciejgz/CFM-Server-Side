@@ -21,7 +21,7 @@ public class EmployeeSerializer implements JsonDeserializer<EmployeePojo> {
         Integer id = null;
         String firstName = null;
         String lastName = null;
-        Integer roleId = null;
+        String roleId = null;
 
         if (!jsonObject.get("id").isJsonNull()) {
             id = jsonObject.get("id").getAsInt();
@@ -33,14 +33,14 @@ public class EmployeeSerializer implements JsonDeserializer<EmployeePojo> {
             lastName = jsonObject.get("lastName").getAsString();
         }
         if (!jsonObject.get("roleId").isJsonNull()) {
-            roleId = jsonObject.get("roleId").getAsInt();
+            roleId = jsonObject.get("roleId").getAsString();
         }
 
         final EmployeePojo employee = new EmployeePojo();
         employee.setId(id);
         employee.setFirstName(firstName);
         employee.setLastName(lastName);
-        employee.setRoleId(roleId);
+        employee.setRoleName(roleId);
         return employee;
     }
 

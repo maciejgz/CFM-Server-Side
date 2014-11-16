@@ -21,6 +21,8 @@ import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.model.Car;
 import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.pojo.CarPojo;
+import pl.mg.cfm.pojo.EmployeePojo;
+import pl.mg.cfm.pojo.EmployeeRolePojo;
 
 /**
  * 
@@ -215,6 +217,36 @@ public class CFMDaoHibernate implements CFMDao {
         }
 
         em.remove(em.find(Car.class, carId));
+    }
+
+    @Override
+    public EmployeePojo getEmployee(Integer id) throws UserNotFoundException {
+        String sqlQuery = "select * from employee where idemployee like ?";
+        Query query = em.createNativeQuery(sqlQuery, Employee.class);
+        query.setParameter(1, id);
+
+        Employee employee = (Employee) query.getSingleResult();
+        if (employee == null) {
+            throw new UserNotFoundException("User not found");
+        }
+        EmployeePojo emPojo = new EmployeePojo();
+        emPojo.setId(employee.getIdemployee());
+        emPojo.setFirstName(employee.getFirstName());
+        emPojo.setLastName(employee.getLastName());
+        emPojo.setRoleName(employee.getRole().getName());
+        return emPojo;
+    }
+
+    @Override
+    public String getUserRole(String username) throws UserNotFoundException {
+        String sqlQuery = "select roles.name from employee_role roles, employee emps where emps.idemployee = ? and emps.role_id=roles.id";
+        Query query = em.createNativeQuery(sqlQuery);
+        query.setParameter(1, username);
+        String role = (String) query.getSingleResult();
+        if (role == null) {
+            throw new UserNotFoundException("User not found");
+        }
+        return role;
     }
 
 }

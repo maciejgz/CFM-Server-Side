@@ -10,6 +10,7 @@ import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.ObjectAlreadyExists;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.pojo.CarPojo;
+import pl.mg.cfm.pojo.EmployeePojo;
 
 /**
  * Interfejs DAO JPA dla CFM
@@ -69,10 +70,20 @@ public interface CFMDao {
     public boolean login(String username, String password) throws UnsupportedOperationException, UserNotFoundException,
             InvalidPasswordException;
 
+    /**
+     * Pobranie roli uzytkownika
+     * @param username
+     * @return rola uzytkownika
+     * @throws UserNotFoundException
+     */
+    public String getUserRole(String username) throws UserNotFoundException;
     
     public void insertCar(CarPojo car)  throws UserNotFoundException, ObjectAlreadyExists;
     
     public void updateCar(CarPojo car) throws CarNotFoundException,UserNotFoundException;
     
     public void deleteCar(String carId) throws CarNotFoundException;
+    
+    public EmployeePojo getEmployee(Integer id)  throws UserNotFoundException;
+    
 }

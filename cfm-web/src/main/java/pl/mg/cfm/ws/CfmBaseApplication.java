@@ -1,15 +1,12 @@
 package pl.mg.cfm.ws;
 
-import java.util.Arrays;
-import java.util.HashSet;
+import java.util.Collections;
 import java.util.Set;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
 import org.jboss.logging.Logger;
-
-import pl.mg.cfm.ws.security.SecurityInterceptor;
 
 @ApplicationPath("/")
 public class CfmBaseApplication extends Application {
@@ -19,10 +16,12 @@ public class CfmBaseApplication extends Application {
     public Set<Class<?>> getClasses() {
         logger.debug("CfmBaseApplication");
         // System.out.println("CfmBaseApplication");
-        // return Collections.EMPTY_SET;
+        // 
         // Set<Class<?>> classess = super.getClasses();
         // classess.add(SecurityInterceptor.class);
         // return classess;
-        return new HashSet<Class<?>>(Arrays.asList(SecurityInterceptor.class));
+        
+        return Collections.EMPTY_SET;
+//        return new HashSet<Class<?>>(Arrays.asList(SecurityInterceptor.class));
     }
 }
