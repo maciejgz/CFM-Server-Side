@@ -32,7 +32,7 @@ import pl.mg.cfm.pojo.EmployeePojo;
 public class SecurityInterceptor implements javax.ws.rs.container.ContainerRequestFilter {
 
     private CFMDao dao;
-
+    
     private Logger logger = Logger.getLogger(SecurityInterceptor.class);
     private static final String AUTHORIZATION_PROPERTY = "Authorization";
     private static final String AUTHENTICATION_SCHEME = "Basic";
@@ -51,18 +51,16 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
     @Override
     public void filter(ContainerRequestContext requestContext) {
         logger.debug("preProvider preprocess");
-        System.out.println("preProvider preprocess");
-
         ResourceMethodInvoker methodInvoker = (ResourceMethodInvoker) requestContext
                 .getProperty("org.jboss.resteasy.core.ResourceMethodInvoker");
         Set<String> httpMethods = methodInvoker.getHttpMethods();
         Iterator<String> it = httpMethods.iterator();
 
         logger.debug("httpMethods");
-        while(it.hasNext()){
-           logger.debug(it.next());
+        while (it.hasNext()) {
+            logger.debug(it.next());
         }
-        
+
         Method method = methodInvoker.getMethod();
         logger.debug("methodName=" + method.getName());
 
@@ -117,14 +115,13 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
             requestContext.abortWith(ACCESS_DENIED);
             return;
         }
-
         return;
     }
 
     private boolean isRoleAllowed(Method method, String username) {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("securityApplicationContext.xml");
-        
+
         // getUserRole
         try {
             String userRole = dao.getUserRole(username);

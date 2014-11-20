@@ -14,7 +14,7 @@
 
 		<property name="functions">
 			<map>
-				<entry key="car_GET" value="ADMIN" />
+				<entry key="car_GET" value="ALL" />
 				<entry key="carId_GET" value="ALL" />
 				<entry key="carId_PUT" value="ADMIN" />
 				<entry key="carId_POST" value="ADMIN" />
