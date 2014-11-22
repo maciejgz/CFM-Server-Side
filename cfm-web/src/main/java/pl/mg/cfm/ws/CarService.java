@@ -16,7 +16,7 @@ import javax.ws.rs.core.Response;
 import org.jboss.logging.Logger;
 
 import pl.mg.cfm.commons.dao.CFMDao;
-import pl.mg.cfm.message.CFMJsonSimplyMessage;
+import pl.mg.cfm.message.CFMJsonSimpleMessage;
 import pl.mg.cfm.pojo.CarPojo;
 import pl.mg.cfm.serializer.CarSerializer;
 
@@ -47,7 +47,7 @@ public class CarService {
             errorMessage = e.getLocalizedMessage();
         }
 
-        CFMJsonSimplyMessage message = new CFMJsonSimplyMessage();
+        CFMJsonSimpleMessage message = new CFMJsonSimpleMessage();
         message.setErrorCode(errorCode);
         message.setErrorMessage(errorMessage);
         message.setData(serializer.serialize(cars));
@@ -75,7 +75,7 @@ public class CarService {
             errorMessage = e.getLocalizedMessage();
         }
         CarSerializer serializer = new CarSerializer();
-        CFMJsonSimplyMessage message = new CFMJsonSimplyMessage(errorCode, errorMessage, serializer.serialize(car));
+        CFMJsonSimpleMessage message = new CFMJsonSimpleMessage(errorCode, errorMessage, serializer.serialize(car));
         return Response.ok(message).build();
     }
 
@@ -93,7 +93,7 @@ public class CarService {
             errorCode = 1;
             errorMessage = e.getLocalizedMessage();
         }
-        CFMJsonSimplyMessage message = new CFMJsonSimplyMessage(errorCode, errorMessage);
+        CFMJsonSimpleMessage message = new CFMJsonSimpleMessage(errorCode, errorMessage);
         return Response.ok(message).build();
     }
 
@@ -111,7 +111,7 @@ public class CarService {
             errorCode = 1;
             errorMessage = e.getLocalizedMessage();
         }
-        CFMJsonSimplyMessage message = new CFMJsonSimplyMessage(errorCode, errorMessage);
+        CFMJsonSimpleMessage message = new CFMJsonSimpleMessage(errorCode, errorMessage);
         return Response.ok(message).build();
     }
 
@@ -128,7 +128,7 @@ public class CarService {
             errorCode = 1;
             errorMessage = e.getLocalizedMessage();
         }
-        CFMJsonSimplyMessage message = new CFMJsonSimplyMessage(errorCode, errorMessage);
+        CFMJsonSimpleMessage message = new CFMJsonSimpleMessage(errorCode, errorMessage);
         return Response.ok(message).build();
     }
 

@@ -9,7 +9,7 @@ import javax.ws.rs.core.Response;
 
 import org.junit.Test;
 
-import pl.mg.cfm.message.CFMJsonSimplyMessage;
+import pl.mg.cfm.message.CFMJsonSimpleMessage;
 import pl.mg.cfm.pojo.CarPojo;
 import pl.mg.cfm.resteasy.util.AllTrustingClientFactory;
 import pl.mg.cfm.serializer.CarSerializer;
@@ -20,10 +20,10 @@ public class GetAllCarsTest {
     public void test() {
 
         Client client = AllTrustingClientFactory.createAlltrustedClient();
-        WebTarget target = client.target("https://localhost:8444/cfm-web/car/");
+        WebTarget target = client.target("http://localhost:8080/cfm-web/car/");
 
         Response response = target.request().get(); 
-        CFMJsonSimplyMessage message = response.readEntity(CFMJsonSimplyMessage.class);
+        CFMJsonSimpleMessage message = response.readEntity(CFMJsonSimpleMessage.class);
         System.out.println(message.toString());
 
         CarSerializer serializer = new CarSerializer();

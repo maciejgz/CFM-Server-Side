@@ -2,25 +2,24 @@ package pl.mg.cfm.message;
 
 import java.io.Serializable;
 
-public class CFMJsonSimplyMessage implements Serializable {
+public class CFMJsonSimpleMessage implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private Integer errorCode = 0;
     private String errorMessage = null;
-    private Object data = null;
+    private String data = "";
 
-    public CFMJsonSimplyMessage() {
-
+    public CFMJsonSimpleMessage() {
     }
 
-    public CFMJsonSimplyMessage(Integer errorCode, String errorMessage) {
+    public CFMJsonSimpleMessage(Integer errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
 
     }
 
-    public CFMJsonSimplyMessage(Integer errorCode, String errorMessage, Object data) {
+    public CFMJsonSimpleMessage(Integer errorCode, String errorMessage, String data) {
         this(errorCode, errorMessage);
         this.data = data;
     }
@@ -33,11 +32,11 @@ public class CFMJsonSimplyMessage implements Serializable {
         this.errorMessage = errorMessage;
     }
 
-    public Object getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -51,12 +50,7 @@ public class CFMJsonSimplyMessage implements Serializable {
 
     @Override
     public String toString() {
-        String result = "errorCode=" + errorCode + ";errorMessage=" + errorMessage + ";data=";
-        if (data == null) {
-            result += "null";
-        } else {
-            result += data.toString();
-        }
+        String result = "errorCode=" + errorCode + ";errorMessage=" + errorMessage + ";data=" + data;
         return result;
     }
 

@@ -20,6 +20,13 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+/**
+ * Klasa przygotowująca plik do wstrzyknięcia do jre/lib/security z
+ * certyfikatem. Wymagane przy autoryzacji dla niepodpisanego certyfikatu.
+ * 
+ * @author Maciej Gzik
+ *
+ */
 public class InstallCert {
 
     public static void main(String[] args) throws Exception {

@@ -6,7 +6,7 @@ import javax.ws.rs.core.Response;
 
 import org.junit.Test;
 
-import pl.mg.cfm.message.CFMJsonSimplyMessage;
+import pl.mg.cfm.message.CFMJsonSimpleMessage;
 import pl.mg.cfm.resteasy.util.AllTrustingClientFactory;
 
 public class DeleteCarTest {
@@ -19,7 +19,7 @@ public class DeleteCarTest {
         WebTarget target = client.target("https://localhost:8444/cfm-web/car/" + carId);
 
         Response response = target.request().delete();
-        CFMJsonSimplyMessage message = response.readEntity(CFMJsonSimplyMessage.class);
+        CFMJsonSimpleMessage message = response.readEntity(CFMJsonSimpleMessage.class);
         System.out.println(message.toString());
 
         response.close();
