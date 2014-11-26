@@ -25,7 +25,7 @@ public class GetCarSecureTest {
         try {
             client = (DefaultHttpClient) AllTrustingClientFactory.createAllTrustingHttpClient();
             UsernamePasswordCredentials creds = new UsernamePasswordCredentials("9995", "pass");
-            HttpGet get = new HttpGet("https://localhost:8444/cfm-web/car/wscap48");
+            HttpGet get = new HttpGet("https://192.168.1.104:8444/cfm-web/car/wscap48");
             get.setHeader(BasicScheme.authenticate(creds, "UTF-8", false));
             try {
                 org.apache.http.HttpResponse httpResponse = client.execute(get);
