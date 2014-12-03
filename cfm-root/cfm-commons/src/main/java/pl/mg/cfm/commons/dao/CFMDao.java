@@ -86,4 +86,6 @@ public interface CFMDao {
     
     public EmployeePojo getEmployee(Integer id)  throws UserNotFoundException;
     
+    
+    public List<EmployeePojo> getAllEmployees() throws UnsupportedOperationException;
 }

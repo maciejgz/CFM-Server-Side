@@ -12,11 +12,11 @@ import pl.mg.cfm.pojo.EmployeePojo;
 public class RoleValidator {
 
     Logger logger = Logger.getLogger(RoleValidator.class);
-    private boolean isSpringWorking = false;
 
     private HashMap<String, String> functions;
 
     public boolean validateRole(String functionName, String userRole) {
+        logger.debug("validateRole=" + functionName + ";" + userRole);
         if (!this.functions.containsKey(functionName)) {
             logger.debug("Developer error: function security settings not defined.");
             return false;
@@ -28,14 +28,6 @@ public class RoleValidator {
                 return false;
             }
         }
-    }
-
-    public boolean isSpringWorking() {
-        return isSpringWorking;
-    }
-
-    public void setSpringWorking(boolean isSpringWorking) {
-        this.isSpringWorking = isSpringWorking;
     }
 
     public HashMap<String, String> getFunctions() {

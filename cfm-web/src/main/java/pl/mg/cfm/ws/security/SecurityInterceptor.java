@@ -32,7 +32,7 @@ import pl.mg.cfm.pojo.EmployeePojo;
 public class SecurityInterceptor implements javax.ws.rs.container.ContainerRequestFilter {
 
     private CFMDao dao;
-    
+
     private Logger logger = Logger.getLogger(SecurityInterceptor.class);
     private static final String AUTHORIZATION_PROPERTY = "Authorization";
     private static final String AUTHENTICATION_SCHEME = "Basic";
@@ -57,8 +57,9 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
         Iterator<String> it = httpMethods.iterator();
 
         logger.debug("httpMethods");
+        String httpMethodName = "";
         while (it.hasNext()) {
-            logger.debug(it.next());
+            httpMethodName = it.next();
         }
 
         Method method = methodInvoker.getMethod();
@@ -110,7 +111,7 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
             return;
         }
 
-        if (!isRoleAllowed(method, usernameAndPassword.split(":")[0])) {
+        if (!isRoleAllowed(method, httpMethodName, usernameAndPassword.split(":")[0])) {
             logger.debug("role not allowed");
             requestContext.abortWith(ACCESS_DENIED);
             return;
@@ -118,20 +119,25 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
         return;
     }
 
-    private boolean isRoleAllowed(Method method, String username) {
+    private boolean isRoleAllowed(Method method, String httpMethodName, String username) {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("securityApplicationContext.xml");
 
+        String userRole = null;
+
         // getUserRole
         try {
-            String userRole = dao.getUserRole(username);
+            userRole = dao.getUserRole(username);
         } catch (UserNotFoundException e) {
             logger.error(e.getMessage(), e);
             return false;
         }
+
         RoleValidator validator = (RoleValidator) context.getBean("roleValidator");
-        logger.debug("validatorValue=" + validator.isSpringWorking());
-        return true;
+        
+        boolean isAllowed = validator.validateRole(method.getName(), userRole);
+        logger.debug("validatorValue=" + isAllowed);
+        return isAllowed;
     }
 
     private boolean checkRole(Set<String> rolesSet, Integer id) {

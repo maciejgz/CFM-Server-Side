@@ -32,8 +32,8 @@ public class EmployeeSerializer implements JsonDeserializer<EmployeePojo> {
         if (!jsonObject.get("lastName").isJsonNull()) {
             lastName = jsonObject.get("lastName").getAsString();
         }
-        if (!jsonObject.get("roleId").isJsonNull()) {
-            roleId = jsonObject.get("roleId").getAsString();
+        if (!jsonObject.get("roleName").isJsonNull()) {
+            roleId = jsonObject.get("roleName").getAsString();
         }
 
         final EmployeePojo employee = new EmployeePojo();

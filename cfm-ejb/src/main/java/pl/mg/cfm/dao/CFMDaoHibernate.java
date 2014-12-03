@@ -249,4 +249,32 @@ public class CFMDaoHibernate implements CFMDao {
         return role;
     }
 
+    @Override
+    public List<EmployeePojo> getAllEmployees() throws UnsupportedOperationException {
+        List<Employee> employees = em.createQuery("SELECT e FROM Employee e").getResultList();
+        ArrayList<EmployeePojo> employeesPojoList = new ArrayList<EmployeePojo>();
+        if (employees != null) {
+            Iterator<Employee> it = employees.iterator();
+            while (it.hasNext()) {
+                Employee employee = (Employee) it.next();
+                if (employee != null) {
+                    logger.debug(employee.getIdemployee());
+                    logger.debug(employee.getFirstName());
+                    logger.debug(employee.getLastName());
+                    logger.debug(employee.getRole().getName());
+
+                    EmployeePojo emPojo = new EmployeePojo();
+                    emPojo.setFirstName(employee.getFirstName());
+                    emPojo.setLastName(employee.getLastName());
+                    emPojo.setId(employee.getIdemployee());
+                    emPojo.setRoleName(employee.getRole().getName());
+                    
+                    employeesPojoList.add(emPojo);
+                }
+            }
+        }
+
+        return employeesPojoList;
+    }
+
 }
