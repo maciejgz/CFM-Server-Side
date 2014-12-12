@@ -31,6 +31,13 @@
 			<version>${cfm.version}</version>
 			<type>war</type>
 		</dependency>
+
+		<dependency>
+			<groupId>pl.mg</groupId>
+			<artifactId>cfm-web-client</artifactId>
+			<version>${cfm.version}</version>
+			<type>war</type>
+		</dependency>
 		<dependency>
 			<groupId>pl.mg</groupId>
 			<artifactId>cfm-commons</artifactId>
@@ -72,6 +79,10 @@
 						<webModule>
 							<groupId>pl.mg</groupId>
 							<artifactId>cfm-web</artifactId>
+						</webModule>
+						<webModule>
+							<groupId>pl.mg</groupId>
+							<artifactId>cfm-web-client</artifactId>
 						</webModule>
 					</modules>
 				</configuration>
