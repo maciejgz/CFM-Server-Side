@@ -3,6 +3,7 @@
 	<name>cfm-ear</name>
 	<comment></comment>
 	<projects>
+		<project>cfm-ws</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

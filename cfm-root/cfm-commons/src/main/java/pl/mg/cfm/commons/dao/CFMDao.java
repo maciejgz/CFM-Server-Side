@@ -25,6 +25,7 @@ public interface CFMDao {
 
     public void setEm(EntityManager em);
 
+    //////////////////////////  CAR /////////////////////////
     /**
      * Listowanie wszystkich samochodów
      * 
@@ -72,20 +73,23 @@ public interface CFMDao {
 
     /**
      * Pobranie roli uzytkownika
+     * 
      * @param username
      * @return rola uzytkownika
      * @throws UserNotFoundException
      */
     public String getUserRole(String username) throws UserNotFoundException;
-    
-    public void insertCar(CarPojo car)  throws UserNotFoundException, ObjectAlreadyExists;
-    
-    public void updateCar(CarPojo car) throws CarNotFoundException,UserNotFoundException;
-    
+
+    public void insertCar(CarPojo car) throws UserNotFoundException, ObjectAlreadyExists;
+
+    public void updateCar(CarPojo car) throws CarNotFoundException, UserNotFoundException;
+
     public void deleteCar(String carId) throws CarNotFoundException;
     
-    public EmployeePojo getEmployee(Integer id)  throws UserNotFoundException;
     
-    
+
+    ////////////////////// EMPLOYEE ////////////////////////////////
+    public EmployeePojo getEmployee(Integer id) throws UserNotFoundException;
+
     public List<EmployeePojo> getAllEmployees() throws UnsupportedOperationException;
 }

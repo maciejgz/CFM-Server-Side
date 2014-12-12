@@ -22,7 +22,6 @@ import pl.mg.cfm.model.Car;
 import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.pojo.CarPojo;
 import pl.mg.cfm.pojo.EmployeePojo;
-import pl.mg.cfm.pojo.EmployeeRolePojo;
 
 /**
  * 
@@ -155,6 +154,7 @@ public class CFMDaoHibernate implements CFMDao {
         newCar.setLatitude(car.getLatitude());
         newCar.setLongitude(car.getLongitude());
         if (owner != null) {
+            
             newCar.setOwner(owner);
         }
 
