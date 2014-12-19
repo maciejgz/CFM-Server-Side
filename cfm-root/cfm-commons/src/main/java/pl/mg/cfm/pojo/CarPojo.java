@@ -65,8 +65,8 @@ public class CarPojo implements Serializable {
 
     @Override
     public String toString() {
-        StringBuffer buffer = new StringBuffer("carID=" + this.carId + ";distance=" + distance
-                + ";latitude=" + latitude + ";longitude=" + longitude + ";ownerID=" + ownerId);
+        StringBuffer buffer = new StringBuffer("carID=" + this.carId + ";distance=" + distance + ";latitude="
+                + latitude + ";longitude=" + longitude + ";ownerID=" + ownerId);
         return buffer.toString();
     }
 
