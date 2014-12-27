@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns:context="http://www.springframework.org/schema/context"
+ xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context 
+     http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- testowy bean springa -->
+	<bean id="testBean" class="pl.mg.cfm.springtest.TestBean">
+		<property name="testProperty" value="testValue"></property>
+		<property name="map">
+			<map>
+				<entry key="key1" value="value1"></entry>
+				<entry key="key2" value="value2"></entry>
+			</map>
+		</property>
+		<property name="list">
+			<list>
+				<value>listValue1</value>
+				<value>listValue2</value>
+			</list>
+		</property>
+		<property name="nullString">
+			<null />
+		</property>
+	</bean>
+	
+	<!-- constructor autowire -->
+	<bean id="constructorAutowireBean" class="pl.mg.cfm.springtest.TestBean" autowire="constructor"></bean>
+	
+</beans>
