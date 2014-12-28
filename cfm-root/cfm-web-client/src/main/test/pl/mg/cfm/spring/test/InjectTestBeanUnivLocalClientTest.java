@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContext;
 import pl.mg.cfm.springtest.LocalSpringContextFactory;
 import pl.mg.cfm.springtest.TestBean;
 
-public class InjectTestBeanUnivClientTest {
+public class InjectTestBeanUnivLocalClientTest {
 
 	private ApplicationContext context;
 

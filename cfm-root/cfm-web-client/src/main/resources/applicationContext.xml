@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xmlns:context="http://www.springframework.org/schema/context"
- xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
      http://www.springframework.org/schema/beans/spring-beans.xsd
      http://www.springframework.org/schema/context 
-     http://www.springframework.org/schema/context/spring-context.xsd">
+     http://www.springframework.org/schema/context/spring-context.xsd"
 
-    <!-- testowy bean springa -->
-	<bean id="testBean" class="pl.mg.cfm.springtest.TestBean">
+	default-autowire="default">
+
+	<context:component-scan base-package="pl.mg.cfm" ></context:component-scan>
+
+	<!-- testowy bean springa ładowany w całości -->
+	<bean id="testBean" class="pl.mg.cfm.springtest.TestBean"
+		autowire-candidate="false">
 		<property name="testProperty" value="testValue"></property>
 		<property name="map">
 			<map>
@@ -26,8 +30,19 @@
 			<null />
 		</property>
 	</bean>
-	
+
 	<!-- constructor autowire -->
-	<bean id="constructorAutowireBean" class="pl.mg.cfm.springtest.TestBean" autowire="constructor"></bean>
-	
+	<!-- <bean id="constructorAutowireBean" class="pl.mg.cfm.springtest.TestBean"
+		autowire="byName">
+		<property name="testProperty" value="propertyString"></property>
+	</bean> -->
+	<bean id="childBean" class="pl.mg.cfm.springtest.ChildBean">
+		<property name="childStringProperty" value="childPropertyValue"></property>
+	</bean>
+
+	<!-- annotation autowire -->
+	<bean id="autowiredAnnotation" class="pl.mg.cfm.springtest.TestBean">
+	</bean>
+
+
 </beans>

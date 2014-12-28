@@ -14,10 +14,10 @@ import pl.mg.cfm.springtest.TestBean;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")
-public class SpringAnnotationsTest {
+public class AutowiredAnnotationTest {
 
 	@Autowired
-	@Qualifier("testBean")
+	@Qualifier("autowiredAnnotation")
 	private TestBean bean;
 
 	@Before
@@ -27,7 +27,8 @@ public class SpringAnnotationsTest {
 	@Test
 	public void test() {
 		System.out.println(bean.toString());
-		assertEquals("testValue", bean.getTestProperty());
+		assertEquals("childPropertyValue", bean.getChildBean()
+				.getChildStringProperty());
 	}
 
 }
