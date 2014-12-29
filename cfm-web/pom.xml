@@ -9,7 +9,6 @@
 		<relativePath>../cfm-root/pom.xml</relativePath>
 	</parent>
 
-
 	<properties>
 		<resteasy.version>3.0.9.Final</resteasy.version>
 		<resteasy.version.client>3.0.9.Final</resteasy.version.client>
@@ -41,7 +40,6 @@
 			<artifactId>jaxrs-api</artifactId>
 			<version>${resteasy.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-client</artifactId>
@@ -53,22 +51,17 @@
 			<artifactId>resteasy-jackson-provider</artifactId>
 			<version>${resteasy.version}</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
+			<scope>provided</scope>
 		</dependency>
-
-
 	</dependencies>
 	<build>
 		<finalName>cfm-web</finalName>
@@ -82,7 +75,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-
 
 </project>

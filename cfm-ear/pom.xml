@@ -85,6 +85,11 @@
 							<artifactId>cfm-web-client</artifactId>
 						</webModule>
 					</modules>
+					<archive>
+						<manifestEntries>
+							<Dependencies>org.springframework</Dependencies>
+						</manifestEntries>
+					</archive>
 				</configuration>
 			</plugin>
 		</plugins>
