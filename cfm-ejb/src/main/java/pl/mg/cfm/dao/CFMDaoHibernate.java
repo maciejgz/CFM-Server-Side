@@ -23,6 +23,11 @@ import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.pojo.CarPojo;
 import pl.mg.cfm.pojo.EmployeePojo;
 
+/**
+ * 
+ * @author m
+ *
+ */
 @Stateless(name = "CFMDaoHibernate")
 @EJB(name = "java:global/cfm/CFMDaoHibernate", beanInterface = CFMDao.class, beanName = "CFMDaoHibernate")
 public class CFMDaoHibernate implements CFMDao {
@@ -97,6 +102,7 @@ public class CFMDaoHibernate implements CFMDao {
     @Override
     public void setCarOwner(int newCarUserId, String carId) throws UnsupportedOperationException {
         // TODO Auto-generated method stub
+
     }
 
     @Override
@@ -121,7 +127,9 @@ public class CFMDaoHibernate implements CFMDao {
         } catch (EntityNotFoundException e) {
             throw new UserNotFoundException("User " + username + " not found");
         }
+
         return result;
+
     }
 
     @Override
@@ -149,6 +157,7 @@ public class CFMDaoHibernate implements CFMDao {
             
             newCar.setOwner(owner);
         }
+
         em.persist(newCar);
     }
 
@@ -264,6 +273,7 @@ public class CFMDaoHibernate implements CFMDao {
                 }
             }
         }
+
         return employeesPojoList;
     }
 

@@ -21,25 +21,4 @@
 
 
 	</persistence-unit>
-	
-	
-	<persistence-unit name="openshift_db">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>pl.mg.cfm.model.Car</class>
-		<class>pl.mg.cfm.model.CarPK</class>
-		<class>pl.mg.cfm.model.Employee</class>
-		<class>pl.mg.cfm.model.EmployeeRole</class>
-		
-		<properties>
-			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/cfm" />
-			<property name="hibernate.connection.username" value="adminrY3BB9F" />
-			<property name="hibernate.connection.password" value="zTzJwHKsd7BP" />
-
-			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-			<property name="hibernate.show_sql" value="true" />
-		</properties>
-
-
-	</persistence-unit>
 </persistence>

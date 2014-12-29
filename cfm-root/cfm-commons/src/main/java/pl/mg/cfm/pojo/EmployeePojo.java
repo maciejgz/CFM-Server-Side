@@ -4,6 +4,9 @@ import java.io.Serializable;
 
 public class EmployeePojo implements Serializable {
 
+    public static final String ROLE_ALL = "ALL";
+    public static final String ROLE_USER = "USER";
+    public static final String ROLE_ADMIN = "ADMIN";
 
     private static final long serialVersionUID = 1L;
     private Integer id;

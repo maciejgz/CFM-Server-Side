@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 
 import org.jboss.logging.Logger;
 
-import pl.mg.cfm.pojo.EmployeeRolePojo;
+import pl.mg.cfm.pojo.EmployeePojo;
 
 @Stateless
 public class RoleValidator {
@@ -22,7 +22,7 @@ public class RoleValidator {
             return false;
         } else {
             String role = functions.get(functionName);
-            if (role.equals(EmployeeRolePojo.ROLE_ALL) || role.contains(userRole)) {
+            if (role.equals(EmployeePojo.ROLE_ALL) || role.contains(userRole)) {
                 return true;
             } else {
                 return false;
