@@ -2,13 +2,10 @@ package pl.mg.cfm.dao;
 
 import java.util.List;
 
-import javax.ejb.EJB;
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 
 import org.jboss.logging.Logger;
 
-import pl.mg.cfm.commons.dao.CFMDao;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.pojo.CarPojo;
@@ -19,7 +16,6 @@ public class CFMJDBCDao {
 
     Logger logger = Logger.getLogger(CFMJDBCDao.class);
 
-//    @Override
     public EntityManager getEm() {
         // TODO Auto-generated method stub
         return null;
