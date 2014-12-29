@@ -4,9 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <dependent-module archiveName="cfm-commons-0.0.1.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/cfm-commons/cfm-commons">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/test"/>
         <property name="java-output-path" value="/cfm-web-client/target/classes"/>
         <property name="context-root" value="cfm-web-client"/>
     </wb-module>
