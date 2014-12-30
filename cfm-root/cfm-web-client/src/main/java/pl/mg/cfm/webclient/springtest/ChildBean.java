@@ -1,4 +1,4 @@
-package pl.mg.cfm.springtest;
+package pl.mg.cfm.webclient.springtest;
 
 public class ChildBean {
 	

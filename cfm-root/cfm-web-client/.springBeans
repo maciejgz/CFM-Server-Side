@@ -7,20 +7,11 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>src/main/resources/applicationContext.xml</config>
+		<config>src/main/webapp/WEB-INF/applicationContext.xml</config>
+		<config>src/main/resources/applicationContextDb.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
 	<configSets>
-		<configSet>
-			<name><![CDATA[group]]></name>
-			<allowBeanDefinitionOverriding>true</allowBeanDefinitionOverriding>
-			<incomplete>false</incomplete>
-			<configs>
-				<config>src/main/resources/applicationContext.xml</config>
-			</configs>
-			<profiles>
-			</profiles>
-		</configSet>
 	</configSets>
 </beansProjectDescription>

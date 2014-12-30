@@ -1,4 +1,4 @@
-package pl.mg.cfm.spring.test;
+package pl.mg.cfm.webclient.spring.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import pl.mg.cfm.springtest.TestBean;
+import pl.mg.cfm.webclient.springtest.TestBean;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:applicationContext.xml")

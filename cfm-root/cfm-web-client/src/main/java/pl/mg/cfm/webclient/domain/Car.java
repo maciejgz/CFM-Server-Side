@@ -2,6 +2,12 @@ package pl.mg.cfm.webclient.domain;
 
 import java.io.Serializable;
 
+
+/**
+ * Domenowy obiekt Car dla MVC springa. Obiekt bazodanowy znajduje się w cfm-commons
+ * @author Maciej Gzik
+ *
+ */
 public class Car implements Serializable {
 
 	private static final long serialVersionUID = 1L;

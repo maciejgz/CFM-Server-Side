@@ -1,4 +1,4 @@
-package pl.mg.cfm.springtest;
+package pl.mg.cfm.webclient.springtest;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;

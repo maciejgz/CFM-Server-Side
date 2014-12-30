@@ -1,4 +1,4 @@
-package pl.mg.cfm.springtest;
+package pl.mg.cfm.webclient.springtest;
 
 import java.util.List;
 import java.util.Map;

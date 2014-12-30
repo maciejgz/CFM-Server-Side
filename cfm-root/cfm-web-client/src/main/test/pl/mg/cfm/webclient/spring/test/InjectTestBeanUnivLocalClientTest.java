@@ -1,4 +1,4 @@
-package pl.mg.cfm.spring.test;
+package pl.mg.cfm.webclient.spring.test;
 
 import static org.junit.Assert.*;
 
@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 
-import pl.mg.cfm.springtest.LocalSpringContextFactory;
-import pl.mg.cfm.springtest.TestBean;
+import pl.mg.cfm.webclient.springtest.LocalSpringContextFactory;
+import pl.mg.cfm.webclient.springtest.TestBean;
 
 public class InjectTestBeanUnivLocalClientTest {
 
