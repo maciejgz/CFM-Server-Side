@@ -1,5 +1,7 @@
 package pl.mg.cfm.webclient.dao.test;
 
+import static org.junit.Assert.assertNotNull;
+
 import javax.inject.Inject;
 
 import org.junit.Before;
@@ -13,7 +15,8 @@ import pl.mg.cfm.webclient.dao.CFMEmployeeDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:applicationContext.xml", "classpath:applicationContextDb.xml" })
-public class DeleteCarTest {
+public class DeleteEmployeeTest {
+
     @Inject
     CFMEmployeeDAO dao;
 
@@ -32,7 +35,11 @@ public class DeleteCarTest {
         empl.setLastName("testLastName");
         empl.setPassword("pass");
         empl.setRoleName("ADMIN");
-        
+
         dao.deleteEmployeer(empl);
+
+        if (empl != null)
+            System.out.println(empl);
+        assertNotNull(empl);
     }
 }

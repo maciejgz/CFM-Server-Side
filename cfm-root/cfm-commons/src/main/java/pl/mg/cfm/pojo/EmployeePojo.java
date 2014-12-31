@@ -10,6 +10,7 @@ public class EmployeePojo implements Serializable {
     private String firstName;
     private String lastName;
     private String roleName;
+    private String password;
 
     public Integer getId() {
         return id;
@@ -45,9 +46,16 @@ public class EmployeePojo implements Serializable {
 
     @Override
     public String toString() {
-        StringBuffer buffer = new StringBuffer("id=" + this.id + ";firstName=" + this.firstName + ";lastName="
-                + lastName + ";roleId=" + roleName);
-        return buffer.toString();
+        return "EmployeePojo [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", roleName="
+                + roleName + ", password=" + password + "]";
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }

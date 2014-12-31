@@ -13,7 +13,8 @@ import pl.mg.cfm.webclient.dao.CFMEmployeeDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({ "classpath:applicationContext.xml", "classpath:applicationContextDb.xml" })
-public class DeleteCarTest {
+public class CreateEmployeeTest {
+
     @Inject
     CFMEmployeeDAO dao;
 
@@ -32,7 +33,7 @@ public class DeleteCarTest {
         empl.setLastName("testLastName");
         empl.setPassword("pass");
         empl.setRoleName("ADMIN");
-        
-        dao.deleteEmployeer(empl);
+
+        dao.createEmployee(empl);
     }
 }

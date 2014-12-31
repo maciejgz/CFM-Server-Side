@@ -10,7 +10,11 @@
 
 	<!-- DAO -->
 	<bean id="carDao" class="pl.mg.cfm.webclient.dao.CFMCarDaoImplementation">
-		<property name="dataSource" ref="openshiftDatasource"></property>
+		<property name="dataSource" ref="localhostMysql"></property>
+	</bean>
+
+	<bean id="employeeDao" class="pl.mg.cfm.webclient.dao.CFMEmployeeDAOImplementation">
+		<property name="dataSource" ref="localhostMysql"></property>
 	</bean>
 
 	<!-- DATA SOURCE -->

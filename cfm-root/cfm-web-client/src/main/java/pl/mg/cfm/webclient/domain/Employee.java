@@ -12,6 +12,7 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String role;
+    private String password;
 
     public String getId() {
         return id;
@@ -47,6 +48,15 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", role=" + role + "]";
+        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", role=" + role
+                + ", password=" + password + "]";
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

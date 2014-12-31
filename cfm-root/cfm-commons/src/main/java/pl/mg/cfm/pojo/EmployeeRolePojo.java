@@ -39,8 +39,9 @@ public class EmployeeRolePojo implements Serializable {
         this.roleName = roleName;
     }
 
+    @Override
     public String toString() {
-        return "roleId=" + roleId + ";roleName=" + roleName;
+        return "EmployeeRolePojo [roleId=" + roleId + ", roleName=" + roleName + "]";
     }
 
 }
