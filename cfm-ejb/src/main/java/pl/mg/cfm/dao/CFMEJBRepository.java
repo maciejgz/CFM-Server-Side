@@ -23,11 +23,19 @@ import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.pojo.CarPojo;
 import pl.mg.cfm.pojo.EmployeePojo;
 
-@Stateless(name = "CFMDaoHibernate")
-@EJB(name = "java:global/cfm/CFMDaoHibernate", beanInterface = CFMDao.class, beanName = "CFMDaoHibernate")
-public class CFMDaoHibernate implements CFMDao {
+/**
+ * Klasa EJB DAO (bardziej właściwa nazwa to repository, bo nie ma tylko
+ * podstawowych informacji) oparta na persistanceManager z JPA (implementacja
+ * JBossowa na hibernate.
+ * 
+ * @author Maciej Gzik
+ *
+ */
+@Stateless(name = "CFMEJBRepository")
+@EJB(name = "java:global/cfm/CFMEJBRepository", beanInterface = CFMDao.class, beanName = "CFMEJBRepository")
+public class CFMEJBRepository implements CFMDao {
 
-    Logger logger = Logger.getLogger(CFMDaoHibernate.class);
+    Logger logger = Logger.getLogger(CFMEJBRepository.class);
 
     @PersistenceContext(unitName = "cfm-ejb")
     private EntityManager em;
@@ -66,7 +74,6 @@ public class CFMDaoHibernate implements CFMDao {
                 }
             }
         }
-
         return carsPojoList;
     }
 
@@ -146,7 +153,7 @@ public class CFMDaoHibernate implements CFMDao {
         newCar.setLatitude(car.getLatitude());
         newCar.setLongitude(car.getLongitude());
         if (owner != null) {
-            
+
             newCar.setOwner(owner);
         }
         em.persist(newCar);
@@ -259,7 +266,7 @@ public class CFMDaoHibernate implements CFMDao {
                     emPojo.setLastName(employee.getLastName());
                     emPojo.setId(employee.getIdemployee());
                     emPojo.setRoleName(employee.getRole().getName());
-                    
+
                     employeesPojoList.add(emPojo);
                 }
             }

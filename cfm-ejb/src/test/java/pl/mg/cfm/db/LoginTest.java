@@ -9,13 +9,13 @@ import javax.persistence.Persistence;
 import org.junit.Test;
 
 import pl.mg.cfm.commons.dao.CFMDao;
-import pl.mg.cfm.dao.CFMDaoHibernate;
+import pl.mg.cfm.dao.CFMEJBRepository;
 
 public class LoginTest {
 
     @Test
     public void wrongLogin() {
-        CFMDao dao = new CFMDaoHibernate();
+        CFMDao dao = new CFMEJBRepository();
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("cfm-ejb");
         EntityManager em = emf.createEntityManager();
@@ -34,7 +34,7 @@ public class LoginTest {
 
     @Test
     public void correctLogin() {
-        CFMDao dao = new CFMDaoHibernate();
+        CFMDao dao = new CFMEJBRepository();
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("cfm-ejb");
         EntityManager em = emf.createEntityManager();

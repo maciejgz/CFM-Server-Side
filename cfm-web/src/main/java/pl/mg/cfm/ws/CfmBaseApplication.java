@@ -15,13 +15,7 @@ public class CfmBaseApplication extends Application {
     @Override
     public Set<Class<?>> getClasses() {
         logger.debug("CfmBaseApplication");
-        // System.out.println("CfmBaseApplication");
-        // 
-        // Set<Class<?>> classess = super.getClasses();
-        // classess.add(SecurityInterceptor.class);
-        // return classess;
-        
+
         return Collections.EMPTY_SET;
-//        return new HashSet<Class<?>>(Arrays.asList(SecurityInterceptor.class));
     }
 }

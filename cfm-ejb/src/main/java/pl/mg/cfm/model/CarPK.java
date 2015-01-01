@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Id;
 
 @Embeddable
 public class CarPK implements Serializable {
@@ -23,13 +22,11 @@ public class CarPK implements Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        // TODO Auto-generated method stub
         return super.equals(obj);
     }
 
     @Override
     public int hashCode() {
-        // TODO Auto-generated method stub
         return super.hashCode();
     }
 

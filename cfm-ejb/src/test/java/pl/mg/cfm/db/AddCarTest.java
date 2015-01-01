@@ -8,7 +8,6 @@ import javax.persistence.Persistence;
 import org.junit.Test;
 
 import pl.mg.cfm.model.Car;
-import pl.mg.cfm.model.CarPK;
 import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.model.EmployeeRole;
 
@@ -41,7 +40,7 @@ public class AddCarTest {
             
             //CAR
             Car carForTest = new Car();
-            carForTest.setCar_id("wsc1234");
+            carForTest.setCar_id("wsc1239");
             carForTest.setDistance(0);
             carForTest.setLatitude(-50.123456789);
             carForTest.setLongitude(50.123456789);

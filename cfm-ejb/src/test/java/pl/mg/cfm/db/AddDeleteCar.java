@@ -8,7 +8,6 @@ import javax.persistence.Persistence;
 import org.junit.Test;
 
 import pl.mg.cfm.model.Car;
-import pl.mg.cfm.model.CarPK;
 import pl.mg.cfm.model.Employee;
 import pl.mg.cfm.model.EmployeeRole;
 

@@ -185,7 +185,7 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
         CFMDao dao = null;
         try {
             Context ctx = new InitialContext();
-            dao = (CFMDao) ctx.lookup("java:global/CFM/cfm-ejb-0.0.1/CFMDaoHibernate!pl.mg.cfm.commons.dao.CFMDao");
+            dao = (CFMDao) ctx.lookup("java:global/CFM/cfm-ejb-0.0.1/CFMEJBRepository!pl.mg.cfm.commons.dao.CFMDao");
             return dao;
         } catch (NamingException e) {
             logger.error(e.getMessage(), e);

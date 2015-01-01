@@ -26,7 +26,7 @@ public class CarService {
 
     Logger logger = Logger.getLogger(CarService.class);
 
-    @EJB(beanName = "CFMDaoHibernate")
+    @EJB(beanName = "CFMEJBRepository")
     private CFMDao dao;
 
     @GET

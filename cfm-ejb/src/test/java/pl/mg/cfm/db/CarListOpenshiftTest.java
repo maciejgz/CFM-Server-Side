@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 import org.junit.Test;
 
 import pl.mg.cfm.commons.dao.CFMDao;
-import pl.mg.cfm.dao.CFMDaoHibernate;
+import pl.mg.cfm.dao.CFMEJBRepository;
 import pl.mg.cfm.pojo.CarPojo;
 
 /**
@@ -24,7 +24,7 @@ public class CarListOpenshiftTest {
     @Test
     public void getAllCars() {
 
-        CFMDao dao = new CFMDaoHibernate();
+        CFMDao dao = new CFMEJBRepository();
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("openshift_db");
         EntityManager em = emf.createEntityManager();

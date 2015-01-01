@@ -24,7 +24,7 @@ public class EmployeeService {
 
     private static final Logger logger = Logger.getLogger(EmployeeService.class);
 
-    @EJB(beanName = "CFMDaoHibernate")
+    @EJB(beanName = "CFMEJBRepository")
     private CFMDao dao;
 
     @POST

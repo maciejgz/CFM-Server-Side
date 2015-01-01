@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 import org.junit.Test;
 
 import pl.mg.cfm.commons.dao.CFMDao;
-import pl.mg.cfm.dao.CFMDaoHibernate;
+import pl.mg.cfm.dao.CFMEJBRepository;
 import pl.mg.cfm.pojo.CarPojo;
 
 public class CarListTest {
@@ -18,14 +18,14 @@ public class CarListTest {
     @Test
     public void getAllCars() {
 
-        CFMDao dao = new CFMDaoHibernate();
+        CFMDao dao = new CFMEJBRepository();
 
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("cfm-ejb");
         EntityManager em = emf.createEntityManager();
         dao.setEm(em);
 
         List<CarPojo> cars = dao.getAllCars();
-        Iterator it = cars.iterator();
+        Iterator<CarPojo> it = cars.iterator();
         while (it.hasNext()) {
             System.out.println(((CarPojo) it.next()).toString());
         }
