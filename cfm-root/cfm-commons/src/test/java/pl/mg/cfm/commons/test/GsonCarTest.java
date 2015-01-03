@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.junit.Test;
 
-import pl.mg.cfm.pojo.CarPojo;
+import pl.mg.cfm.domain.CarPojo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

@@ -14,8 +14,8 @@ import javax.ws.rs.core.Response;
 import org.jboss.logging.Logger;
 
 import pl.mg.cfm.commons.dao.CFMDao;
+import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.message.CFMJsonSimpleMessage;
-import pl.mg.cfm.pojo.EmployeePojo;
 import pl.mg.cfm.serializer.EmployeeSerializer;
 
 @Stateless

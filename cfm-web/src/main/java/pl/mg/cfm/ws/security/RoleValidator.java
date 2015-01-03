@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 
 import org.jboss.logging.Logger;
 
-import pl.mg.cfm.pojo.EmployeeRolePojo;
+import pl.mg.cfm.domain.EmployeeRolePojo;
 
 @Stateless
 public class RoleValidator {

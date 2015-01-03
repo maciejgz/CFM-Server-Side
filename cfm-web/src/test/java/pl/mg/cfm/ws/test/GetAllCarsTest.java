@@ -9,8 +9,8 @@ import javax.ws.rs.core.Response;
 
 import org.junit.Test;
 
+import pl.mg.cfm.domain.CarPojo;
 import pl.mg.cfm.message.CFMJsonSimpleMessage;
-import pl.mg.cfm.pojo.CarPojo;
 import pl.mg.cfm.resteasy.util.AllTrustingClientFactory;
 import pl.mg.cfm.serializer.CarSerializer;
 

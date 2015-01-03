@@ -3,7 +3,7 @@ package pl.mg.cfm.webclient.dao;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
-import pl.mg.cfm.pojo.CarPojo;
+import pl.mg.cfm.domain.CarPojo;
 
 public class CFMCarDaoImplementation extends JdbcDaoSupport implements CFMCarDao {
 
@@ -15,17 +15,13 @@ public class CFMCarDaoImplementation extends JdbcDaoSupport implements CFMCarDao
 
     @Override
     public CarPojo getCarById(String id) throws DataAccessException {
-
         String sql = "select * from car where car_id=?";
-
         return getJdbcTemplate().queryForObject(sql, new CarMapper(), new Object[] { id });
     }
 
     @Override
     public void createCar(CarPojo car) throws DataAccessException {
-
         String sql = "insert into car values(?,?,?,?,?)";
-
         getJdbcTemplate().update(
                 sql,
                 new Object[] { car.getCarId(), car.getDistance(), car.getLatitude(), car.getLongitude(),
@@ -40,10 +36,8 @@ public class CFMCarDaoImplementation extends JdbcDaoSupport implements CFMCarDao
 
     @Override
     public void updateCar(CarPojo car) throws DataAccessException {
-
         String sql = "update car set " + CAR_DISTANCE_COL + "=?, " + CAR_LATITUDE_COL + "=?, " + CAR_LONGITUDE_COL
                 + "=?, " + CAR_OWNER_ID_COL + "=? where car_id=?";
-
         getJdbcTemplate().update(
                 sql,
                 new Object[] { car.getDistance(), car.getLatitude(), car.getLongitude(), car.getOwnerId(),

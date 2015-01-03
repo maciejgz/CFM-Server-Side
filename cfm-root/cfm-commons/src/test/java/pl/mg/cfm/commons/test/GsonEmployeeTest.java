@@ -5,7 +5,7 @@ package pl.mg.cfm.commons.test;
 
 import org.junit.Test;
 
-import pl.mg.cfm.pojo.EmployeePojo;
+import pl.mg.cfm.domain.EmployeePojo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

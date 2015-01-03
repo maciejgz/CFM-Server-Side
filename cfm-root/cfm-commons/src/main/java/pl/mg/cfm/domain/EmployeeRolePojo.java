@@ -1,4 +1,4 @@
-package pl.mg.cfm.pojo;
+package pl.mg.cfm.domain;
 
 import java.io.Serializable;
 

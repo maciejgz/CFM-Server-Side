@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import pl.mg.cfm.pojo.CarPojo;
+import pl.mg.cfm.domain.CarPojo;
 
 public class CarMapper implements RowMapper<CarPojo> {
 

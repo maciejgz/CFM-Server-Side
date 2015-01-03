@@ -18,10 +18,10 @@ import pl.mg.cfm.dao.exceptions.CarNotFoundException;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.ObjectAlreadyExists;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.domain.CarPojo;
+import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.model.Car;
 import pl.mg.cfm.model.Employee;
-import pl.mg.cfm.pojo.CarPojo;
-import pl.mg.cfm.pojo.EmployeePojo;
 
 /**
  * Klasa EJB DAO (bardziej właściwa nazwa to repository, bo nie ma tylko
@@ -84,8 +84,15 @@ public class CFMEJBRepository implements CFMDao {
         query.setParameter(1, carId);
 
         Car car = (Car) query.getSingleResult();
-        return new CarPojo(car.getCar_id(), car.getDistance(), car.getLatitude(), car.getLongitude(), car.getOwner()
-                .getIdemployee());
+        CarPojo carPojo = new CarPojo();
+        carPojo.setCarId(car.getCar_id());
+        carPojo.setDistance(car.getDistance());
+        carPojo.setLatitude(car.getLatitude());
+        carPojo.setLongitude(car.getLongitude());
+        if (car.getOwner() != null) {
+            carPojo.setOwnerId(car.getOwner().getIdemployee());
+        }
+        return carPojo;
     }
 
     @Override

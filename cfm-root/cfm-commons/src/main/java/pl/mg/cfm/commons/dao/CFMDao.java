@@ -9,8 +9,8 @@ import pl.mg.cfm.dao.exceptions.CarNotFoundException;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.ObjectAlreadyExists;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
-import pl.mg.cfm.pojo.CarPojo;
-import pl.mg.cfm.pojo.EmployeePojo;
+import pl.mg.cfm.domain.CarPojo;
+import pl.mg.cfm.domain.EmployeePojo;
 
 /**
  * Interfejs DAO JPA dla CFM

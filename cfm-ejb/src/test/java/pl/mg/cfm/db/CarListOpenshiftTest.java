@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import pl.mg.cfm.commons.dao.CFMDao;
 import pl.mg.cfm.dao.CFMEJBRepository;
-import pl.mg.cfm.pojo.CarPojo;
+import pl.mg.cfm.domain.CarPojo;
 
 /**
  * Test połączenia do bazy danych openshift po przekierowaniu portów.

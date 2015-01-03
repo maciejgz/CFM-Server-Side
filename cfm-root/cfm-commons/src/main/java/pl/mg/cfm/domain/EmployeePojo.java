@@ -1,24 +1,22 @@
-package pl.mg.cfm.webclient.domain;
+package pl.mg.cfm.domain;
 
-/**
- * Domenowy obiekt Employee dla MVC springa. Obiekt bazodanowy znajduje się w
- * cfm-commons
- * 
- * @author Maciej Gzik
- *
- */
-public class Employee {
-    private String id;
+import java.io.Serializable;
+
+public class EmployeePojo implements Serializable {
+
+
+    private static final long serialVersionUID = 1L;
+    private Integer id;
     private String firstName;
     private String lastName;
-    private String role;
+    private String roleName;
     private String password;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -38,18 +36,18 @@ public class Employee {
         this.lastName = lastName;
     }
 
-    public String getRole() {
-        return role;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     @Override
     public String toString() {
-        return "Employee [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", role=" + role
-                + ", password=" + password + "]";
+        return "EmployeePojo [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", roleName="
+                + roleName + ", password=" + password + "]";
     }
 
     public String getPassword() {
@@ -59,4 +57,5 @@ public class Employee {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

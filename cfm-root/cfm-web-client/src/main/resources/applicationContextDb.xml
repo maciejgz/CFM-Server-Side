@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
      http://www.springframework.org/schema/beans/spring-beans.xsd
      http://www.springframework.org/schema/context 
-     http://www.springframework.org/schema/context/spring-context.xsd"
+     http://www.springframework.org/schema/context/spring-context.xsd
+     http://www.springframework.org/schema/tx
+	 http://www.springframework.org/schema/tx/spring-tx.xsd"
 
 	default-autowire="default">
 
-	<!-- DAO -->
+	<context:component-scan base-package="pl.mg.cfm"></context:component-scan>
+	<tx:annotation-driven />
+
+	<!-- DAO - dao oparte o spring support dla JDBC -->
 	<bean id="carDao" class="pl.mg.cfm.webclient.dao.CFMCarDaoImplementation">
 		<property name="dataSource" ref="localhostMysql"></property>
 	</bean>
@@ -16,24 +22,44 @@
 	<bean id="employeeDao" class="pl.mg.cfm.webclient.dao.CFMEmployeeDAOImplementation">
 		<property name="dataSource" ref="localhostMysql"></property>
 	</bean>
+	<!-- DAO end -->
+
+
+
+
+	<!-- JPA implementacja szablonu repository ze wsparciem Springa -->
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="cfm-localhost" />
+		<property name="dataSource" ref="localhostMysql" />
+	</bean>
+
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="defaultTimeout" value="15"></property>
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+		<property name="jpaDialect" ref="jpaDialect"></property>
+	</bean>
+
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"></bean>
+	<!-- Repository END -->
+
+
 
 	<!-- DATA SOURCE -->
-	<bean id="openshiftDatasource" class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="openshiftDatasource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3307/cfm" />
 		<property name="username" value="adminrY3BB9F" />
 		<property name="password" value="zTzJwHKsd7BP" />
-		<property name="initialSize" value="2" />
-		<property name="maxActive" value="10" />
 	</bean>
 
-	<bean id="localhostMysql" class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="localhostMysql"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3306/cfm" />
 		<property name="username" value="admin" />
 		<property name="password" value="qaz123" />
-		<property name="initialSize" value="2" />
-		<property name="maxActive" value="10" />
 	</bean>
 
 </beans>

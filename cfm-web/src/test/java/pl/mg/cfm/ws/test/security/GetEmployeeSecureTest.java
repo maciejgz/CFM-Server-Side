@@ -11,8 +11,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
 import org.junit.Test;
 
+import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.message.CFMJsonSimpleMessage;
-import pl.mg.cfm.pojo.EmployeePojo;
 import pl.mg.cfm.resteasy.util.AllTrustingClientFactory;
 import pl.mg.cfm.serializer.CFMMessageSerializer;
 import pl.mg.cfm.serializer.EmployeeSerializer;

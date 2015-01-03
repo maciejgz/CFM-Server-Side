@@ -3,8 +3,8 @@ package pl.mg.cfm.serializer;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import pl.mg.cfm.pojo.CarPojo;
-import pl.mg.cfm.pojo.EmployeeRolePojo;
+import pl.mg.cfm.domain.CarPojo;
+import pl.mg.cfm.domain.EmployeeRolePojo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

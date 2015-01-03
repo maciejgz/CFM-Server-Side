@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import pl.mg.cfm.pojo.EmployeePojo;
+import pl.mg.cfm.domain.EmployeePojo;
 
 public class EmployeeMapper implements RowMapper<EmployeePojo> {
 

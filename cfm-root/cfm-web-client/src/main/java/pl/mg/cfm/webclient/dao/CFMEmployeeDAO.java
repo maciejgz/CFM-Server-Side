@@ -2,7 +2,7 @@ package pl.mg.cfm.webclient.dao;
 
 import org.springframework.dao.DataAccessException;
 
-import pl.mg.cfm.pojo.EmployeePojo;
+import pl.mg.cfm.domain.EmployeePojo;
 
 public interface CFMEmployeeDAO {
 

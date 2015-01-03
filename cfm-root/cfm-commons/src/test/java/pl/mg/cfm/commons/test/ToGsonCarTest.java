@@ -2,7 +2,7 @@ package pl.mg.cfm.commons.test;
 
 import org.junit.Test;
 
-import pl.mg.cfm.pojo.CarPojo;
+import pl.mg.cfm.domain.CarPojo;
 import pl.mg.cfm.serializer.CarSerializer;
 
 import com.google.gson.Gson;
