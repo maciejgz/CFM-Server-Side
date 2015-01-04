@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.mg.cfm.webclient.springtest.TestBean;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("classpath:applicationContext.xml")
+@ContextConfiguration("file:src/main/webapp/WEB-INF/applicationContext.xml")
 public class ConstructorAutowiredTest {
 
 	@Autowired

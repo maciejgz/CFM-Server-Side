@@ -14,7 +14,7 @@ import pl.mg.cfm.domain.CarPojo;
 import pl.mg.cfm.webclient.dao.CFMCarDao;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath:applicationContext.xml", "classpath:applicationContextDb.xml" })
+@ContextConfiguration({ "file:src/main/webapp/WEB-INF/applicationContext.xml", "file:src/main/webapp/WEB-INF/applicationContextDb.xml" })
 public class CarSelectTest {
 
     @Inject

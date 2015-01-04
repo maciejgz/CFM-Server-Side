@@ -14,7 +14,7 @@ import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.webclient.repository.EmployeeRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration({ "classpath:applicationContext.xml", "classpath:applicationContextDb.xml" })
+@ContextConfiguration({ "file:src/main/webapp/WEB-INF/applicationContext.xml", "file:src/main/webapp/WEB-INF/applicationContextDb.xml" })
 public class LoginTest {
 
     @Autowired
