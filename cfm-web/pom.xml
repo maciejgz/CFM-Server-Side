@@ -65,7 +65,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
-			<scope>compile</scope>
+			<scope>provided</scope>
 		</dependency>
 	</dependencies>
 	<build>

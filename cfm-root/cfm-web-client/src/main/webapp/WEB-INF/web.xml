@@ -8,6 +8,10 @@
 	<servlet>
 		<servlet-name>cfm</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>/WEB-INF/applicationContextWeb.xml</param-value>
+		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
@@ -21,7 +25,7 @@
 		<param-value>
     		/WEB-INF/applicationContext.xml
     		/WEB-INF/applicationContextPersistence.xml
-    		/WEB-INF/cfm-servlet.xml
+    		/WEB-INF/applicationContextWeb.xml
     	</param-value>
 	</context-param>
 

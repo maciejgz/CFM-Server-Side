@@ -7,11 +7,9 @@
      http://www.springframework.org/schema/context 
      http://www.springframework.org/schema/context/spring-context.xsd
      http://www.springframework.org/schema/tx
-	 http://www.springframework.org/schema/tx/spring-tx.xsd"
+	 http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	default-autowire="default">
-
-	<context:component-scan base-package="pl.mg.cfm"></context:component-scan>
+	<context:component-scan base-package="pl.mg.cfm, pl.mg.cfm.webclient.service" />
 	<tx:annotation-driven />
 
 	<!-- DAO - dao oparte o spring support dla JDBC -->
