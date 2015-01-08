@@ -1,4 +1,4 @@
-package pl.mg.cfm.weblient.service;
+package pl.mg.cfm.webclient.service;
 
 /**
  * Interfejs serwisu operacji wykonywanych na uzytkowniku. Dzieki temu

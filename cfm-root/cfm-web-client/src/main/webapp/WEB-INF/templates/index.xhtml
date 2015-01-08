@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>CFM Startup</title>
+</head>
+<body>
+	<p align="center" th:text="#{index.welcome}">Podaj login i haslo</p>
+	<form action="user.html" th:action="@{/user}" method="post">
+		<fieldset>
+			<input type="text" name="email" /> <input type="submit"
+				value="Subscribe me!" th:value="#{subscribe.submit}" />
+		</fieldset>
+	</form>
+
+</body>
+</html>

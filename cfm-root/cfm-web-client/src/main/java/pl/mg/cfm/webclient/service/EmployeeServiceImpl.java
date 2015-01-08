@@ -1,4 +1,4 @@
-package pl.mg.cfm.weblient.service;
+package pl.mg.cfm.webclient.service;
 
 import org.springframework.stereotype.Service;
 
@@ -7,7 +7,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public boolean login(String user, String password) {
-        return false;
+        return true;
     }
 
 }

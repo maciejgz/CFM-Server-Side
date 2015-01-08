@@ -6,12 +6,11 @@
 	http://www.springframework.org/schema/context/spring-context.xsd ">
 
 	<context:component-scan
-		base-package="pl.mg.cfm.webclient.web" />
-
+		base-package="pl.mg.cfm.webclient.web,pl.mg.cfm.webclient.service" />
 
 	<bean id="templateResolver"
 		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
-		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="prefix" value="/WEB-INF/templates/" />
 		<property name="suffix" value=".xhtml" />
 		<property name="templateMode" value="HTML5" />
 	</bean>
@@ -30,4 +29,5 @@
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basename" value="Messages" />
 	</bean>
+
 </beans>
