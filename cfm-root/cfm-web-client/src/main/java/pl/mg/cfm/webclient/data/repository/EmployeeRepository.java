@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.repository;
+package pl.mg.cfm.webclient.data.repository;
 
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;

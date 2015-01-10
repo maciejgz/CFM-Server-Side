@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.repository;
+package pl.mg.cfm.webclient.data.repository;
 
 import java.util.List;
 

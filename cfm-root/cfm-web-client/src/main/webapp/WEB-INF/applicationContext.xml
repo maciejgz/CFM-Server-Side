@@ -9,7 +9,7 @@
 	<context:component-scan base-package="pl.mg.cfm"></context:component-scan>
 
 	<!-- testowy bean springa ładowany w całości -->
-	<bean id="testBean" class="pl.mg.cfm.webclient.springtest.TestBean"
+	<bean id="testBean" class="pl.mg.cfm.webclient.util.springtest.TestBean"
 		autowire-candidate="false">
 		<property name="testProperty" value="testValue"></property>
 		<property name="map">
@@ -33,12 +33,12 @@
 	<!-- <bean id="constructorAutowireBean" class="pl.mg.cfm.webclient.springtest.TestBean" 
 		autowire="byName"> <property name="testProperty" value="propertyString"></property> 
 		</bean> -->
-	<bean id="childBean" class="pl.mg.cfm.webclient.springtest.ChildBean">
+	<bean id="childBean" class="pl.mg.cfm.webclient.util.springtest.ChildBean">
 		<property name="childStringProperty" value="childPropertyValue"></property>
 	</bean>
 
 	<!-- annotation autowire -->
-	<bean id="autowiredAnnotation" class="pl.mg.cfm.webclient.springtest.TestBean">
+	<bean id="autowiredAnnotation" class="pl.mg.cfm.webclient.util.springtest.TestBean">
 	</bean>
 
 

@@ -7,8 +7,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 
-import pl.mg.cfm.webclient.springtest.LocalSpringContextFactory;
-import pl.mg.cfm.webclient.springtest.TestBean;
+import pl.mg.cfm.webclient.util.springtest.LocalSpringContextFactory;
+import pl.mg.cfm.webclient.util.springtest.TestBean;
 
 public class InjectTestBeanUnivLocalClientTest {
 

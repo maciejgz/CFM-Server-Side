@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.dao;
+package pl.mg.cfm.webclient.data.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

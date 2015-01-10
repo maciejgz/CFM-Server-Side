@@ -1,4 +1,4 @@
-package pl.mg.cfm.model;
+package pl.mg.cfm.webclient.data.model;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.repository;
+package pl.mg.cfm.webclient.data.repository;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,8 +12,8 @@ import org.jboss.logging.Logger;
 import org.springframework.stereotype.Repository;
 
 import pl.mg.cfm.domain.CarPojo;
-import pl.mg.cfm.model.Car;
-import pl.mg.cfm.model.Employee;
+import pl.mg.cfm.webclient.data.model.Car;
+import pl.mg.cfm.webclient.data.model.Employee;
 
 /**
  * Repozytorium dla klienta webowego zrealizowane na JPA (w implementacji

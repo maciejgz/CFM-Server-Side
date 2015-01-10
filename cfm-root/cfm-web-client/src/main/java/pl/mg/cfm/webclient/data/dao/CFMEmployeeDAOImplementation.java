@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.dao;
+package pl.mg.cfm.webclient.data.dao;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;

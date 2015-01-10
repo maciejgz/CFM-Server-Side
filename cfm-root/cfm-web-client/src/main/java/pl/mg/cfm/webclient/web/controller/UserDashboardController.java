@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.web;
+package pl.mg.cfm.webclient.web.controller;
 
 import javax.inject.Inject;
 
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import pl.mg.cfm.webclient.service.EmployeeService;
+import pl.mg.cfm.webclient.business.service.EmployeeService;
 
 @Controller
 @RequestMapping(value = "/user")

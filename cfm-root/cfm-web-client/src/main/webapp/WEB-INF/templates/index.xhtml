@@ -2,17 +2,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org">
 <head>
+<style type="text/css">
+.fieldset-auto-width {
+	display: inline-block;
+}
+</style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>CFM Startup</title>
+<title>CFM</title>
 </head>
 <body>
+
 	<p align="center" th:text="#{index.welcome}">Podaj login i haslo</p>
 	<form action="user.html" th:action="@{/user}" method="post">
-		<fieldset>
-			<input type="text" name="email" /> <input type="submit"
-				value="Subscribe me!" th:value="#{subscribe.submit}" />
-		</fieldset>
+		<div>
+			<fieldset th:align="center">
+				<th:block th:text="#{index.name}">Podaj imie</th:block>
+				<input type="text" name="email" /> <input type="submit"
+					value="Subscribe me!" th:value="#{subscribe.submit}" /> <BR />
+					
+					
+				<th:block th:text="#{index.name}">Podaj imie</th:block>
+			</fieldset>
+		</div>
 	</form>
-
+	<a th:align="center" th:href="@{/register}" th:text="#{index.register}">Zarejestruj</a>
 </body>
 </html>

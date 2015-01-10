@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.service;
+package pl.mg.cfm.webclient.business.service;
 
 import org.springframework.stereotype.Service;
 

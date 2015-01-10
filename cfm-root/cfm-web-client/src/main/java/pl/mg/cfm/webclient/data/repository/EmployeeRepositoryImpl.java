@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.repository;
+package pl.mg.cfm.webclient.data.repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
-import pl.mg.cfm.model.Employee;
+import pl.mg.cfm.webclient.data.model.Employee;
 
 @Repository("EmployeeRepository")
 public class EmployeeRepositoryImpl implements EmployeeRepository {
