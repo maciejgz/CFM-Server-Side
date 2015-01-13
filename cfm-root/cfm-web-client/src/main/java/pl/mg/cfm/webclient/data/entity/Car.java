@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.data.model;
+package pl.mg.cfm.webclient.data.entity;
 
 import java.io.Serializable;
 
@@ -16,10 +16,6 @@ public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-   // @EmbeddedId
-   // private CarPK carPk;
-    
-    
     @Id
     @Column(name = "car_id")
     protected String car_id;

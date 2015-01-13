@@ -2,13 +2,22 @@ package pl.mg.cfm.domain;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class EmployeePojo implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    
+    @NotNull
     private Integer id;
+    
     private String firstName;
     private String lastName;
     private String roleName;
+    
+    @NotNull
+    @Size(min=4)
     private String password;
 
     public Integer getId() {

@@ -9,20 +9,19 @@
      http://www.springframework.org/schema/tx
 	 http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-	<context:component-scan base-package="pl.mg.cfm, pl.mg.cfm.webclient.service" />
-	<tx:annotation-driven />
+	<context:component-scan base-package="pl.mg.cfm.webclient.data" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- DAO - dao oparte o spring support dla JDBC -->
-	<bean id="carDao" class="pl.mg.cfm.webclient.dao.CFMCarDaoImplementation">
+	<bean id="carDao" class="pl.mg.cfm.webclient.data.dao.CFMCarDaoImplementation">
 		<property name="dataSource" ref="localhostMysql"></property>
 	</bean>
 
-	<bean id="employeeDao" class="pl.mg.cfm.webclient.dao.CFMEmployeeDAOImplementation">
+	<bean id="employeeDao"
+		class="pl.mg.cfm.webclient.data.dao.CFMEmployeeDAOImplementation">
 		<property name="dataSource" ref="localhostMysql"></property>
 	</bean>
 	<!-- DAO end -->
-
-
 
 
 	<!-- JPA implementacja szablonu repository ze wsparciem Springa -->
@@ -33,7 +32,7 @@
 	</bean>
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-		<property name="defaultTimeout" value="15"></property>
+		<property name="defaultTimeout" value="30"></property>
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 		<property name="jpaDialect" ref="jpaDialect"></property>
 	</bean>

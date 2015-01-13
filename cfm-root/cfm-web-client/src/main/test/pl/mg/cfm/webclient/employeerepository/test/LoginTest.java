@@ -33,6 +33,7 @@ public class LoginTest {
         String password = "pass";
 
         try {
+            System.out.println(repository.login(id, password));
             assertEquals(repository.login(id, password), true);
         } catch (UserNotFoundException e) {
             e.printStackTrace();

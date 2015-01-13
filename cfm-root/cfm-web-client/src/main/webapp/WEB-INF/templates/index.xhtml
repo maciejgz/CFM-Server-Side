@@ -11,20 +11,41 @@
 <title>CFM</title>
 </head>
 <body>
-
 	<p align="center" th:text="#{index.welcome}">Podaj login i haslo</p>
-	<form action="user.html" th:action="@{/user}" method="post">
+	<form action="#" th:action="@{/}" method="post" th:object="${employee}">
 		<div>
-			<fieldset th:align="center">
-				<th:block th:text="#{index.name}">Podaj imie</th:block>
-				<input type="text" name="email" /> <input type="submit"
-					value="Subscribe me!" th:value="#{subscribe.submit}" /> <BR />
-					
-					
-				<th:block th:text="#{index.name}">Podaj imie</th:block>
+			<fieldset>
+				<TABLE>
+					<TR>
+						<TD><th:block th:text="#{index.id}">ID</th:block></TD>
+						<TD><input type="text" id="id" name="id"
+							th:value="${employee.id}" /></TD>
+						<td th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name
+							Error</td>
+					</TR>
+					<TR>
+						<TD><th:block th:text="#{index.password}">Haslo</th:block></TD>
+						<TD><input type="password" th:field="*{password}" /></TD>
+						<td th:if="${#fields.hasErrors('password')}"
+							th:errors="*{password}">Name Error</td>
+						<!-- th:value="${employee.password}" -->
+					</TR>
+					<tr>
+						<TD>
+							<p th:if="${error}" th:text="#{index.errorMessage}">Nieprawidlowy
+								login lub haslo</p>
+						</TD>
+					</tr>
+					<TR>
+						<TD><input th:name="login" th:value="#{index.login}"
+							type="submit" align="center" /></TD>
+					</TR>
+				</TABLE>
 			</fieldset>
 		</div>
 	</form>
-	<a th:align="center" th:href="@{/register}" th:text="#{index.register}">Zarejestruj</a>
+	<a th:href="@{/register}" th:text="#{index.register}">Zarejestruj</a>
 </body>
 </html>
+
+<!--     -->

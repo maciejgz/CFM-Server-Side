@@ -4,10 +4,9 @@
 	version="2.0">
 	<persistence-unit name="cfm-localhost">
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>pl.mg.cfm.webclient.data.model.Car</class>
-		<class>pl.mg.cfm.webclient.data.model.CarPK</class>
-		<class>pl.mg.cfm.webclient.data.model.Employee</class>
-		<class>pl.mg.cfm.webclient.data.model.EmployeeRole</class>
+		<class>pl.mg.cfm.webclient.data.entity.Car</class>
+		<class>pl.mg.cfm.webclient.data.entity.Employee</class>
+		<class>pl.mg.cfm.webclient.data.entity.EmployeeRole</class>
 
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />

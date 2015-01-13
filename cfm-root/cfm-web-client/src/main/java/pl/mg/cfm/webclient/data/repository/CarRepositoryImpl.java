@@ -12,8 +12,8 @@ import org.jboss.logging.Logger;
 import org.springframework.stereotype.Repository;
 
 import pl.mg.cfm.domain.CarPojo;
-import pl.mg.cfm.webclient.data.model.Car;
-import pl.mg.cfm.webclient.data.model.Employee;
+import pl.mg.cfm.webclient.data.entity.Car;
+import pl.mg.cfm.webclient.data.entity.Employee;
 
 /**
  * Repozytorium dla klienta webowego zrealizowane na JPA (w implementacji

@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.service.EmployeeService;
 
-@Controller
-@RequestMapping(value = "/register")
+//@Controller
+//@RequestMapping(value = "/register")
 public class RegisterController {
 
     @Inject
@@ -22,8 +23,9 @@ public class RegisterController {
         return mav;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public ModelAndView registerUser() {
+    @RequestMapping(method = RequestMethod.POST, params="login")
+    public ModelAndView registerUser(final EmployeePojo employee) {
+        
         ModelAndView mav = new ModelAndView();
         return mav;
     }

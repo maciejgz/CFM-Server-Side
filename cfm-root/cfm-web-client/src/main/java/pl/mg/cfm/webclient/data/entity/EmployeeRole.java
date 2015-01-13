@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.data.model;
+package pl.mg.cfm.webclient.data.entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;

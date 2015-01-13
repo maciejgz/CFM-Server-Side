@@ -10,6 +10,6 @@ package pl.mg.cfm.webclient.business.service;
  */
 public interface EmployeeService {
 
-    public boolean login(String user, String password);
+    public boolean login(String id, String password);
 
 }

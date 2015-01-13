@@ -63,7 +63,6 @@
 			<version>${hibernate.version}</version>
 			<scope>provided</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -81,12 +80,7 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.30</version>
-		</dependency>
-
-		<dependency>
-			<groupId>pl.mg</groupId>
-			<artifactId>cfm-commons</artifactId>
-			<version>${cfm.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 
@@ -96,6 +90,12 @@
 			<artifactId>thymeleaf-spring4</artifactId>
 			<version>2.1.4.RELEASE</version>
 			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>pl.mg</groupId>
+			<artifactId>cfm-commons</artifactId>
+			<version>${cfm.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -117,7 +117,7 @@
 				<configuration>
 					<archive>
 						<manifestEntries>
-							<Dependencies>org.thymeleaf</Dependencies>
+							<Dependencies>com.mysql,org.thymeleaf</Dependencies>
 						</manifestEntries>
 					</archive>
 				</configuration>

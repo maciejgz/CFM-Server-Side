@@ -6,18 +6,17 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
-import pl.mg.cfm.webclient.data.model.Employee;
+import pl.mg.cfm.webclient.data.entity.Employee;
 
-@Repository("EmployeeRepository")
+@Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
-    @PersistenceContext
+    @PersistenceContext(name = "cfm-localhost")
     private EntityManager entityManager;
 
     @Override
