@@ -12,6 +12,7 @@
 </head>
 <body>
 	<p align="center" th:text="#{index.welcome}">Podaj login i haslo</p>
+	<p th:if="${error}">Nieprawidlowy login lub haslo</p>
 	<form action="#" th:action="@{/}" method="post" th:object="${employee}">
 		<div>
 			<fieldset>
@@ -30,12 +31,6 @@
 							th:errors="*{password}">Name Error</td>
 						<!-- th:value="${employee.password}" -->
 					</TR>
-					<tr>
-						<TD>
-							<p th:if="${error}" th:text="#{index.errorMessage}">Nieprawidlowy
-								login lub haslo</p>
-						</TD>
-					</tr>
 					<TR>
 						<TD><input th:name="login" th:value="#{index.login}"
 							type="submit" align="center" /></TD>

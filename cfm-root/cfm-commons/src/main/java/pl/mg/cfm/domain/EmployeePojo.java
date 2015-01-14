@@ -7,8 +7,8 @@ import javax.validation.constraints.Size;
 
 public class EmployeePojo implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    
+    private static final long serialVersionUID = 1701580749583817832L;
+
     @NotNull
     private Integer id;
     
