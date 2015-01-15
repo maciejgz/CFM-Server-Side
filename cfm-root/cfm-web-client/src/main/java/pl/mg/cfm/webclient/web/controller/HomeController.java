@@ -13,27 +13,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.service.EmployeeService;
+import pl.mg.cfm.webclient.web.domain.ErrorMessage;
 
 @Controller
 @RequestMapping("/")
 public class HomeController {
 
     Logger logger = Logger.getLogger(HomeController.class);
+    private ErrorMessage error = new ErrorMessage();
 
     @Inject
     private EmployeeService employeeService;
 
-    private boolean error = false;
-    private String errorMessage;
-
     @ModelAttribute("error")
-    public boolean getError() {
+    public ErrorMessage getError() {
         return this.error;
-    }
-
-    @ModelAttribute("errorMessage")
-    public String getErrorMessage() {
-        return errorMessage;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -50,8 +44,8 @@ public class HomeController {
         logger.debug("error=" + error);
         if (bindingResult.hasErrors()) {
             logger.debug("POST has errors");
-            this.error = true;
-            this.errorMessage = "Nieprawidłowy login lub haslo";
+            this.error.setErrorCode(1);
+            this.error.setErrorMessage("Nieprawidłowy login lub haslo");
             return "index";
         }
 
@@ -61,8 +55,8 @@ public class HomeController {
         if (employeeService.login(employee.getId().toString(), employee.getPassword())) {
             return "redirect:/user";
         } else {
-            this.error = true;
-            this.errorMessage = "Nieprawidłowy login lub haslo";
+            this.error.setErrorCode(1);
+            this.error.setErrorMessage("Nieprawidłowy login lub haslo");
             return "index";
         }
 

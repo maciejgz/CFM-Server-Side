@@ -12,7 +12,7 @@
 </head>
 <body>
 	<p align="center" th:text="#{index.welcome}">Podaj login i haslo</p>
-	<p th:if="${error}">Nieprawidlowy login lub haslo</p>
+	<p th:if="${error.erroCode != '0'}" th:text="${error.errorMessage}" />
 	<form action="#" th:action="@{/}" method="post" th:object="${employee}">
 		<div>
 			<fieldset>
