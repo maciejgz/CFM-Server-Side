@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
+import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.webclient.business.service.EmployeeService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,7 +28,13 @@ public class UserDashboardController {
 
     @Test
     public void test() {
-        System.out.println(employeeService.login("user", "password"));
+        try {
+            System.out.println(employeeService.login("user", "password"));
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        } catch (InvalidPasswordException e) {
+            e.printStackTrace();
+        }
         assertNotNull(employeeService);
     }
 

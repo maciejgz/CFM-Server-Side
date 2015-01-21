@@ -9,6 +9,6 @@ public interface EmployeeRepository {
     
     public boolean login(String id, String password) throws UserNotFoundException, InvalidPasswordException;
 
-    EmployeePojo getEmployee(Integer id) throws UserNotFoundException;
+    public EmployeePojo getEmployee(Integer id) throws UserNotFoundException;
     
 }

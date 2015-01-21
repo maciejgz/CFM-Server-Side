@@ -12,7 +12,12 @@
 </head>
 <body>
 	<p align="center" th:text="#{index.welcome}">Podaj login i haslo</p>
-	<p th:if="${error.erroCode != '0'}" th:text="${error.errorMessage}" />
+	<!-- <p th:if="${error.errorCode} != 0" th:text="${error.errorMessage}" /> -->
+
+	<div th:switch="${error.errorCode}">
+		<p th:case="'0'"></p>
+		<p th:case="*" th:text="${error.errorMessage}"></p>
+	</div>
 	<form action="#" th:action="@{/}" method="post" th:object="${employee}">
 		<div>
 			<fieldset>
