@@ -5,6 +5,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import org.jboss.logging.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,8 @@ import pl.mg.cfm.webclient.data.entity.Employee;
 
 @Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository {
+
+    private Logger logger = Logger.getLogger(EmployeeRepositoryImpl.class);
 
     @PersistenceContext(name = "cfm-localhost")
     private EntityManager entityManager;
@@ -54,6 +57,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         if (employee == null) {
             throw new UserNotFoundException("User not found");
         }
+        //logger.debug(employee.toString());
         EmployeePojo emPojo = new EmployeePojo();
         emPojo.setId(employee.getIdemployee());
         emPojo.setFirstName(employee.getFirstName());

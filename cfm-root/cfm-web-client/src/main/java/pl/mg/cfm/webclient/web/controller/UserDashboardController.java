@@ -16,8 +16,8 @@ import pl.mg.cfm.webclient.business.service.EmployeeService;
 import pl.mg.cfm.webclient.web.domain.ErrorMessage;
 
 @Controller
-@RequestMapping(value = "/user")
-@SessionAttributes({ "error" })
+@RequestMapping(value = WebConstants.URI_USER)
+@SessionAttributes({ WebConstants.PARAM_EMPLOYEE })
 public class UserDashboardController {
 
     Logger logger = Logger.getLogger(UserDashboardController.class);
@@ -26,10 +26,17 @@ public class UserDashboardController {
     private EmployeeService employeeService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String getDashboard(Model model, @ModelAttribute("error") ErrorMessage error, SessionStatus status) {
+    public String getDashboard(Model model, @ModelAttribute(WebConstants.PARAM_ERROR) ErrorMessage error,
+            @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee, SessionStatus status) {
+
+        logger.debug("/user GET");
+
+        if (!(employee == null)) {
+            logger.debug(employee);
+        }
 
         logger.debug("user get");
-        if (!model.containsAttribute("error")) {
+        if (error == null) {
             logger.debug("error is null");
             model.addAttribute("error", new ErrorMessage());
         }
@@ -38,9 +45,10 @@ public class UserDashboardController {
         return "user_dashboard";
     }
 
-    @RequestMapping(method = RequestMethod.POST, params = { "login" })
+    @RequestMapping(method = RequestMethod.POST)
     public String userDashboard(final EmployeePojo employee) {
 
+        logger.debug("/user GET");
         if (employee != null) {
             logger.debug(employee.getId());
         }

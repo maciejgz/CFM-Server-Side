@@ -82,5 +82,4 @@ public class Car implements Serializable {
         this.car_id = car_id;
     }
 
-
 }

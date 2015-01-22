@@ -1,7 +1,6 @@
 package pl.mg.cfm.webclient.web.controller;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.jboss.logging.Logger;
@@ -24,7 +23,7 @@ import pl.mg.cfm.webclient.web.domain.ErrorMessage;
 
 @Controller
 @RequestMapping("/")
-@SessionAttributes({ WebConstants.PARAM_ERROR })
+@SessionAttributes({ WebConstants.PARAM_ERROR, WebConstants.PARAM_EMPLOYEE })
 public class HomeController {
 
     Logger logger = Logger.getLogger(HomeController.class);
@@ -43,8 +42,13 @@ public class HomeController {
         return new ErrorMessage();
     }
 
+    @ModelAttribute(WebConstants.PARAM_EMPLOYEE)
+    public EmployeePojo populateMockEmployee() {
+        return new EmployeePojo();
+    }
+
     @RequestMapping(method = RequestMethod.GET)
-    public String index(@ModelAttribute(WebConstants.PARAM_EMPLOYEE) final EmployeePojo employee,
+    public String index(@Valid @ModelAttribute(WebConstants.PARAM_EMPLOYEE) final EmployeePojo employee,
             @ModelAttribute(WebConstants.PARAM_ERROR) ErrorMessage error, Model model) {
         logger.debug("/ GET");
 
@@ -63,17 +67,9 @@ public class HomeController {
             SessionStatus session) throws NumberFormatException, UserNotFoundException, InvalidPasswordException {
         logger.debug("/ POST");
 
-        /*
-         * logger.debug("error=" + error); if (bindingResult.hasErrors()) {
-         * logger.debug("POST has errors"); error.setErrorCode(1);
-         * error.setErrorMessage("Nieprawidłowy login lub haslo"); return
-         * "index"; }
-         */
-        System.out.println("id=" + employee.getId());
-        System.out.println("pass=" + employee.getPassword());
-
         if (employeeService.login(employee.getId().toString(), employee.getPassword())) {
-            EmployeePojo employeeModel = employeeService.getEmployee(employee.getId().toString());
+            employee = employeeService.getEmployee(employee.getId().toString());
+            model.addAttribute(WebConstants.PARAM_EMPLOYEE, employee);
             error = new ErrorMessage();
             return "redirect:/user";
         } else {
@@ -83,31 +79,34 @@ public class HomeController {
     }
 
     @ExceptionHandler(value = NumberFormatException.class)
-    public String catchNumberFormatException(@ModelAttribute(WebConstants.PARAM_ERROR) ErrorMessage error,
-            final HttpServletRequest request) {
+    public ModelAndView catchNumberFormatException() {
         ModelAndView mav = new ModelAndView();
-        error = new ErrorMessage(1, "nieprawidlowy format danych");
+        ErrorMessage error = new ErrorMessage(1, "nieprawidlowy format danych");
         mav.addObject(WebConstants.PARAM_ERROR, error);
-        return WebConstants.TEMPLATE_INDEX;
+        mav.addObject(WebConstants.PARAM_EMPLOYEE, new EmployeePojo());
+        mav.setViewName(WebConstants.TEMPLATE_INDEX);
+        return mav;
     }
 
-    @ExceptionHandler(value = UserNotFoundException.class)
-    public String catchUserNotFoundException(@ModelAttribute(WebConstants.PARAM_ERROR) ErrorMessage error,
-            final HttpServletRequest request) {
+    @ExceptionHandler({ UserNotFoundException.class })
+    public ModelAndView catchUserNotFoundException() {
         ModelAndView mav = new ModelAndView();
-        error = new ErrorMessage(2, "nieprawidlowy uzytkownik lub haslo");
+        ErrorMessage error = new ErrorMessage(2, "nieprawidlowy uzytkownik lub haslo");
         mav.addObject(WebConstants.PARAM_ERROR, error);
-        return WebConstants.TEMPLATE_INDEX;
+        mav.addObject(WebConstants.PARAM_EMPLOYEE, new EmployeePojo());
+        mav.setViewName(WebConstants.TEMPLATE_INDEX);
+        return mav;
     }
 
     @ExceptionHandler(value = InvalidPasswordException.class)
-    public String catchInvalidPasswordException(@ModelAttribute(WebConstants.PARAM_ERROR) ErrorMessage error,
-            final HttpServletRequest request) {
+    public ModelAndView catchInvalidPasswordException() {
         ModelAndView mav = new ModelAndView();
 
-        error = new ErrorMessage(2, "nieprawidlowy uzytkownik lub haslo");
+        ErrorMessage error = new ErrorMessage(2, "nieprawidlowy uzytkownik lub haslo");
         mav.addObject(WebConstants.PARAM_ERROR, error);
-        return WebConstants.TEMPLATE_INDEX;
+        mav.addObject(WebConstants.PARAM_EMPLOYEE, new EmployeePojo());
+        mav.setViewName(WebConstants.TEMPLATE_INDEX);
+        return mav;
     }
 
 }
