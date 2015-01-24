@@ -1,8 +1,35 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
         http://www.springframework.org/schema/beans/spring-beans.xsd
 	http://www.springframework.org/schema/context
-	http://www.springframework.org/schema/context/spring-context.xsd ">
+	http://www.springframework.org/schema/context/spring-context.xsd 
+	 http://www.springframework.org/schema/security 
+        http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-</beans>
+
+	<http pattern="/login*" security="none" />
+
+	<http auto-config="true">
+		<intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
+		<form-login login-page="/login" authentication-failure-url="/login-error"
+			default-target-url="/test" />
+		<logout />
+	</http>
+
+
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="admin" password="secret" authorities="ROLE_ADMIN" />
+				<user name="user1" password="1111" authorities="ROLE_USER" />
+				<user name="1" password="1" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+
+
+
+
+</beans:beans>

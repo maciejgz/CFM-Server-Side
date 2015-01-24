@@ -12,8 +12,11 @@
 </head>
 <body>
 	<p align="center" th:text="#{index.welcome}">Podaj login i haslo</p>
-	<!-- <p th:if="${error.errorCode} != 0" th:text="${error.errorMessage}" /> -->
+	<div sec:authorize="hasRole('ROLE_ADMIN')">This will only be
+		displayed if authenticated user has role ROLE_ADMIN.</div>
 
+	<div sec:authorize="hasRole('ROLE_USER')">This will only be
+		displayed if authenticated user has role ROLE_USER.</div>
 	<div th:switch="${error.errorCode}">
 		<p th:case="'0'"></p>
 		<p th:case="*" th:text="${error.errorMessage}"></p>

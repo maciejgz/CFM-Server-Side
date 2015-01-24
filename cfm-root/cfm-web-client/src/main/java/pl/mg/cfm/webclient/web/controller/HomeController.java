@@ -22,7 +22,7 @@ import pl.mg.cfm.webclient.business.service.EmployeeService;
 import pl.mg.cfm.webclient.web.domain.ErrorMessage;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/test")
 @SessionAttributes({ WebConstants.PARAM_ERROR, WebConstants.PARAM_EMPLOYEE })
 public class HomeController {
 
@@ -61,7 +61,7 @@ public class HomeController {
         return WebConstants.TEMPLATE_INDEX;
     }
 
-    @RequestMapping(method = RequestMethod.POST, params = { "login" })
+    @RequestMapping(value = WebConstants.URI_INDEX, method = RequestMethod.POST, params = { "login" })
     public String login(@Valid @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee,
             @ModelAttribute(WebConstants.PARAM_ERROR) ErrorMessage error, BindingResult bindingResult, Model model,
             SessionStatus session) throws NumberFormatException, UserNotFoundException, InvalidPasswordException {
@@ -75,7 +75,6 @@ public class HomeController {
         } else {
             throw new UserNotFoundException();
         }
-
     }
 
     @ExceptionHandler(value = NumberFormatException.class)
