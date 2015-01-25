@@ -14,7 +14,8 @@
 		<input type="text" id="j_username" name="j_username" /> <br /> <label
 			for="j_password" th:text="#{login.password}">Password</label>: <input
 			type="password" id="j_password" name="j_password" /> <br /> <input
-			type="submit" value="#{login.login}" />
+			type="submit" th:value="#{login.login}" />
 	</form>
+	<a th:align="center" th:href="@{/register}" th:text="#{login.register}">Zarejestruj</a>
 </body>
 </html>

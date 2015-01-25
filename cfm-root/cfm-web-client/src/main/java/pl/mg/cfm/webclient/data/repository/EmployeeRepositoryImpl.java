@@ -7,6 +7,7 @@ import javax.persistence.Query;
 
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
@@ -57,13 +58,28 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         if (employee == null) {
             throw new UserNotFoundException("User not found");
         }
-        //logger.debug(employee.toString());
+        // logger.debug(employee.toString());
         EmployeePojo emPojo = new EmployeePojo();
         emPojo.setId(employee.getIdemployee());
         emPojo.setFirstName(employee.getFirstName());
         emPojo.setLastName(employee.getLastName());
         emPojo.setRoleName(employee.getRole().getName());
         return emPojo;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Integer register(String firstName, String lastName, String password) {
+        String sqlQuery = "select cfm.register_user(?,?,?)";
+        Query query = entityManager.createNativeQuery(sqlQuery);
+        query.setParameter(1, firstName);
+        query.setParameter(2, lastName);
+        query.setParameter(3, password);
+
+        int id = (int) query.getSingleResult();
+
+        logger.debug("registerEmployee repository. result=" + id);
+        return id;
     }
 
 }

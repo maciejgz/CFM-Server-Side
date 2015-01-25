@@ -1,6 +1,8 @@
 package pl.mg.cfm.webclient.business.service;
 
+import pl.mg.cfm.business.exception.InvalidInputDataException;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
+import pl.mg.cfm.dao.exceptions.RegisterUserException;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
 
@@ -15,7 +17,9 @@ import pl.mg.cfm.domain.EmployeePojo;
 public interface EmployeeService {
 
     public boolean login(String id, String password) throws UserNotFoundException, InvalidPasswordException;
-    
+
     public EmployeePojo getEmployee(String id) throws NumberFormatException, UserNotFoundException;
 
+    public Integer registerEmployee(String firstName, String lastName, String password)
+            throws InvalidInputDataException, RegisterUserException;
 }

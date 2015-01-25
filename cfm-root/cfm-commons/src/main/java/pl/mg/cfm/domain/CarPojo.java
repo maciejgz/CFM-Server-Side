@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class CarPojo implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2891337374918898870L;
     private String carId;
     private Long distance;
     private Double latitude;

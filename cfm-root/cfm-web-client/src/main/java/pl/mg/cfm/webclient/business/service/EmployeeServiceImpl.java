@@ -4,9 +4,12 @@ import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import pl.mg.cfm.business.exception.InvalidInputDataException;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
+import pl.mg.cfm.dao.exceptions.RegisterUserException;
 import pl.mg.cfm.dao.exceptions.UserNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
+import pl.mg.cfm.webclient.business.validator.Validator;
 import pl.mg.cfm.webclient.data.repository.EmployeeRepository;
 
 @Service
@@ -30,5 +33,16 @@ public class EmployeeServiceImpl implements EmployeeService {
             logger.error(e.getLocalizedMessage(), e);
             throw e;
         }
+    }
+
+    @Override
+    public Integer registerEmployee(String firstName, String lastName, String password)
+            throws InvalidInputDataException, RegisterUserException {
+        logger.debug("registerEmployee service");
+        if (!Validator.validatePassword(password) || !Validator.validateFirstName(firstName)
+                || !Validator.validateLastName(lastName)) {
+            throw new InvalidInputDataException();
+        }
+        return repository.register(firstName, lastName, password);
     }
 }

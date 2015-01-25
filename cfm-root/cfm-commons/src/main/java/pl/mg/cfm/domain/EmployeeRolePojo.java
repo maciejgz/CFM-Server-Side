@@ -4,12 +4,11 @@ import java.io.Serializable;
 
 public class EmployeeRolePojo implements Serializable {
 
-
+    private static final long serialVersionUID = -7701761715221798972L;
     public static final String ROLE_ALL = "ALL";
-    public static final String ROLE_USER = "USER";
-    public static final String ROLE_ADMIN = "ADMIN";
+    public static final String ROLE_USER = "ROLE_USER";
+    public static final String ROLE_ADMIN = "ROLE_ADMIN";
 	
-    private static final long serialVersionUID = 1L;
     private Integer roleId;
     private String roleName;
 

@@ -2,9 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>CFM_Index</title>
+<title>cfm_register</title>
 </head>
 <body>
-	<p>Dzien dobry thymeleaf</p>
+
+	<p align="center" th:text="#{register.welcome}">Podaj swoje dane</p>
+	<form action="#" th:action="@{/register}" method="post"
+		th:object="${employee}">
+		<div>
+			<fieldset>
+				<TABLE>
+					<TR>
+						<TD><th:block th:text="#{register.first_name}">Imie</th:block></TD>
+						<TD><input type="text" id="firstName" name="firstName"
+							th:value="*{firstName}" /></TD>
+					</TR>
+					<TR>
+						<TD><th:block th:text="#{register.last_name}">Imie</th:block></TD>
+						<TD><input type="text" id="lastName" name="lastName"
+							th:value="*{lastName}" /></TD>
+					</TR>
+					<TR>
+						<TD><th:block th:text="#{register.password}">Haslo</th:block></TD>
+						<TD><input type="password" th:field="*{password}" /></TD>
+					</TR>
+					<TR>
+						<TD><input th:name="register" th:value="#{register.register}"
+							type="submit" align="center" /></TD>
+					</TR>
+				</TABLE>
+			</fieldset>
+		</div>
+	</form>
 </body>
 </html>
