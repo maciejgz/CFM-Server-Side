@@ -8,14 +8,30 @@
 	<!-- <h1>STRONA LOGOWANIA</h1> -->
 	<p th:if="${loginError}" th:text="#{login.error}">Wrong user or
 		password</p>
+	<p th:if="${logout}" th:text="#{login.logout}">Zostales wylogowany</p>
+
 	<form th:align="center" th:action="@{/j_spring_security_check}"
 		method="post">
-		<label for="j_username" th:text="#{login.username}">Username</label>:
-		<input type="text" id="j_username" name="j_username" /> <br /> <label
-			for="j_password" th:text="#{login.password}">Password</label>: <input
-			type="password" id="j_password" name="j_password" /> <br /> <input
-			type="submit" th:value="#{login.login}" />
+		<div>
+			<fieldset>
+				<TABLE>
+					<TR>
+						<td><label for="j_username" th:text="#{login.username}">Username</label>:</td>
+						<td><input type="text" id="j_username" name="j_username" /></td>
+					</TR>
+					<TR>
+						<td><label for="j_password" th:text="#{login.password}">Password</label>:</td>
+						<td><input type="password" id="j_password" name="j_password" /></td>
+					</TR>
+					<TR>
+						<TD><input th:name="login" th:value="#{login.login}"
+							type="submit" align="center" /></TD>
+					</TR>
+				</TABLE>
+			</fieldset>
+		</div>
 	</form>
 	<a th:align="center" th:href="@{/register}" th:text="#{login.register}">Zarejestruj</a>
+
 </body>
 </html>

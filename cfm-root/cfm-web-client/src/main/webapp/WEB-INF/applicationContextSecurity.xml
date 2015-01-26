@@ -11,12 +11,14 @@
 
 	<http pattern="/" security="none" />
 	<http pattern="/register*" security="none" />
+	<http pattern="/logout*" security="none" />
+	<http pattern="/login-error" security="none" />
 
 	<http auto-config="true">
 		<intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
-		<form-login login-page="/" authentication-failure-url="/login-error"
+		<form-login login-page="/" authentication-failure-url="/login-error" 
 			default-target-url="/test" />
-		<logout logout-success-url="/" />
+		<logout logout-success-url="/logout" />
 		<remember-me />
 	</http>
 
