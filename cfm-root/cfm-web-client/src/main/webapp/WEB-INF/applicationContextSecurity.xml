@@ -17,7 +17,7 @@
 	<http auto-config="true">
 		<intercept-url pattern="/**" access="ROLE_USER,ROLE_ADMIN" />
 		<form-login login-page="/" authentication-failure-url="/login-error" 
-			default-target-url="/test" />
+			default-target-url="/home" />
 		<logout logout-success-url="/logout" />
 		<remember-me />
 	</http>

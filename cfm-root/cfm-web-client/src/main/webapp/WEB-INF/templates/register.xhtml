@@ -11,6 +11,11 @@
 		th:object="${employee}">
 		<div>
 			<fieldset>
+
+				<div th:switch="${error.errorCode}">
+					<p th:case="'0'"></p>
+					<p th:case="*" th:text="${error.errorMessage}"></p>
+				</div>
 				<TABLE>
 					<TR>
 						<TD><th:block th:text="#{register.first_name}">Imie</th:block></TD>
