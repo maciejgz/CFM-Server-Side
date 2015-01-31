@@ -18,10 +18,11 @@ import pl.mg.cfm.webclient.business.service.EmployeeService;
 import pl.mg.cfm.webclient.web.domain.ErrorMessage;
 
 @Controller
-@RequestMapping(value = "/register*")
+@RequestMapping(value = WebConstants.URI_REGISTER)
 public class RegisterController {
 
     Logger logger = Logger.getLogger(RegisterController.class);
+
     @Inject
     EmployeeService employeeService;
 
@@ -35,7 +36,6 @@ public class RegisterController {
             @ModelAttribute(WebConstants.PARAM_EMPLOYEE) final EmployeePojo employee) {
         logger.debug("register GET");
         ModelAndView mav = new ModelAndView(WebConstants.TEMPLATE_REGISTER);
-
         return mav;
     }
 
@@ -44,11 +44,12 @@ public class RegisterController {
             throws InvalidInputDataException, RegisterUserException {
         ModelAndView mav = new ModelAndView(WebConstants.TEMPLATE_LOGIN);
         logger.debug("register POST");
-        int registeredId = employeeService.registerEmployee(employee.getFirstName(), employee.getLastName(), employee.getPassword());
+        int registeredId = employeeService.registerEmployee(employee.getFirstName(), employee.getLastName(), employee
+                .getPassword());
         employee = new EmployeePojo();
         mav.addObject(WebConstants.PARAM_EMPLOYEE, new EmployeePojo());
         mav.addObject(WebConstants.PARAM_REGISTER_COMPLETE, true);
-        mav.addObject(WebConstants.PARAM_REGISTERED_ID,registeredId);
+        mav.addObject(WebConstants.PARAM_REGISTERED_ID, registeredId);
         return mav;
     }
 

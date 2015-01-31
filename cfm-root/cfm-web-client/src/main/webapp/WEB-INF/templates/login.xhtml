@@ -3,19 +3,22 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Login page</title>
+
+<!-- <link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}" /> -->
 </head>
 <body>
 	<!-- <h1>STRONA LOGOWANIA</h1> -->
-	
-
 	<form th:align="center" th:action="@{/j_spring_security_check}"
 		method="post">
 		<div>
 			<fieldset>
-			<p th:if="${loginError}" th:text="#{login.error}">Wrong user or
-		password</p>
-	<p th:if="${logout}" th:text="#{login.logout}">Zostales wylogowany</p>
-			<span th:if="${register_complete}" th:text="#{login.registration_complete} + ${registered_id}">Static summary</span>
+				<p th:if="${loginError}" th:text="#{login.error}">Wrong user or
+					password</p>
+				<p th:if="${logout}" th:text="#{login.logout}">Zostales
+					wylogowany</p>
+				<span th:if="${register_complete}"
+					th:text="#{login.registration_complete} + ${registered_id}">Static
+					summary</span>
 				<TABLE>
 					<TR>
 						<td><label for="j_username" th:text="#{login.username}">Username</label>:</td>

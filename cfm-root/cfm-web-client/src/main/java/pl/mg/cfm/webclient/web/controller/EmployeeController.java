@@ -16,11 +16,11 @@ import pl.mg.cfm.webclient.business.service.EmployeeService;
 import pl.mg.cfm.webclient.web.domain.ErrorMessage;
 
 @Controller
-@RequestMapping(value = WebConstants.URI_USER)
+@RequestMapping(value = WebConstants.URI_EMPLOYEE)
 @SessionAttributes({ WebConstants.PARAM_EMPLOYEE })
-public class UserDashboardController {
+public class EmployeeController {
 
-    Logger logger = Logger.getLogger(UserDashboardController.class);
+    Logger logger = Logger.getLogger(EmployeeController.class);
 
     @Inject
     private EmployeeService employeeService;

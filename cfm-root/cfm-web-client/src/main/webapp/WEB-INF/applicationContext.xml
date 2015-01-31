@@ -8,6 +8,10 @@
 
 	<context:component-scan base-package="pl.mg.cfm"></context:component-scan>
 
+
+
+
+	<!-- testy spring -->
 	<!-- testowy bean springa ładowany w całości -->
 	<bean id="testBean" class="pl.mg.cfm.webclient.util.springtest.TestBean"
 		autowire-candidate="false">

@@ -1,10 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}" />
+<title>CFM Home</title>
 </head>
 <body>
+	<section>
+		<div id="header" th:fragment="header">
+			<label id="hader_label" th:text="#{home.header} + ${employee.id}">Jestes
+				zalogowany jako: 1</label>
+		</div>
+	</section>
+	<section>
+		<nav>
+			<div id="hmenu">
+				<ul>
+					<li><a th:href="@{/employee}" th:text="#{home.employee_href}">Dane</a></li>
+					<li><a th:href="@{/employees}"
+						th:text="#{home.employees_href}">Pracownicy</a></li>
+					<li><a th:href="@{/cars}" th:text="#{home.cars_href}">Samochody</a></li>
+					<li><a th:href="@{/logout}" th:text="#{home.logout}">Wyloguj</a></li>
+				</ul>
+			</div>
+		</nav>
+	</section>
+
 
 </body>
 </html>

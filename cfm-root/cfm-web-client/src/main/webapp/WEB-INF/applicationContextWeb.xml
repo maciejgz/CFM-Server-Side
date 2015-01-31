@@ -10,13 +10,22 @@
 
 	<context:component-scan
 		base-package="pl.mg.cfm.webclient.web,pl.mg.cfm.webclient.business,pl.mg.cfm.webclient.data" />
+	
+	
+	
+	<mvc:annotation-driven />
+	<mvc:default-servlet-handler/>
 
+
+	<!-- <mvc:resources location="/images/" mapping="/images/**" /> <mvc:resources 
+		location="/css/" mapping="/css/**" /> -->
 
 	<bean id="templateResolver"
 		class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
 		<property name="prefix" value="/WEB-INF/templates/" />
 		<property name="suffix" value=".xhtml" />
 		<property name="templateMode" value="HTML5" />
+		<property name="characterEncoding" value="UTF-8" />
 	</bean>
 
 	<bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
