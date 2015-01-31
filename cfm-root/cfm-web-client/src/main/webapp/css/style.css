@@ -1,12 +1,22 @@
+/* czcionka globalna */
 html * {
 	font-family: Arial !important;
 }
 
+/* header */
 div#header {
 	font-weight: bold;
 	text-align: center;
 }
 
+table, tr, td {
+	border: 1px solid black;
+	text-align: center;
+	border-collapse: collapse;
+	min-width: 100px;
+}
+
+/* menu */
 .offscreen {
 	position: absolute;
 	top: -30em;

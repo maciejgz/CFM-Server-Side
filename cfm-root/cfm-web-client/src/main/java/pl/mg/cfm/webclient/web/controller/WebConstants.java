@@ -17,6 +17,10 @@ public class WebConstants {
     public static final String TEMPLATE_INDEX = "index";
     public static final String TEMPLATE_LOGIN = "login";
     public static final String TEMPLATE_REGISTER = "register";
+    public static final String TEMPLATE_HOME = "home";
+    public static final String TEMPLATE_EMPLOYEE = "employee";
+    public static final String TEMPLATE_EMPLOYEES = "employees";
+    public static final String TEMPLATE_CARS = "cars";
 
     // model and session parameters names
     public static final String PARAM_ERROR = "error";
@@ -24,6 +28,5 @@ public class WebConstants {
     public static final String PARAM_LOGOUT = "logout";
     public static final String PARAM_REGISTER_COMPLETE = "register_complete";
     public static final String PARAM_REGISTERED_ID = "registered_id";
-    public static final String TEMPLATE_HOME = "home";
 
 }

@@ -16,7 +16,6 @@
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 
-
 	<!-- <mvc:resources location="/images/" mapping="/images/**" /> <mvc:resources 
 		location="/css/" mapping="/css/**" /> -->
 

@@ -2,10 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>CFM_Index</title>
+<link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}" />
 </head>
 <body>
-	<p>Dzien dobry thymeleaf</p>
-	<p th:text="${error.errorCode}" />
+	<div th:include="home :: header"></div>
+	<div th:include="home :: menu"></div>
+
+
+	<div align="center" th:text="#{employee.data_label}">Twoje dane</div>
+	<section id="user_data">
+		<TABLE id="employee_data_table" align="center">
+			<TR>
+				<TD><LABEL th:text="#{employee.id_label}">ID</LABEL></TD>
+				<TD><LABEL th:text="${employee.id}">id</LABEL></TD>
+			</TR>
+			<TR>
+				<TD><LABEL th:text="#{employee.first_name_label}">Imie</LABEL>
+				</TD>
+				<TD><LABEL id="first_name_label"
+					th:text="${employee.firstName}">imie1</LABEL></TD>
+				<TD><BUTTON id="first_name_edit_button"
+						th:text="#{employee.change}"
+						onclick="document.getElementById('first_name_label').innerHTML = 'zmiana!';">imie1</BUTTON></TD>
+			</TR>
+			<TR>
+				<TD><LABEL th:text="#{employee.last_name_label}">Nazwisko</LABEL>
+				</TD>
+				<TD><LABEL th:text="${employee.lastName}">imie1</LABEL></TD>
+			</TR>
+		</TABLE>
+
+	</section>
 </body>
 </html>

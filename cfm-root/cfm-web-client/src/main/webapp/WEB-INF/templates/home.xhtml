@@ -8,13 +8,13 @@
 <title>CFM Home</title>
 </head>
 <body>
-	<section>
-		<div id="header" th:fragment="header">
+	<section th:fragment="header">
+		<div id="header" >
 			<label id="hader_label" th:text="#{home.header} + ${employee.id}">Jestes
 				zalogowany jako: 1</label>
 		</div>
 	</section>
-	<section>
+	<section th:fragment="menu">
 		<nav>
 			<div id="hmenu">
 				<ul>
@@ -22,7 +22,7 @@
 					<li><a th:href="@{/employees}"
 						th:text="#{home.employees_href}">Pracownicy</a></li>
 					<li><a th:href="@{/cars}" th:text="#{home.cars_href}">Samochody</a></li>
-					<li><a th:href="@{/logout}" th:text="#{home.logout}">Wyloguj</a></li>
+					<li><a th:href="@{/j_spring_security_logout}" th:text="#{home.logout}">Wyloguj</a></li>
 				</ul>
 			</div>
 		</nav>

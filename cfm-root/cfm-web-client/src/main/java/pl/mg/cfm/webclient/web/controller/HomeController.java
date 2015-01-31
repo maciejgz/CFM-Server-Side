@@ -40,12 +40,6 @@ public class HomeController {
 
         EmployeePojo employeePojo = employeeService.getEmployee(principal.getName());
 
-        /*
-         * String name = principal.getName(); logger.debug(name); Map modelMap =
-         * model.asMap(); for (Object modelKey : modelMap.keySet()) { Object
-         * modelValue = modelMap.get(modelKey); logger.debug(modelKey + " -- " +
-         * modelValue); }
-         */
         ModelAndView mav = new ModelAndView(WebConstants.TEMPLATE_HOME);
         mav.addObject(WebConstants.PARAM_EMPLOYEE, employeePojo);
         return mav;

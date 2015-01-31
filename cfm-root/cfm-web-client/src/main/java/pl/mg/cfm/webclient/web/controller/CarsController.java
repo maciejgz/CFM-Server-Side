@@ -18,11 +18,11 @@ import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.service.EmployeeService;
 
 @Controller
-@RequestMapping(value = WebConstants.URI_EMPLOYEE)
+@RequestMapping(value = WebConstants.URI_CARS)
 @SessionAttributes({ WebConstants.PARAM_EMPLOYEE })
-public class EmployeeController {
+public class CarsController {
 
-    Logger logger = Logger.getLogger(EmployeeController.class);
+    Logger logger = Logger.getLogger(CarsController.class);
 
     @Inject
     private EmployeeService employeeService;
@@ -35,24 +35,20 @@ public class EmployeeController {
     @RequestMapping(method = RequestMethod.GET)
     public String getDashboard(Model model, @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee,
             SessionStatus status, Principal principal) throws NumberFormatException, UserNotFoundException {
-        logger.debug("/employee GET");
+        logger.debug("/cars GET");
 
         if (employee == null || employee.getId() == null) {
-            logger.debug("employee is null");
+            logger.debug("session employee is null");
             employee = employeeService.getEmployee(principal.getName());
             model.addAttribute(WebConstants.PARAM_EMPLOYEE, employee);
         }
-
-        return WebConstants.TEMPLATE_EMPLOYEE;
+        return WebConstants.TEMPLATE_CARS;
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public String userDashboard(final EmployeePojo employee) {
 
-        logger.debug("/employee POST");
-        if (employee != null) {
-            logger.debug(employee.getId());
-        }
-        return WebConstants.TEMPLATE_EMPLOYEE;
+        logger.debug("/employees POST");
+        return WebConstants.TEMPLATE_CARS;
     }
 }
