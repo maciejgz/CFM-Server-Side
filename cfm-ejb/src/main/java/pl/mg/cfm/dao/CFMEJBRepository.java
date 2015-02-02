@@ -17,7 +17,7 @@ import pl.mg.cfm.commons.dao.CFMDao;
 import pl.mg.cfm.dao.exceptions.CarNotFoundException;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.ObjectAlreadyExists;
-import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.CarPojo;
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.model.Car;
@@ -114,7 +114,7 @@ public class CFMEJBRepository implements CFMDao {
     }
 
     @Override
-    public boolean login(String username, String password) throws UnsupportedOperationException, UserNotFoundException,
+    public boolean login(String username, String password) throws UnsupportedOperationException, EmployeeNotFoundException,
             InvalidPasswordException {
 
         boolean result = false;
@@ -131,15 +131,15 @@ public class CFMEJBRepository implements CFMDao {
                 }
             }
         } catch (NumberFormatException e) {
-            throw new UserNotFoundException("User " + username + " not found");
+            throw new EmployeeNotFoundException("User " + username + " not found");
         } catch (EntityNotFoundException e) {
-            throw new UserNotFoundException("User " + username + " not found");
+            throw new EmployeeNotFoundException("User " + username + " not found");
         }
         return result;
     }
 
     @Override
-    public void insertCar(CarPojo car) throws UserNotFoundException, ObjectAlreadyExists {
+    public void insertCar(CarPojo car) throws EmployeeNotFoundException, ObjectAlreadyExists {
 
         if (checkIfCarExists(em, car.getCarId())) {
             throw new ObjectAlreadyExists("Car already exists. Id=" + car.getCarId());
@@ -149,7 +149,7 @@ public class CFMEJBRepository implements CFMDao {
 
         if (car.getOwnerId() != null) {
             if (!checkIfEmployeeExists(em, car.getOwnerId())) {
-                throw new UserNotFoundException("User with id=" + car.getOwnerId() + " not exists!");
+                throw new EmployeeNotFoundException("User with id=" + car.getOwnerId() + " not exists!");
             }
             owner = em.find(Employee.class, car.getOwnerId());
         }
@@ -167,7 +167,7 @@ public class CFMEJBRepository implements CFMDao {
     }
 
     @Override
-    public void updateCar(CarPojo car) throws CarNotFoundException, UserNotFoundException {
+    public void updateCar(CarPojo car) throws CarNotFoundException, EmployeeNotFoundException {
         if (!checkIfCarExists(em, car.getCarId())) {
             throw new CarNotFoundException("Car not exists. Id=" + car.getCarId());
         }
@@ -176,7 +176,7 @@ public class CFMEJBRepository implements CFMDao {
 
         if (car.getOwnerId() != null) {
             if (!checkIfEmployeeExists(em, car.getOwnerId())) {
-                throw new UserNotFoundException("User with id=" + car.getOwnerId() + " not exists!");
+                throw new EmployeeNotFoundException("User with id=" + car.getOwnerId() + " not exists!");
             }
             owner = em.find(Employee.class, car.getOwnerId());
         }
@@ -225,14 +225,14 @@ public class CFMEJBRepository implements CFMDao {
     }
 
     @Override
-    public EmployeePojo getEmployee(Integer id) throws UserNotFoundException {
+    public EmployeePojo getEmployee(Integer id) throws EmployeeNotFoundException {
         String sqlQuery = "select * from employee where idemployee like ?";
         Query query = em.createNativeQuery(sqlQuery, Employee.class);
         query.setParameter(1, id);
 
         Employee employee = (Employee) query.getSingleResult();
         if (employee == null) {
-            throw new UserNotFoundException("User not found");
+            throw new EmployeeNotFoundException("User not found");
         }
         EmployeePojo emPojo = new EmployeePojo();
         emPojo.setId(employee.getIdemployee());
@@ -243,13 +243,13 @@ public class CFMEJBRepository implements CFMDao {
     }
 
     @Override
-    public String getUserRole(String username) throws UserNotFoundException {
+    public String getUserRole(String username) throws EmployeeNotFoundException {
         String sqlQuery = "select roles.name from employee_role roles, employee emps where emps.idemployee = ? and emps.role_id=roles.id";
         Query query = em.createNativeQuery(sqlQuery);
         query.setParameter(1, username);
         String role = (String) query.getSingleResult();
         if (role == null) {
-            throw new UserNotFoundException("User not found");
+            throw new EmployeeNotFoundException("User not found");
         }
         return role;
     }

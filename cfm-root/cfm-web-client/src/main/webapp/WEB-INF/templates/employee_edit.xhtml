@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}" />
+
+</head>
+<body>
+	<div th:include="home :: header"></div>
+	<div th:include="home :: menu"></div>
+
+
+	<div id="title_div" align="center" th:text="#{employee.data_label}">Twoje
+		dane</div>
+	<form action="#" th:action="@{/employee/edit}" method="post"
+		th:object="${employee_to_edit}">
+
+
+		<section id="user_data">
+
+			<div th:switch="${error.errorCode}">
+				<p th:case="'0'"></p>
+				<p th:case="*" th:text="${error.errorMessage}"></p>
+			</div>
+			<TABLE id="employee_data_table" align="center">
+				<TR>
+					<TD><div id="table_header">
+							<LABEL th:text="#{employee.first_name_label}">ID</LABEL>
+						</div></TD>
+					<TD><input type="text" id="firstName" name="firstName"
+						th:value="*{firstName}" /></TD>
+				</TR>
+
+				<TR>
+					<TD><div id="table_header">
+							<LABEL th:text="#{employee.last_name_label}">ID</LABEL>
+						</div></TD>
+					<TD><input type="text" id="lastName" name="lastName"
+						th:value="*{lastName}" /></TD>
+				</TR>
+			</TABLE>
+			<input th:name="update_data" th:value="#{employee.update_data}"
+				type="submit" align="center" th:align="center" />
+		</section>
+	</form>
+</body>
+</html>

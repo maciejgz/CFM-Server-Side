@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.service.EmployeeService;
+import pl.mg.cfm.webclient.web.domain.ErrorMessage;
 
 @Controller
 @RequestMapping(value = WebConstants.URI_EMPLOYEE)
@@ -27,6 +28,11 @@ public class EmployeeController {
     @Inject
     private EmployeeService employeeService;
 
+    @ModelAttribute(WebConstants.PARAM_ERROR)
+    public ErrorMessage populateMockError() {
+        return new ErrorMessage();
+    }
+
     @ModelAttribute(WebConstants.PARAM_EMPLOYEE)
     public EmployeePojo populateMockEmployee() {
         return new EmployeePojo();
@@ -34,25 +40,20 @@ public class EmployeeController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getDashboard(Model model, @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee,
-            SessionStatus status, Principal principal) throws NumberFormatException, UserNotFoundException {
+            SessionStatus status, Principal principal) throws NumberFormatException, EmployeeNotFoundException {
         logger.debug("/employee GET");
-
-        if (employee == null || employee.getId() == null) {
-            logger.debug("employee is null");
-            employee = employeeService.getEmployee(principal.getName());
-            model.addAttribute(WebConstants.PARAM_EMPLOYEE, employee);
-        }
+        addSessionEmployeeIfNull(employee, model, principal);
 
         return WebConstants.TEMPLATE_EMPLOYEE;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public String userDashboard(final EmployeePojo employee) {
-
-        logger.debug("/employee POST");
-        if (employee != null) {
-            logger.debug(employee.getId());
+    private EmployeePojo addSessionEmployeeIfNull(EmployeePojo employeePojo, Model model, Principal principal)
+            throws NumberFormatException, EmployeeNotFoundException {
+        if (employeePojo == null || employeePojo.getId() == null) {
+            logger.debug("employee is null");
+            employeePojo = employeeService.getEmployee(principal.getName());
+            model.addAttribute(WebConstants.PARAM_EMPLOYEE, employeePojo);
         }
-        return WebConstants.TEMPLATE_EMPLOYEE;
+        return employeePojo;
     }
 }

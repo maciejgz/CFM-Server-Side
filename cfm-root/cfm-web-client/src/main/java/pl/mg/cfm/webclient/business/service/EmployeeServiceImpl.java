@@ -6,8 +6,8 @@ import org.springframework.stereotype.Service;
 
 import pl.mg.cfm.business.exception.InvalidInputDataException;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
-import pl.mg.cfm.dao.exceptions.RegisterUserException;
-import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.dao.exceptions.RegisterEmployeeException;
+import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.validator.Validator;
 import pl.mg.cfm.webclient.data.repository.EmployeeRepository;
@@ -21,15 +21,15 @@ public class EmployeeServiceImpl implements EmployeeService {
     private EmployeeRepository repository;
 
     @Override
-    public boolean login(String id, String password) throws UserNotFoundException, InvalidPasswordException {
+    public boolean login(String id, String password) throws EmployeeNotFoundException, InvalidPasswordException {
         return repository.login(id, password);
     }
 
     @Override
-    public EmployeePojo getEmployee(String id) throws NumberFormatException, UserNotFoundException {
+    public EmployeePojo getEmployee(String id) throws NumberFormatException, EmployeeNotFoundException {
         try {
             return repository.getEmployee(Integer.parseInt(id));
-        } catch (NumberFormatException | UserNotFoundException e) {
+        } catch (NumberFormatException | EmployeeNotFoundException e) {
             logger.error(e.getLocalizedMessage(), e);
             throw e;
         }
@@ -37,7 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Integer registerEmployee(String firstName, String lastName, String password)
-            throws InvalidInputDataException, RegisterUserException {
+            throws InvalidInputDataException, RegisterEmployeeException {
         logger.debug("registerEmployee service");
         if (!Validator.validatePassword(password) || !Validator.validateFirstName(firstName)
                 || !Validator.validateLastName(lastName)) {
@@ -45,6 +45,33 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         return repository.register(firstName, lastName, password);
     }
-    
 
+    @Override
+    public void updateEmployee(Integer id, String newFirstName, String newLastName, String newPassword)
+            throws EmployeeNotFoundException, InvalidInputDataException {
+        logger.debug("id=" + id);
+        logger.debug("id=" + newFirstName);
+        logger.debug("id=" + newLastName);
+        logger.debug("id=" + newPassword);
+        if (!Validator.validateId(id.toString()) || !Validator.validateFirstName(newFirstName)
+                || !Validator.validateLastName(newLastName) || !Validator.validatePassword(newPassword)) {
+            throw new InvalidInputDataException();
+        }
+        EmployeePojo oldEmployeePojo = repository.getEmployee(id);
+
+        if (!oldEmployeePojo.getFirstName().equals(newFirstName)) {
+            oldEmployeePojo.setFirstName(newFirstName);
+        }
+
+        if (!oldEmployeePojo.getLastName().equals(newLastName)) {
+            oldEmployeePojo.setLastName(newLastName);
+        }
+
+        if (!oldEmployeePojo.getPassword().equals(newPassword)) {
+            oldEmployeePojo.setPassword(newPassword);
+        }
+
+        repository.updateEmployee(oldEmployeePojo);
+
+    }
 }

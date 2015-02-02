@@ -25,7 +25,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import pl.mg.cfm.commons.dao.CFMDao;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
-import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
 
 @Provider
@@ -127,7 +127,7 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
         // getUserRole
         try {
             userRole = dao.getUserRole(username);
-        } catch (UserNotFoundException e) {
+        } catch (EmployeeNotFoundException e) {
             logger.error(e.getMessage(), e);
             return false;
         }
@@ -146,7 +146,7 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
         try {
             employee = dao.getEmployee(id);
             logger.debug(employee.getId());
-        } catch (UserNotFoundException e) {
+        } catch (EmployeeNotFoundException e) {
             logger.error(e.getMessage(), e);
             return isAllowed;
         }
@@ -173,7 +173,7 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
             } else {
                 return false;
             }
-        } catch (UnsupportedOperationException | UserNotFoundException | InvalidPasswordException e) {
+        } catch (UnsupportedOperationException | EmployeeNotFoundException | InvalidPasswordException e) {
             return false;
         }
     }

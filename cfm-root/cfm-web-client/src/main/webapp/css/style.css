@@ -9,6 +9,10 @@ div#header {
 	text-align: center;
 }
 
+div#table_header{
+	font-weight: bold;
+}
+
 table, tr, td {
 	border: 1px solid black;
 	text-align: center;

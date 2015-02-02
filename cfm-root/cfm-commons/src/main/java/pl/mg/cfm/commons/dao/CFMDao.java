@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import pl.mg.cfm.dao.exceptions.CarNotFoundException;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.ObjectAlreadyExists;
-import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.CarPojo;
 import pl.mg.cfm.domain.EmployeePojo;
 
@@ -65,10 +65,10 @@ public interface CFMDao {
      *            skrot hasla porownywany z baza danych
      * @return
      * @throws UnsupportedOperationException
-     * @throws UserNotFoundException
+     * @throws EmployeeNotFoundException
      * @throws InvalidPasswordException
      */
-    public boolean login(String username, String password) throws UnsupportedOperationException, UserNotFoundException,
+    public boolean login(String username, String password) throws UnsupportedOperationException, EmployeeNotFoundException,
             InvalidPasswordException;
 
     /**
@@ -76,20 +76,20 @@ public interface CFMDao {
      * 
      * @param username
      * @return rola uzytkownika
-     * @throws UserNotFoundException
+     * @throws EmployeeNotFoundException
      */
-    public String getUserRole(String username) throws UserNotFoundException;
+    public String getUserRole(String username) throws EmployeeNotFoundException;
 
-    public void insertCar(CarPojo car) throws UserNotFoundException, ObjectAlreadyExists;
+    public void insertCar(CarPojo car) throws EmployeeNotFoundException, ObjectAlreadyExists;
 
-    public void updateCar(CarPojo car) throws CarNotFoundException, UserNotFoundException;
+    public void updateCar(CarPojo car) throws CarNotFoundException, EmployeeNotFoundException;
 
     public void deleteCar(String carId) throws CarNotFoundException;
     
     
 
     ////////////////////// EMPLOYEE ////////////////////////////////
-    public EmployeePojo getEmployee(Integer id) throws UserNotFoundException;
+    public EmployeePojo getEmployee(Integer id) throws EmployeeNotFoundException;
 
     public List<EmployeePojo> getAllEmployees() throws UnsupportedOperationException;
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
-import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.service.EmployeeService;
 import pl.mg.cfm.webclient.web.domain.ErrorMessage;
@@ -70,7 +70,7 @@ public class OldLoginController {
     @RequestMapping(value = WebConstants.URI_INDEX, method = RequestMethod.POST, params = { "login" })
     public String login(@Valid @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee,
             @ModelAttribute(WebConstants.PARAM_ERROR) ErrorMessage error, BindingResult bindingResult, Model model,
-            SessionStatus session) throws NumberFormatException, UserNotFoundException, InvalidPasswordException {
+            SessionStatus session) throws NumberFormatException, EmployeeNotFoundException, InvalidPasswordException {
         logger.debug("/ POST");
 
         if (employeeService.login(employee.getId().toString(), employee.getPassword())) {
@@ -79,7 +79,7 @@ public class OldLoginController {
             error = new ErrorMessage();
             return "redirect:/user";
         } else {
-            throw new UserNotFoundException();
+            throw new EmployeeNotFoundException();
         }
     }
 
@@ -93,7 +93,7 @@ public class OldLoginController {
         return mav;
     }
 
-    @ExceptionHandler({ UserNotFoundException.class })
+    @ExceptionHandler({ EmployeeNotFoundException.class })
     public ModelAndView catchUserNotFoundException() {
         ModelAndView mav = new ModelAndView();
         ErrorMessage error = new ErrorMessage(2, "nieprawidlowy uzytkownik lub haslo");

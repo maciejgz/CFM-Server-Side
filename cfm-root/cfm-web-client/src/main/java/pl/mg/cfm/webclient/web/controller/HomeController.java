@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.service.EmployeeServiceImpl;
 
@@ -36,7 +36,7 @@ public class HomeController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView homeGet(@ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee,
             HttpServletRequest request, Model model, Principal principal) throws NumberFormatException,
-            UserNotFoundException {
+            EmployeeNotFoundException {
 
         EmployeePojo employeePojo = employeeService.getEmployee(principal.getName());
 

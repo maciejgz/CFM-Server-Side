@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
-import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.service.EmployeeService;
 
@@ -34,7 +34,7 @@ public class EmployeesController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String getDashboard(Model model, @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee,
-            SessionStatus status, Principal principal) throws NumberFormatException, UserNotFoundException {
+            SessionStatus status, Principal principal) throws NumberFormatException, EmployeeNotFoundException {
         logger.debug("/employees GET");
 
         if (employee == null || employee.getId() == null) {

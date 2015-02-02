@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
-import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.data.entity.Employee;
 
@@ -25,7 +25,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     @Transactional(readOnly = true)
-    public boolean login(String id, String password) throws UserNotFoundException, InvalidPasswordException {
+    public boolean login(String id, String password) throws EmployeeNotFoundException, InvalidPasswordException {
         boolean result = false;
 
         try {
@@ -40,29 +40,30 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
                 }
             }
         } catch (NumberFormatException e) {
-            throw new UserNotFoundException("User " + id + " not found");
+            throw new EmployeeNotFoundException("User " + id + " not found");
         } catch (EntityNotFoundException e) {
-            throw new UserNotFoundException("User " + id + " not found");
+            throw new EmployeeNotFoundException("User " + id + " not found");
         }
         return result;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public EmployeePojo getEmployee(Integer id) throws UserNotFoundException {
+    public EmployeePojo getEmployee(Integer id) throws EmployeeNotFoundException {
         String sqlQuery = "select * from employee where idemployee like ?";
         Query query = entityManager.createNativeQuery(sqlQuery, Employee.class);
         query.setParameter(1, id);
 
         Employee employee = (Employee) query.getSingleResult();
         if (employee == null) {
-            throw new UserNotFoundException("User not found");
+            throw new EmployeeNotFoundException("User not found");
         }
         // logger.debug(employee.toString());
         EmployeePojo emPojo = new EmployeePojo();
         emPojo.setId(employee.getIdemployee());
         emPojo.setFirstName(employee.getFirstName());
         emPojo.setLastName(employee.getLastName());
+        emPojo.setPassword(employee.getPassword());
         emPojo.setRoleName(employee.getRole().getName());
         return emPojo;
     }
@@ -80,6 +81,21 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
         logger.debug("registerEmployee repository. result=" + id);
         return id;
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = { EmployeeNotFoundException.class })
+    public void updateEmployee(EmployeePojo employee) {
+        String sqlQuery = "update employee set first_name=?,last_name=?,password=? where idemployee=?";
+
+        Query query = entityManager.createNativeQuery(sqlQuery);
+        query.setParameter(1, employee.getFirstName());
+        query.setParameter(2, employee.getLastName());
+        query.setParameter(3, employee.getPassword());
+        query.setParameter(4, employee.getId());
+        logger.debug("query=" + query.toString());
+        int rows = query.executeUpdate();
+        logger.debug("updateUser; updated rows=" + rows);
     }
 
 }

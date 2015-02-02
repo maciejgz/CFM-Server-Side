@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
-import pl.mg.cfm.dao.exceptions.UserNotFoundException;
+import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.webclient.data.repository.EmployeeRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,7 +35,7 @@ public class LoginTest {
         try {
             System.out.println(repository.login(id, password));
             assertEquals(repository.login(id, password), true);
-        } catch (UserNotFoundException e) {
+        } catch (EmployeeNotFoundException e) {
             e.printStackTrace();
         } catch (InvalidPasswordException e) {
             e.printStackTrace();

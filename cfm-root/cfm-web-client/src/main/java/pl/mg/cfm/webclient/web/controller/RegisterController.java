@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import pl.mg.cfm.business.exception.InvalidInputDataException;
-import pl.mg.cfm.dao.exceptions.RegisterUserException;
+import pl.mg.cfm.dao.exceptions.RegisterEmployeeException;
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.service.EmployeeService;
 import pl.mg.cfm.webclient.web.domain.ErrorMessage;
@@ -39,9 +39,9 @@ public class RegisterController {
         return mav;
     }
 
-    @RequestMapping(method = RequestMethod.POST, params = "register")
+    @RequestMapping(method = RequestMethod.POST, params = WebConstants.POST_PARAM_REGISTER)
     public ModelAndView registerUser(Model model, @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee)
-            throws InvalidInputDataException, RegisterUserException {
+            throws InvalidInputDataException, RegisterEmployeeException {
         ModelAndView mav = new ModelAndView(WebConstants.TEMPLATE_LOGIN);
         logger.debug("register POST");
         int registeredId = employeeService.registerEmployee(employee.getFirstName(), employee.getLastName(), employee

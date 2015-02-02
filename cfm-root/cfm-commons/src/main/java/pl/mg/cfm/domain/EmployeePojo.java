@@ -11,14 +11,28 @@ public class EmployeePojo implements Serializable {
 
     @NotNull
     private Integer id;
-    
+
     private String firstName;
     private String lastName;
     private String roleName;
-    
+
     @NotNull
-    @Size(min=4)
+    @Size(min = 4)
     private String password;
+
+    public EmployeePojo() {
+        this.id = null;
+        this.firstName = null;
+        this.lastName = null;
+        this.password = null;
+    }
+
+    public EmployeePojo(EmployeePojo oldEmployeePojo) {
+        id = oldEmployeePojo.id;
+        firstName = oldEmployeePojo.firstName;
+        lastName = oldEmployeePojo.lastName;
+        password = oldEmployeePojo.password;
+    }
 
     public Integer getId() {
         return id;
@@ -65,5 +79,5 @@ public class EmployeePojo implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
 }
