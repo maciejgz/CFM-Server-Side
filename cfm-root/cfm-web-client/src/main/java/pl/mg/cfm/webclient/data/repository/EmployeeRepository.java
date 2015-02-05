@@ -1,5 +1,7 @@
 package pl.mg.cfm.webclient.data.repository;
 
+import java.util.List;
+
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.RegisterEmployeeException;
 import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
@@ -15,4 +17,7 @@ public interface EmployeeRepository {
     public Integer register(String firstName, String lastName,String password) throws RegisterEmployeeException;
     
     public void updateEmployee(EmployeePojo employee);
+    
+    
+    
 }
