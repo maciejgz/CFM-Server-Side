@@ -26,7 +26,7 @@ import pl.mg.cfm.model.Employee;
 /**
  * Klasa EJB DAO (bardziej właściwa nazwa to repository, bo nie ma tylko
  * podstawowych informacji) oparta na persistanceManager z JPA (implementacja
- * JBossowa na hibernate.
+ * JBossowa na hibernate, ale zgodna ze specyfikacją).
  * 
  * @author Maciej Gzik
  *

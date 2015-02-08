@@ -3,6 +3,7 @@ package pl.mg.cfm.webclient.web.controller;
 import java.security.Principal;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pl.mg.cfm.business.exception.InvalidInputDataException;
 import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
@@ -50,7 +52,6 @@ public class EmployeeEditController {
             @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee) throws NumberFormatException,
             EmployeeNotFoundException {
         logger.debug("employee/edit/ GET");
-        employee = addSessionEmployeeIfNull(employee, model, principal);
         EmployeePojo employeeToEditEmployeePojo = new EmployeePojo(employee);
         model.addAttribute(WebConstants.PARAM_EMPLOYEE_TO_EDIT, employeeToEditEmployeePojo);
 
@@ -60,36 +61,29 @@ public class EmployeeEditController {
     @RequestMapping(method = RequestMethod.POST, value = WebConstants.URI_EDIT, params = { WebConstants.POST_PARAM_UPDATE_DATA })
     public String editEmployeeDataPost(Model model, Principal principal,
             @ModelAttribute(WebConstants.PARAM_EMPLOYEE_TO_EDIT) EmployeePojo employeeToEdit,
-            @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee) throws NumberFormatException,
+            HttpServletRequest request, final RedirectAttributes redirectAttributes) throws NumberFormatException,
             EmployeeNotFoundException, InvalidInputDataException {
         logger.debug("employee/edit/ POST");
-        addSessionEmployeeIfNull(employee, model, principal);
-        
-        employeeService.updateEmployee(employee.getId(), employeeToEdit.getFirstName(), employeeToEdit
-                .getLastName(), employee.getPassword());
+        EmployeePojo sessionEmployee = (EmployeePojo) request.getSession().getAttribute(WebConstants.PARAM_EMPLOYEE);
 
+        employeeService.updateEmployee(sessionEmployee.getId(), employeeToEdit.getFirstName(), employeeToEdit
+                .getLastName(), sessionEmployee.getPassword());
         
-        model.addAttribute(WebConstants.PARAM_UPDATE_SUCCESS, true);
-        model.addAttribute(WebConstants.PARAM_EMPLOYEE, employeeService.getEmployee(employee.getId().toString()));
-        return WebConstants.TEMPLATE_EMPLOYEE;
+        redirectAttributes.addFlashAttribute(WebConstants.PARAM_UPDATE_SUCCESS, true);
+//        model.addAttribute(WebConstants.PARAM_UPDATE_SUCCESS, true);
+        model.addAttribute(WebConstants.PARAM_EMPLOYEE, employeeService.getEmployee(sessionEmployee.getId().toString()));
+        return WebConstants.URI_REDIRECT + WebConstants.URI_EMPLOYEE;
     }
 
-    private EmployeePojo addSessionEmployeeIfNull(EmployeePojo employeePojo, Model model, Principal principal)
-            throws NumberFormatException, EmployeeNotFoundException {
-        if (employeePojo == null || employeePojo.getId() == null) {
-            logger.debug("employee is null");
-            employeePojo = employeeService.getEmployee(principal.getName());
-            model.addAttribute(WebConstants.PARAM_EMPLOYEE, employeePojo);
-        }
-        return employeePojo;
-    }
-    
-    @ExceptionHandler(value= {InvalidInputDataException.class, NumberFormatException.class})
-    public ModelAndView invalidInput() {
+    @ExceptionHandler(value = { InvalidInputDataException.class, NumberFormatException.class })
+    public ModelAndView invalidInput(Exception e, HttpServletRequest request) {
+        logger.debug("employee/edit/ ExceptionHandler: " + e.getClass().toString());
         ModelAndView mav = new ModelAndView();
         ErrorMessage error = new ErrorMessage(1, "nieprawidlowy format danych");
         mav.addObject(WebConstants.PARAM_ERROR, error);
-        mav.addObject(WebConstants.PARAM_EMPLOYEE_TO_EDIT, new EmployeePojo());
+        mav.addObject(WebConstants.PARAM_EMPLOYEE_TO_EDIT, request.getSession().getAttribute(
+                WebConstants.PARAM_EMPLOYEE));
+        mav.addObject(WebConstants.PARAM_EMPLOYEE, request.getSession().getAttribute(WebConstants.PARAM_EMPLOYEE));
         mav.setViewName(WebConstants.TEMPLATE_EMPLOYEE_EDIT);
         return mav;
     }

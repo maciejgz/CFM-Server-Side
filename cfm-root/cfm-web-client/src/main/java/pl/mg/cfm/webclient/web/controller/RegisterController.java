@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pl.mg.cfm.business.exception.InvalidInputDataException;
 import pl.mg.cfm.dao.exceptions.RegisterEmployeeException;
@@ -40,15 +41,15 @@ public class RegisterController {
     }
 
     @RequestMapping(method = RequestMethod.POST, params = WebConstants.POST_PARAM_REGISTER)
-    public ModelAndView registerUser(Model model, @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee)
-            throws InvalidInputDataException, RegisterEmployeeException {
-        ModelAndView mav = new ModelAndView(WebConstants.TEMPLATE_LOGIN);
+    public ModelAndView registerUser(Model model, @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee,
+            final RedirectAttributes redirectAttributes) throws InvalidInputDataException, RegisterEmployeeException {
+        ModelAndView mav = new ModelAndView(WebConstants.URI_REDIRECT + WebConstants.URI_INDEX);
         logger.debug("register POST");
         int registeredId = employeeService.registerEmployee(employee.getFirstName(), employee.getLastName(), employee
                 .getPassword());
         employee = new EmployeePojo();
         mav.addObject(WebConstants.PARAM_EMPLOYEE, new EmployeePojo());
-        mav.addObject(WebConstants.PARAM_REGISTER_COMPLETE, true);
+        redirectAttributes.addAttribute(WebConstants.PARAM_REGISTER_COMPLETE, true);
         mav.addObject(WebConstants.PARAM_REGISTERED_ID, registeredId);
         return mav;
     }

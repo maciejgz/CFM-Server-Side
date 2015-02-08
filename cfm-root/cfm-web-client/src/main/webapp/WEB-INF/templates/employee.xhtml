@@ -33,15 +33,6 @@
 					</div></TD>
 				<TD><LABEL id="first_name_label"
 					th:text="${employee.firstName}">imie1</LABEL></TD>
-				<!-- 	<TD><BUTTON id="first_name_edit_button"
-						th:text="#{employee.change}"
-						onclick="document.getElementById('first_name_label').style.display = 'none'; document.getElementById('first_name_save_button').style.display = 'block'; document.getElementById('first_name_edit_button').style.display = 'none';">imie1</BUTTON>
-
-					<BUTTON id="first_name_save_button" th:text="#{employee.change}"
-						hidden="true"
-						onclick="document.getElementById('first_name_label').style.display = 'block'; document.getElementById('first_name_edit_button').style.display = 'block'; document.getElementById('first_name_save_button').style.display = 'none';">imie1</BUTTON>
-				</TD> -->
-
 			</TR>
 			<TR>
 				<TD><div id="table_header">
@@ -61,8 +52,8 @@
 
 
 	<section id="users_cars">
-		<div id="title_div" align="center" th:text="#{employee.employees_cars_label}">Twoje
-		pojazdy</div>
+		<div id="title_div" align="center"
+			th:text="#{employee.employees_cars_label}">Twoje pojazdy</div>
 		<TABLE id="employee_cars_table" align="center">
 			<TR>
 				<TD><div id="table_header">

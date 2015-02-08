@@ -8,12 +8,11 @@
 		<artifactId>cfm-root</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<groupId>pl.mg</groupId>
 	<artifactId>cfm-rsws</artifactId>
-	<version>0.0.1</version>
 	<packaging>war</packaging>
-	<name>cfm-rsws Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<description>
+		WebService SOAP zbudowany na springu.
+	</description>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>

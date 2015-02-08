@@ -47,13 +47,16 @@ public class EmployeeController {
         return WebConstants.TEMPLATE_EMPLOYEE;
     }
 
-    private EmployeePojo addSessionEmployeeIfNull(EmployeePojo employeePojo, Model model, Principal principal)
+    private void addSessionEmployeeIfNull(EmployeePojo employeePojo, Model model, Principal principal)
             throws NumberFormatException, EmployeeNotFoundException {
         if (employeePojo == null || employeePojo.getId() == null) {
             logger.debug("employee is null");
-            employeePojo = employeeService.getEmployee(principal.getName());
-            model.addAttribute(WebConstants.PARAM_EMPLOYEE, employeePojo);
+            EmployeePojo newEmployeePojo = employeeService.getEmployee(principal.getName());
+            newEmployeePojo.setId(newEmployeePojo.getId());
+            newEmployeePojo.setFirstName(newEmployeePojo.getFirstName());
+            newEmployeePojo.setLastName(newEmployeePojo.getLastName());
+            newEmployeePojo.setPassword(newEmployeePojo.getPassword());
+            model.addAttribute(WebConstants.PARAM_EMPLOYEE, newEmployeePojo);
         }
-        return employeePojo;
     }
 }

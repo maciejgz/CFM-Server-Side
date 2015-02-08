@@ -13,6 +13,7 @@ public class WebConstants {
     public static final String URI_LOGIN_ERROR = "/login-error";
     public static final String URI_REGISTER = "/register";
     public static final String URI_EDIT = "/edit";
+    public static final String URI_REDIRECT = "redirect:";
 
     // thymeleaf templates
     public static final String TEMPLATE_INDEX = "index";
@@ -23,6 +24,7 @@ public class WebConstants {
     public static final String TEMPLATE_EMPLOYEES = "employees";
     public static final String TEMPLATE_CARS = "cars";
     public static final String TEMPLATE_EMPLOYEE_EDIT = "employee_edit";
+    
 
     // model and session parameters names
     public static final String PARAM_ERROR = "error";

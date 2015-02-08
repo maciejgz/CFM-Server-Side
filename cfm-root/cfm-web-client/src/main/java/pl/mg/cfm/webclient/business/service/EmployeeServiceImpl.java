@@ -49,12 +49,10 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateEmployee(Integer id, String newFirstName, String newLastName, String newPassword)
             throws EmployeeNotFoundException, InvalidInputDataException {
-        logger.debug("id=" + id);
-        logger.debug("id=" + newFirstName);
-        logger.debug("id=" + newLastName);
-        logger.debug("id=" + newPassword);
         if (!Validator.validateId(id.toString()) || !Validator.validateFirstName(newFirstName)
                 || !Validator.validateLastName(newLastName) || !Validator.validatePassword(newPassword)) {
+            logger.error("ErrorDuring validation input data during employee update. id=" + id + ",firstName="
+                    + newFirstName + ",lastName=" + newLastName + ",password=" + newPassword);
             throw new InvalidInputDataException();
         }
         EmployeePojo oldEmployeePojo = repository.getEmployee(id);
