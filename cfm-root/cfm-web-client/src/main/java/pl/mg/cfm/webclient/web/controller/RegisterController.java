@@ -47,8 +47,6 @@ public class RegisterController {
         logger.debug("register POST");
         int registeredId = employeeService.registerEmployee(employee.getFirstName(), employee.getLastName(), employee
                 .getPassword());
-        employee = new EmployeePojo();
-        mav.addObject(WebConstants.PARAM_EMPLOYEE, new EmployeePojo());
         redirectAttributes.addAttribute(WebConstants.PARAM_REGISTER_COMPLETE, true);
         mav.addObject(WebConstants.PARAM_REGISTERED_ID, registeredId);
         return mav;

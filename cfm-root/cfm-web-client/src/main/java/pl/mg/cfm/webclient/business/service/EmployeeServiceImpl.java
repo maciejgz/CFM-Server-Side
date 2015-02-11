@@ -2,6 +2,7 @@ package pl.mg.cfm.webclient.business.service;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import pl.mg.cfm.business.exception.InvalidInputDataException;
@@ -13,6 +14,7 @@ import pl.mg.cfm.webclient.business.validator.Validator;
 import pl.mg.cfm.webclient.data.repository.EmployeeRepository;
 
 @Service
+@Scope()
 public class EmployeeServiceImpl implements EmployeeService {
 
     private Logger logger = Logger.getLogger(EmployeeServiceImpl.class);
@@ -43,7 +45,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 || !Validator.validateLastName(lastName)) {
             throw new InvalidInputDataException();
         }
-        return repository.register(firstName, lastName, password);
+        return repository.registerEmployee(firstName, lastName, password);
     }
 
     @Override
@@ -68,8 +70,21 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (!oldEmployeePojo.getPassword().equals(newPassword)) {
             oldEmployeePojo.setPassword(newPassword);
         }
+        //        logger.debug("updating employee-" + oldEmployeePojo.toString());
 
         repository.updateEmployee(oldEmployeePojo);
 
+    }
+
+    @Override
+    public void updatePassword(EmployeePojo employeePojo, String newPassword, String newPasswordConfirm)
+            throws InvalidInputDataException, EmployeeNotFoundException {
+
+        if (employeePojo == null || !newPassword.equals(newPasswordConfirm) || !Validator.validatePassword(newPassword)
+                || Validator.validatePassword(newPasswordConfirm)) {
+            throw new InvalidInputDataException();
+        }
+        employeePojo.setPassword(newPassword);
+        this.repository.updateEmployee(employeePojo);
     }
 }

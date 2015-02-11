@@ -14,6 +14,7 @@ public class WebConstants {
     public static final String URI_REGISTER = "/register";
     public static final String URI_EDIT = "/edit";
     public static final String URI_REDIRECT = "redirect:";
+    public static final String URI_EDIT_PASSWORD = "/change_password";
 
     // thymeleaf templates
     public static final String TEMPLATE_INDEX = "index";
@@ -24,7 +25,7 @@ public class WebConstants {
     public static final String TEMPLATE_EMPLOYEES = "employees";
     public static final String TEMPLATE_CARS = "cars";
     public static final String TEMPLATE_EMPLOYEE_EDIT = "employee_edit";
-    
+    public static final String TEMPLATE_CHANGE_PASSWORD = "change_password";
 
     // model and session parameters names
     public static final String PARAM_ERROR = "error";
@@ -34,6 +35,7 @@ public class WebConstants {
     public static final String PARAM_REGISTERED_ID = "registered_id";
     public static final String PARAM_EMPLOYEE_TO_EDIT = "employee_to_edit";
     public static final String PARAM_UPDATE_SUCCESS = "update_success";
+    public static final String PARAM_CHANGE_PASSWORD = "change_password_bean";
 
     // POST PARAMS
     public static final String POST_PARAM_REGISTER = "register";

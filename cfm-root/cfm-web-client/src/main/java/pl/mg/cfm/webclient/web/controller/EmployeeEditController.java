@@ -68,9 +68,10 @@ public class EmployeeEditController {
 
         employeeService.updateEmployee(sessionEmployee.getId(), employeeToEdit.getFirstName(), employeeToEdit
                 .getLastName(), sessionEmployee.getPassword());
-        
+
         redirectAttributes.addFlashAttribute(WebConstants.PARAM_UPDATE_SUCCESS, true);
-//        model.addAttribute(WebConstants.PARAM_UPDATE_SUCCESS, true);
+        //        logger.debug("newEmployeeinController=" + employeeService.getEmployee(sessionEmployee.getId().toString()));
+        request.getSession().removeAttribute(WebConstants.PARAM_EMPLOYEE);
         model.addAttribute(WebConstants.PARAM_EMPLOYEE, employeeService.getEmployee(sessionEmployee.getId().toString()));
         return WebConstants.URI_REDIRECT + WebConstants.URI_EMPLOYEE;
     }
@@ -79,6 +80,7 @@ public class EmployeeEditController {
     public ModelAndView invalidInput(Exception e, HttpServletRequest request) {
         logger.debug("employee/edit/ ExceptionHandler: " + e.getClass().toString());
         ModelAndView mav = new ModelAndView();
+
         ErrorMessage error = new ErrorMessage(1, "nieprawidlowy format danych");
         mav.addObject(WebConstants.PARAM_ERROR, error);
         mav.addObject(WebConstants.PARAM_EMPLOYEE_TO_EDIT, request.getSession().getAttribute(

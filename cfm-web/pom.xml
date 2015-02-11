@@ -14,6 +14,13 @@
 		<resteasy.version.client>3.0.9.Final</resteasy.version.client>
 	</properties>
 
+	<description>
+		WEB Service REST - załozeniem jest zbudownie serwisu w pełni zgodnego z wymogami i specyfikacją REST.
+		WEB Service zbudowany na implementacji RESTEasy w JBossie
+		Zapis/odczyt danych poprzez obiekty JSON
+		Komunikacja po https 
+	</description>
+
 	<artifactId>cfm-web</artifactId>
 	<packaging>war</packaging>
 	<name>cfm-web</name>
@@ -55,7 +62,7 @@
 			<version>${resteasy.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>

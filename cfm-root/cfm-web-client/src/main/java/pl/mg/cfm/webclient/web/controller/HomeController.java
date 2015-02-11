@@ -37,7 +37,7 @@ public class HomeController {
     public ModelAndView homeGet(@ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee,
             HttpServletRequest request, Model model, Principal principal) throws NumberFormatException,
             EmployeeNotFoundException {
-
+        logger.debug("/home GET");
         EmployeePojo employeePojo = employeeService.getEmployee(principal.getName());
 
         ModelAndView mav = new ModelAndView(WebConstants.TEMPLATE_HOME);

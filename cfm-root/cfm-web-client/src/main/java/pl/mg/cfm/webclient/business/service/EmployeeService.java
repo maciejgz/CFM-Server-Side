@@ -20,8 +20,13 @@ public interface EmployeeService {
 
     public EmployeePojo getEmployee(String id) throws NumberFormatException, EmployeeNotFoundException;
 
-    public void updateEmployee(Integer id, String newFirstName, String newLastName, String newPassword) throws EmployeeNotFoundException,InvalidInputDataException;
-    
+    public void updateEmployee(Integer id, String newFirstName, String newLastName, String newPassword)
+            throws EmployeeNotFoundException, InvalidInputDataException;
+
     public Integer registerEmployee(String firstName, String lastName, String password)
             throws InvalidInputDataException, RegisterEmployeeException;
+
+    public void updatePassword(EmployeePojo employeePojo, String newPassword, String newPasswordConfirm)
+            throws InvalidInputDataException, EmployeeNotFoundException;
+
 }

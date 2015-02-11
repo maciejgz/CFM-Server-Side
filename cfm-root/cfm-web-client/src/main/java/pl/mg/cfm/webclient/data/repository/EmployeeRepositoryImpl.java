@@ -70,7 +70,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
-    public Integer register(String firstName, String lastName, String password) {
+    public Integer registerEmployee(String firstName, String lastName, String password) {
         String sqlQuery = "select cfm.register_user(?,?,?)";
         Query query = entityManager.createNativeQuery(sqlQuery);
         query.setParameter(1, firstName);
@@ -85,7 +85,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = { EmployeeNotFoundException.class })
-    public void updateEmployee(EmployeePojo employee) {
+    public void updateEmployee(EmployeePojo employee) throws EmployeeNotFoundException {
         String sqlQuery = "update employee set first_name=?,last_name=?,password=? where idemployee=?";
 
         Query query = entityManager.createNativeQuery(sqlQuery);
