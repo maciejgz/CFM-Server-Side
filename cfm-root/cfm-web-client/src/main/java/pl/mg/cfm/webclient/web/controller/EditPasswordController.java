@@ -73,6 +73,7 @@ public class EditPasswordController {
 
     @ExceptionHandler(value = { InvalidInputDataException.class, EmployeeNotFoundException.class })
     public ModelAndView invalidInput(Exception e, HttpServletRequest request) {
+        
         // TODO: separate error messages by error type
         logger.debug("errorType=" + e.getClass().toString());
         logger.debug("employee/edit/ ExceptionHandler: " + e.getClass().toString());

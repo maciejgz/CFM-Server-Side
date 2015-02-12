@@ -79,9 +79,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updatePassword(EmployeePojo employeePojo, String newPassword, String newPasswordConfirm)
             throws InvalidInputDataException, EmployeeNotFoundException {
-
+        logger.debug("editPass - employeePojo=" + employeePojo);
+        logger.debug("editPass - newPassword=" + newPassword);
+        logger.debug("editPass - newPasswordConfirm=" + newPasswordConfirm);
         if (employeePojo == null || !newPassword.equals(newPasswordConfirm) || !Validator.validatePassword(newPassword)
-                || Validator.validatePassword(newPasswordConfirm)) {
+                || !Validator.validatePassword(newPasswordConfirm)) {
             throw new InvalidInputDataException();
         }
         employeePojo.setPassword(newPassword);
