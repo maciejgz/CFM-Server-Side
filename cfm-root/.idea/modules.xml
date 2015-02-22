@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/cfm-commons/cfm-commons.iml" filepath="$PROJECT_DIR$/cfm-commons/cfm-commons.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cfm-ear/cfm-ear.iml" filepath="$PROJECT_DIR$/cfm-ear/cfm-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cfm-ejb/cfm-ejb.iml" filepath="$PROJECT_DIR$/cfm-ejb/cfm-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cfm-root.iml" filepath="$PROJECT_DIR$/cfm-root.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cfm-rsws/cfm-rsws.iml" filepath="$PROJECT_DIR$/cfm-rsws/cfm-rsws.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cfm-web/cfm-web.iml" filepath="$PROJECT_DIR$/cfm-web/cfm-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cfm-web-client/cfm-web-client.iml" filepath="$PROJECT_DIR$/cfm-web-client/cfm-web-client.iml" />
+    </modules>
+  </component>
+</project>

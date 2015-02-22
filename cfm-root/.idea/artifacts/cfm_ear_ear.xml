@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ear" name="cfm-ear:ear">
+    <output-path>$PROJECT_DIR$/cfm-ear/target</output-path>
+    <root id="archive" name="CFM.ear">
+      <element id="artifact" artifact-name="cfm-ear:ear exploded" />
+    </root>
+  </artifact>
+</component>

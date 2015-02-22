@@ -7,12 +7,12 @@
 	<packaging>pom</packaging>
 	<name>cfm-root</name>
 	<modules>
-		<module>../cfm-web</module>
-		<module>../cfm-ejb</module>
-		<module>../cfm-ear</module>
+		<module>cfm-web</module>
+		<module>cfm-ejb</module>
+		<module>cfm-ear</module>
 		<module>cfm-commons</module>
 		<module>cfm-web-client</module>
-    <module>cfm-rsws</module>
+        <module>cfm-rsws</module>
   </modules>
 
 

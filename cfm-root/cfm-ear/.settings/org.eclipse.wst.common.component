@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="CFM">
+        <wb-resource deploy-path="/" source-path="/target/m2e-wtp/ear-resources"/>
+        <wb-resource deploy-path="/" source-path="/src/main/application" tag="defaultRootSource"/>
+        <dependent-module archiveName="cfm-commons-0.0.1.jar" deploy-path="/" handle="module:/resource/cfm-commons/cfm-commons">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cfm-ejb-0.0.1.jar" deploy-path="/" handle="module:/resource/cfm-ejb/cfm-ejb">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cfm-web-0.0.1.war" deploy-path="/" handle="module:/resource/cfm-web/cfm-web">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cfm-web-client-0.0.1.war" deploy-path="/" handle="module:/resource/cfm-web-client/cfm-web-client">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="cfm-rsws-0.0.1.war" deploy-path="/" handle="module:/resource/cfm-rsws/cfm-rsws">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

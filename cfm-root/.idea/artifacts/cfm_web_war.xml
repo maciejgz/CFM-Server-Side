@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="cfm-web:war">
+    <output-path>$PROJECT_DIR$/cfm-web/target</output-path>
+    <root id="archive" name="cfm-web.war">
+      <element id="artifact" artifact-name="cfm-web:war exploded" />
+    </root>
+  </artifact>
+</component>
