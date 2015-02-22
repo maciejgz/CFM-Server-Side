@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="ejb-jar" name="cfm-ejb:ejb">
+    <output-path>$PROJECT_DIR$/../cfm-ejb/target</output-path>
+    <root id="archive" name="cfm-ejb-0.0.1.jar">
+      <element id="artifact" artifact-name="cfm-ejb:ejb exploded" />
+    </root>
+  </artifact>
+</component>
