@@ -5,13 +5,14 @@ import java.io.Serializable;
 public class EmployeeRolePojo implements Serializable {
 
     private static final long serialVersionUID = -7701761715221798972L;
-    public static final String ROLE_USER = "ROLE_USER";
-    public static final String ROLE_ADMIN = "ROLE_ADMIN";
-	
-    private Integer roleId;
-    private String roleName;
+    //    public static final String ROLE_USER = "ROLE_USER";
+    //    public static final String ROLE_ADMIN = "ROLE_ADMIN";
 
-    public EmployeeRolePojo(Integer roleId, String roleName) {
+    private Integer roleId;
+
+    private Role roleName;
+
+    public EmployeeRolePojo(Integer roleId, Role roleName) {
         this.roleId = roleId;
         this.roleName = roleName;
     }
@@ -29,11 +30,11 @@ public class EmployeeRolePojo implements Serializable {
         this.roleId = roleId;
     }
 
-    public String getRoleName() {
+    public Role getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(String roleName) {
+    public void setRoleName(Role roleName) {
         this.roleName = roleName;
     }
 

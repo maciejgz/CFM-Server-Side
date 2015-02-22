@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:beans="http://www.springframework.org/schema/beans" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	default-autowire="default"
 	xsi:schemaLocation="
@@ -18,9 +17,9 @@
 			<map>
 				<entry key="getAllCars" value="ALL" />
 				<entry key="getCar" value="ALL" />
-				<entry key="updateCar" value="ADMIN" />
-				<entry key="createCar" value="ADMIN" />
-				<entry key="deleteCar" value="ADMIN" />
+				<entry key="updateCar" value="ROLE_ADMIN" />
+				<entry key="createCar" value="ROLE_ADMIN" />
+				<entry key="deleteCar" value="ROLE_ADMIN" />
 
 				<entry key="getAllEmployees" value="ALL" />
 				<entry key="getEmployee" value="ALL" />

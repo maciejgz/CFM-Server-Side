@@ -24,8 +24,8 @@ public class GetEmployeeSecureTest {
         DefaultHttpClient client = null;
         try {
             client = (DefaultHttpClient) AllTrustingClientFactory.createAllTrustingHttpClient();
-            UsernamePasswordCredentials creds = new UsernamePasswordCredentials("9996", "testPass");
-            HttpGet get = new HttpGet("https://192.168.1.104:8444/cfm-web/employee/9996");
+            UsernamePasswordCredentials creds = new UsernamePasswordCredentials("1", "pass");
+            HttpGet get = new HttpGet("https://192.168.1.104:8444/cfm-web/employee/1");
             get.setHeader(BasicScheme.authenticate(creds, "UTF-8", false));
             try {
                 org.apache.http.HttpResponse httpResponse = client.execute(get);

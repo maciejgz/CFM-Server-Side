@@ -115,8 +115,8 @@ public class CFMEJBRepository implements CFMDao {
     }
 
     @Override
-    public boolean login(String username, String password) throws UnsupportedOperationException, EmployeeNotFoundException,
-            InvalidPasswordException {
+    public boolean login(String username, String password) throws UnsupportedOperationException,
+            EmployeeNotFoundException, InvalidPasswordException {
 
         boolean result = false;
 
@@ -130,10 +130,13 @@ public class CFMEJBRepository implements CFMDao {
                 } else {
                     throw new InvalidPasswordException();
                 }
+            } else {
+                throw new EmployeeNotFoundException("User " + username + " not found");
             }
         } catch (NumberFormatException e) {
             throw new EmployeeNotFoundException("User " + username + " not found");
         } catch (EntityNotFoundException e) {
+            logger.error(e.getMessage(), e);
             throw new EmployeeNotFoundException("User " + username + " not found");
         }
         return result;

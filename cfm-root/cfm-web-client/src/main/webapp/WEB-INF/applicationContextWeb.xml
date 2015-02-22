@@ -10,11 +10,11 @@
 
 	<context:component-scan
 		base-package="pl.mg.cfm.webclient.web,pl.mg.cfm.webclient.business,pl.mg.cfm.webclient.data" />
-	
-	
-	
+
+
+
 	<mvc:annotation-driven />
-	<mvc:default-servlet-handler/>
+	<mvc:default-servlet-handler />
 
 	<!-- <mvc:resources location="/images/" mapping="/images/**" /> <mvc:resources 
 		location="/css/" mapping="/css/**" /> -->
