@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - cfm@localhost" uuid="6be19736-976c-4f50-820e-fce58d4cd74c">
+    <database-info product="MySQL" version="5.6.12-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.34 ( Revision: jess.balint@oracle.com-20141014163213-wqbwpf1ok2kvo1om )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="cfm"/>
+    <table name="car" schema="" catalog="cfm" type="TABLE">
+      <column name="car_id" sqlType="VARCHAR" precision="7" scale="0" nullable="false" jdbcType="12"/>
+      <column name="distance" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="latitude" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="longitude" sqlType="DOUBLE" precision="22" scale="0" nullable="true" jdbcType="8"/>
+      <column name="car_owner_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="car_id"/>
+      <foreign-key name="fk_car_owner_id" columns="car_owner_id" ref-table="employee" ref-schema="" ref-catalog="cfm" ref-columns="idemployee" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="carid_UNIQUE" unique="true" columns="car_id"/>
+      <index name="fk_car_owner_id_idx" unique="false" columns="car_owner_id"/>
+    </table>
+    <table name="employee" schema="" catalog="cfm" type="TABLE">
+      <column name="idemployee" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="first_name" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="50" scale="0" nullable="true" jdbcType="12"/>
+      <column name="role_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="password" sqlType="CHAR" precision="128" scale="0" nullable="false" jdbcType="1"/>
+      <primary-key name="PRIMARY" columns="idemployee"/>
+      <foreign-key name="fk_role_id" columns="role_id" ref-table="employee_role" ref-schema="" ref-catalog="cfm" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <exported-key name="fk_car_owner_id" table="car" schema="" catalog="cfm" columns="car_owner_id"/>
+      <index name="fk_role_id_idx" unique="false" columns="role_id"/>
+    </table>
+    <table name="employee_role" schema="" catalog="cfm" type="TABLE">
+      <column name="id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="45" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="fk_role_id" table="employee" schema="" catalog="cfm" columns="role_id"/>
+    </table>
+    <procedure name="register_user" schema="" catalog="cfm" type="2">
+      <prototype>
+        <parameter name="first_name" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1" type="1" index="1"/>
+        <parameter name="last_name" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1" type="1" index="2"/>
+        <parameter name="password" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1" type="1" index="3"/>
+        <parameter name="" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" type="5" index="0"/>
+      </prototype>
+    </procedure>
+  </data-source>
+</component>
