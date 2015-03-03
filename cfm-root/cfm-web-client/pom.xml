@@ -14,6 +14,11 @@
     <name>cfm-web-client</name>
 
 
+    <description>
+        Webowy klient do zarządzania w cfm stworzony na springu z integracją thymeleafa.
+        Zawiera własne DAO zbudoawne na JPA w SpringData ze wsparciem wyszukiwania w Spring Data Elasticsearch (ważne)
+    </description>
+
     <dependencies>
         <!-- spring -->
         <dependency>
