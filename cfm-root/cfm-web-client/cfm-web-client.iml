@@ -12,7 +12,20 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextSecurity.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/main/test</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextPersistence.xml</file>
+        </fileset>
+        <fileset id="web cfm servlet context" name="MVC cfm servlet context" removed="true">
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextPersistence.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextWeb.xml</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextSecurity.xml</file>
+        </fileset>
+      </configuration>
     </facet>
     <facet type="jpa" name="JPA">
       <configuration>

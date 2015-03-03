@@ -28,9 +28,8 @@ import pl.mg.cfm.model.Employee;
  * podstawowych informacji) oparta na persistanceManager z JPA (implementacja
  * JBossowa na hibernate, ale zgodna ze specyfikacją).
  * Bez uzycia Spring.
- * 
- * @author Maciej Gzik
  *
+ * @author Maciej Gzik
  */
 @Stateless(name = "CFMEJBRepository")
 @EJB(name = "java:global/cfm/CFMEJBRepository", beanInterface = CFMDao.class, beanName = "CFMEJBRepository")
