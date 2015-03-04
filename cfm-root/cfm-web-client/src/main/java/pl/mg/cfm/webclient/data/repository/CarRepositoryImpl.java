@@ -77,4 +77,12 @@ public class CarRepositoryImpl implements CarRepository {
         return carPojo;
     }
 
+    @Override
+    public List<CarPojo> findCars(CarCriteria criteria) throws UnsupportedOperationException {
+        return null;
+    }
+
+
+
+
 }
