@@ -21,6 +21,8 @@ public class CarCriteria {
 
     private String ownerEmplyeeFirstName = null;
     private String ownerEmployeeLastName = null;
+    private Integer ownerId = null;
+
 
     public String getOwnerEmplyeeFirstName() {
         return ownerEmplyeeFirstName;
@@ -95,5 +97,13 @@ public class CarCriteria {
 
     public void setMaxLongitude(Double maxLongitude) {
         this.maxLongitude = maxLongitude;
+    }
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
     }
 }

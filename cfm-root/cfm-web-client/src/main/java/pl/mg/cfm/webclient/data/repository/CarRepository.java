@@ -11,4 +11,6 @@ public interface CarRepository {
     public CarPojo getCar(String carId) throws UnsupportedOperationException;
 
     public List<CarPojo> findCars(CarCriteria criteria) throws UnsupportedOperationException;
+
+    public List<CarPojo> getEmployeeCars(String employeeId) throws UnsupportedOperationException;
 }
