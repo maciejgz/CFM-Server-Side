@@ -9,32 +9,14 @@
         <webroots>
           <root url="file://$MODULE_DIR$/src/main/webapp" relative="/" />
         </webroots>
-        <sourceRoots>
-          <root url="file://$MODULE_DIR$/src/main/java" />
-          <root url="file://$MODULE_DIR$/src/main/resources" />
-        </sourceRoots>
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextSecurity.xml</file>
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
-          <file>file://$MODULE_DIR$/src/main/test</file>
+          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextSecurity.xml</file>
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextPersistence.xml</file>
-        </fileset>
-        <fileset id="web cfm servlet context" name="MVC cfm servlet context" removed="true">
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextPersistence.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextWeb.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextSecurity.xml</file>
-        </fileset>
-        <fileset id="web application context" name="MVC application context" removed="true">
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContext.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextWeb.xml</file>
-          <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextSecurity.xml</file>
-        </fileset>
-        <fileset id="fileset2" name="Spring Application Context (2)" removed="false">
           <file>file://$MODULE_DIR$/src/main/webapp/WEB-INF/applicationContextWeb.xml</file>
         </fileset>
       </configuration>
@@ -56,7 +38,6 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
