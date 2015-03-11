@@ -13,7 +13,7 @@
 	<context:component-scan base-package="pl.mg.cfm.ws" />
     
 	<bean id="roleValidator" class="pl.mg.cfm.ws.security.RoleValidator">
-		<property name="functions">
+		<property name="functionPermits">
 			<map>
 				<entry key="getAllCars" value="ALL" />
 				<entry key="getCar" value="ALL" />

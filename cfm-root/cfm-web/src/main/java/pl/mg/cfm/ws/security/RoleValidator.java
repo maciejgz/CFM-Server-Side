@@ -1,26 +1,26 @@
 package pl.mg.cfm.ws.security;
 
-import java.util.HashMap;
+import org.jboss.logging.Logger;
 
 import javax.ejb.Stateless;
-
-import org.jboss.logging.Logger;
+import java.util.HashMap;
 
 @Stateless
 public class RoleValidator {
 
     Logger logger = Logger.getLogger(RoleValidator.class);
 
-    private HashMap<String, String> functions;
+    private HashMap<String, String> functionPermits;
+    private String allAllowed = "ALL";
 
     public boolean validateRole(String functionName, String userRole) {
         logger.debug("validateRole=" + functionName + ";" + userRole);
-        if (!this.functions.containsKey(functionName)) {
+        if (!this.functionPermits.containsKey(functionName)) {
             logger.debug("Developer error: function security settings not defined.");
             return false;
         } else {
-            String role = functions.get(functionName);
-            if (role.contains(userRole)) {
+            String role = functionPermits.get(functionName);
+            if (role.contains(userRole) || role.equals(allAllowed)) {
                 return true;
             } else {
                 return false;
@@ -28,12 +28,15 @@ public class RoleValidator {
         }
     }
 
-    public HashMap<String, String> getFunctions() {
-        return functions;
+    public HashMap<String, String> getFunctionPermits() {
+        return functionPermits;
     }
 
-    public void setFunctions(HashMap<String, String> functions) {
-        this.functions = functions;
+    public void setFunctionPermits(HashMap<String, String> functionPermits) {
+        this.functionPermits = functionPermits;
     }
 
+    public void setAllAllowed(String allAllowed) {
+        this.allAllowed = allAllowed;
+    }
 }
