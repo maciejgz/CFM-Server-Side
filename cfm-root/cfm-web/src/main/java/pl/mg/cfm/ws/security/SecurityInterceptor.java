@@ -21,12 +21,14 @@ import org.jboss.resteasy.core.ResourceMethodInvoker;
 import org.jboss.resteasy.core.ServerResponse;
 import org.jboss.resteasy.util.Base64;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import pl.mg.cfm.commons.dao.CFMDao;
 import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
+import pl.mg.cfm.ws.spring.SpringApplicationContext;
 
 @Provider
 public class SecurityInterceptor implements javax.ws.rs.container.ContainerRequestFilter {
@@ -131,8 +133,9 @@ public class SecurityInterceptor implements javax.ws.rs.container.ContainerReque
             logger.error(e.getMessage(), e);
             return false;
         }
+        //(RoleValidator) context.getBean("roleValidator");
+        RoleValidator validator = (RoleValidator) SpringApplicationContext.getBean("roleValidator");
 
-        RoleValidator validator = (RoleValidator) context.getBean("roleValidator");
 
         boolean isAllowed = validator.validateRole(method.getName(), userRole);
         logger.debug("validatorValue=" + isAllowed);
