@@ -12,7 +12,8 @@
 	<artifactId>cfm-rsws</artifactId>
 	<packaging>war</packaging>
 	<description>
-		WebService SOAP zbudowany na springu.
+		WebService SOAP zbudowany na spring BOOT z SPring DATA JPA.
+        Bootowanie powinno być wyłączone i trzeba wrzucać wara na serwer.
 	</description>
 	<dependencies>
 		<dependency>

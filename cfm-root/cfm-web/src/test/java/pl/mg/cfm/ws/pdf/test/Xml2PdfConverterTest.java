@@ -13,7 +13,6 @@ public class Xml2PdfConverterTest {
     public void test() {
 
         converter.convertXmlToPdf();
-
         assertTrue(true);
     }
 }

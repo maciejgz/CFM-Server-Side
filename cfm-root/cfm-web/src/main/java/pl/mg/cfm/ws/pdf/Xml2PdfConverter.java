@@ -21,10 +21,17 @@ public class Xml2PdfConverter {
     private String xmlFilePath = "D:/projectteam.xml";
 
 
+    private String stylesheet;
+
+
     private final FopFactory fopFactory = FopFactory.newInstance();
     private File pdffile = new File(resultPdfFilePath);
     private File xsltfile = new File(xslFilePath);
     private File xmlFile = new File(xmlFilePath);
+
+
+    ClassLoader classLoader = getClass().getClassLoader();
+    File file = new File(classLoader.getResource(stylesheet).getFile());
 
     public void convertXmlToPdf() {
         OutputStream out = null;
@@ -65,6 +72,7 @@ public class Xml2PdfConverter {
             }
         }
     }
+
     public String getResultPdfFilePath() {
         return resultPdfFilePath;
     }
@@ -87,5 +95,13 @@ public class Xml2PdfConverter {
 
     public void setXmlFilePath(String xmlFilePath) {
         this.xmlFilePath = xmlFilePath;
+    }
+
+    public String getStylesheet() {
+        return stylesheet;
+    }
+
+    public void setStylesheet(String stylesheet) {
+        this.stylesheet = stylesheet;
     }
 }
