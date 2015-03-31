@@ -10,11 +10,12 @@ import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.RegisterEmployeeException;
 import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
-import pl.mg.cfm.webclient.business.validator.Validator;
+import pl.mg.cfm.webclient.business.validator.EmployeeValidator;
+import pl.mg.cfm.webclient.data.adapter.EmployeeAdapter;
+import pl.mg.cfm.webclient.data.entity.Employee;
 import pl.mg.cfm.webclient.data.repository.EmployeeRepository;
 
 @Service
-@Scope()
 public class EmployeeServiceImpl implements EmployeeService {
 
     private Logger logger = Logger.getLogger(EmployeeServiceImpl.class);
@@ -30,7 +31,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeePojo getEmployee(String id) throws NumberFormatException, EmployeeNotFoundException {
         try {
-            return repository.getEmployee(Integer.parseInt(id));
+            return EmployeeAdapter.fromEntity(repository.getEmployee(Integer.parseInt(id)));
         } catch (NumberFormatException | EmployeeNotFoundException e) {
             logger.error(e.getLocalizedMessage(), e);
             throw e;
@@ -41,8 +42,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Integer registerEmployee(String firstName, String lastName, String password)
             throws InvalidInputDataException, RegisterEmployeeException {
         logger.debug("registerEmployee service");
-        if (!Validator.validatePassword(password) || !Validator.validateFirstName(firstName)
-                || !Validator.validateLastName(lastName)) {
+        if (!EmployeeValidator.validatePassword(password) || !EmployeeValidator.validateFirstName(firstName)
+                || !EmployeeValidator.validateLastName(lastName)) {
             throw new InvalidInputDataException();
         }
         return repository.registerEmployee(firstName, lastName, password);
@@ -51,13 +52,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateEmployee(Integer id, String newFirstName, String newLastName, String newPassword)
             throws EmployeeNotFoundException, InvalidInputDataException {
-        if (!Validator.validateId(id.toString()) || !Validator.validateFirstName(newFirstName)
-                || !Validator.validateLastName(newLastName) || !Validator.validatePassword(newPassword)) {
+        if (!EmployeeValidator.validateId(id.toString()) || !EmployeeValidator.validateFirstName(newFirstName)
+                || !EmployeeValidator.validateLastName(newLastName) || !EmployeeValidator.validatePassword(newPassword)) {
             logger.error("ErrorDuring validation input data during employee update. id=" + id + ",firstName="
                     + newFirstName + ",lastName=" + newLastName + ",password=" + newPassword);
             throw new InvalidInputDataException();
         }
-        EmployeePojo oldEmployeePojo = repository.getEmployee(id);
+        EmployeePojo oldEmployeePojo = EmployeeAdapter.fromEntity(repository.getEmployee(id));
 
         if (!oldEmployeePojo.getFirstName().equals(newFirstName)) {
             oldEmployeePojo.setFirstName(newFirstName);
@@ -72,7 +73,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         //        logger.debug("updating employee-" + oldEmployeePojo.toString());
 
-        repository.updateEmployee(oldEmployeePojo);
+        repository.updateEmployee(EmployeeAdapter.toEntity(oldEmployeePojo));
 
     }
 
@@ -82,11 +83,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         logger.debug("editPass - employeePojo=" + employeePojo);
         logger.debug("editPass - newPassword=" + newPassword);
         logger.debug("editPass - newPasswordConfirm=" + newPasswordConfirm);
-        if (employeePojo == null || !newPassword.equals(newPasswordConfirm) || !Validator.validatePassword(newPassword)
-                || !Validator.validatePassword(newPasswordConfirm)) {
+
+
+        if (employeePojo == null || !newPassword.equals(newPasswordConfirm) || !EmployeeValidator.validatePassword(newPassword)
+                || !EmployeeValidator.validatePassword(newPasswordConfirm)) {
             throw new InvalidInputDataException();
         }
         employeePojo.setPassword(newPassword);
-        this.repository.updateEmployee(employeePojo);
+        this.repository.updateEmployee(EmployeeAdapter.toEntity(employeePojo));
     }
 }

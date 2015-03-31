@@ -35,9 +35,9 @@ public class CarRepositoryImpl implements CarRepository {
     private EntityManager entityManager;
 
     @Override
-    public List<CarPojo> getAllCars() throws UnsupportedOperationException {
+    public List<Car> getAllCars() throws UnsupportedOperationException {
         List<Car> cars = entityManager.createQuery("SELECT e FROM Car e").getResultList();
-        ArrayList<CarPojo> carsPojoList = new ArrayList<CarPojo>();
+/*        ArrayList<CarPojo> carsPojoList = new ArrayList<CarPojo>();
         if (cars != null) {
             Iterator<Car> it = cars.iterator();
             while (it.hasNext()) {
@@ -59,37 +59,38 @@ public class CarRepositoryImpl implements CarRepository {
                             .getLongitude(), ownerId));
                 }
             }
-        }
-        return carsPojoList;
+        }*/
+        return cars;
     }
 
     @Override
-    public CarPojo getCar(String carId) throws UnsupportedOperationException {
+    public Car getCar(String carId) throws UnsupportedOperationException {
         String sqlQuery = "select * from car where car_id like ?";
         Query query = entityManager.createNativeQuery(sqlQuery, Car.class);
         query.setParameter(1, carId);
 
         Car car = (Car) query.getSingleResult();
-        CarPojo carPojo = new CarPojo();
+/*        CarPojo carPojo = new CarPojo();
         carPojo.setCarId(car.getCar_id());
         carPojo.setDistance(car.getDistance());
         carPojo.setLatitude(car.getLatitude());
         carPojo.setLongitude(car.getLongitude());
         if (car.getOwner() != null) {
             carPojo.setOwnerId(car.getOwner().getIdemployee());
-        }
-        return carPojo;
+        }*/
+        return car;
     }
 
     @Override
-    public List<CarPojo> findCars(CarCriteria criteria) throws UnsupportedOperationException {
+    public List<Car> findCars(CarCriteria criteria) throws UnsupportedOperationException {
         StringBuffer sqlQuery = new StringBuffer();
         sqlQuery.append("select * from car, employee where ");
+        // TODO implement
         return null;
     }
 
     @Override
-    public List<CarPojo> getEmployeeCars(String employeeId) throws UnsupportedOperationException {
+    public List<Car> getEmployeeCars(String employeeId) throws UnsupportedOperationException {
       /*  String queryString = "select * from car where car_owner_id like ?";
 
         TypedQuery<CarPojo> query = entityManager.createQuery(queryString, CarPojo.class);
@@ -106,7 +107,7 @@ public class CarRepositoryImpl implements CarRepository {
         cq.where(cb.like(root.get("owner"), employeeId));
         Query criteriaQuery = entityManager.createQuery(cq);
 
-        List<CarPojo> resultCriteria = criteriaQuery.getResultList();
+        List<Car> resultCriteria = criteriaQuery.getResultList();
 
         return resultCriteria;
     }

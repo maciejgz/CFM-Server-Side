@@ -1,0 +1,143 @@
+<root>
+    <row>
+        <col name="RECPT_MSISDN">664620385</col>
+        <col
+                name="TYPE">ROZMOWY
+        </col>
+        <col name="STARTDATE">2015-02-13</col>
+        <col
+                name="STARTTIME">00:00
+        </col>
+        <col name="DURATION">0:0:11</col>
+        <col name="COST">-123</col>
+        <col name="SERVICE"/>
+        <col name="DESCR"/>
+        <col name="UPLINK">0</col>
+        <col name="DOWNLINK">0</col>
+        <col name="CATEGORY"/>
+        <col name="SUBCHARGE"/>
+        <col name="SUBBALANCE"/>
+    </row>
+    <row>
+        <col
+                name="RECPT_MSISDN">664620385
+        </col>
+        <col name="TYPE">ROZMOWY
+        </
+                col>
+        <col name="STARTDATE">2015-02-13</col>
+        <col name="STARTTIME">00:00
+        </
+                col>
+        <col name="DURATION">0:0:11</col>
+        <col name="COST">-123</col>
+        <col
+                name="SERVICE"/>
+        <col name="DESCR"/>
+        <col name="UPLINK">0</col>
+        <col
+                name="DOWNLINK">0
+        </col>
+        <col name="CATEGORY"/>
+        <col name="SUBCHARGE"/>
+        <col name="SUBBALANCE"/>
+    </row>
+    <row>
+        <col name="RECPT_MSISDN">664620385
+        </
+                col>
+        <col name="TYPE">ROZMOWY</col>
+        <col name="STARTDATE">2015-02-26
+        </
+                col>
+        <col name="STARTTIME">00:00</col>
+        <col name="DURATION">0:0:11</col>
+        <col
+                name="COST">-123
+        </col>
+        <col name="SERVICE"/>
+        <col name="DESCR"/>
+        <col
+                name="UPLINK">0
+        </col>
+        <col name="DOWNLINK">0</col>
+        <col name="CATEGORY"/
+        >
+        <col name="SUBCHARGE"/>
+        <col name="SUBBALANCE"/>
+    </row>
+    <row>
+        <col
+                name="RECPT_MSISDN">664620385
+        </col>
+        <col name="TYPE">SMS</col>
+        <col
+                name="STARTDATE">2015-03-12
+        </col>
+        <col name="STARTTIME">00:00
+        </
+                col>
+        <col name="DURATION">0:0:34</col>
+        <col name="COST">-11</col>
+        <col
+                name="SERVICE"/>
+        <col name="DESCR"/>
+        <col name="UPLINK">0</col>
+        <col
+                name="DOWNLINK">0
+        </col>
+        <col name="CATEGORY"/>
+        <col name="SUBCHARGE"/
+        >
+        <col name="SUBBALANCE"/>
+    </row>
+    <row>
+        <col name="RECPT_MSISDN">664620385
+        </
+                col>
+        <col name="TYPE">DATA</col>
+        <col name="STARTDATE">2015-02-01
+        </
+                col>
+        <col name="STARTTIME">00:00</col>
+        <col name="DURATION">0:0:21</col>
+        <col
+                name="COST">-135
+        </col>
+        <col name="SERVICE"/>
+        <col name="DESCR"/>
+        <col
+                name="UPLINK">0
+        </col>
+        <col name="DOWNLINK">0</col>
+        <col name="CATEGORY"/
+        >
+        <col name="SUBCHARGE"/>
+        <col name="SUBBALANCE"/>
+    </row>
+    <row>
+        <col
+                name="RECPT_MSISDN">664620385
+        </col>
+        <col name="TYPE">ROZMOWY
+        </
+                col>
+        <col name="STARTDATE">2015-02-01</col>
+        <col name="STARTTIME">00:00
+        </
+                col>
+        <col name="DURATION">0:0:22</col>
+        <col name="COST">-76372</col>
+        <col
+                name="SERVICE"/>
+        <col name="DESCR"/>
+        <col name="UPLINK">0</col>
+        <col
+                name="DOWNLINK">0
+        </col>
+        <col name="CATEGORY"/>
+        <col name="SUBCHARGE"/
+        >
+        <col name="SUBBALANCE"/>
+    </row>
+</root>

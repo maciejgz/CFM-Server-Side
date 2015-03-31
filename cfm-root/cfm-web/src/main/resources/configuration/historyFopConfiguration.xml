@@ -1,0 +1,24 @@
+<fop version="1.0">
+    <renderers>
+        <renderer mime="application/pdf">
+            <fonts>
+                <directory>D:/fop_fonts</directory>
+                <font kerning="yes"
+                      embed-url="/fonts/arial.ttf"
+                      encoding-mode="single-byte">
+                    <font-triplet name="Arial" style="normal" weight="normal"/>
+                </font>
+                <font kerning="yes"
+                      embed-url="/fonts/arialbd.ttf"
+                      encoding-mode="single-byte">
+                    <font-triplet name="Arial" style="normal" weight="bold"/>
+                </font>
+                <font kerning="yes"
+                      embed-url="/fonts/ariali.ttf"
+                      encoding-mode="single-byte">
+                    <font-triplet name="Arial" style="italic" weight="normal"/>
+                </font>
+            </fonts>
+        </renderer>
+    </renderers>
+</fop>

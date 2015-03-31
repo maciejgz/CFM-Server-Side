@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import pl.mg.cfm.domain.CarPojo;
+import pl.mg.cfm.webclient.data.entity.Car;
 import pl.mg.cfm.webclient.data.repository.CarRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,7 +31,7 @@ public class SelectCarsTest {
             System.out.println("repository is null");
         }
 
-        CarPojo car = repository.getCar("1");
+        Car car = repository.getCar("1");
         System.out.println(car);
         assertNotNull(car);
     }

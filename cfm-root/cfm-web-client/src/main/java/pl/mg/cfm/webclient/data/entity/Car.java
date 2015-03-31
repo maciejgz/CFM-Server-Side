@@ -82,4 +82,14 @@ public class Car implements Serializable {
         this.car_id = car_id;
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "car_id='" + car_id + '\'' +
+                ", distance=" + distance +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", owner=" + owner +
+                '}';
+    }
 }

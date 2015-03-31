@@ -16,7 +16,7 @@
 
     <description>
         WEB Service REST - załozeniem jest zbudownie serwisu w pełni zgodnego z wymogami i specyfikacją REST.
-        WEB Service zbudowany na implementacji RESTEasy w JBossie
+        WEB Service zbudowany na implementacji RESTEasy w JBossie z logowaniem http basic
         Zapis/odczyt danych poprzez obiekty JSON
         Komunikacja po https
     </description>

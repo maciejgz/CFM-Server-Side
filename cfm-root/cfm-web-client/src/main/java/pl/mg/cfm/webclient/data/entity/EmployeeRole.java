@@ -49,4 +49,13 @@ public class EmployeeRole implements Serializable {
 	public void setEmployees(Collection<Employee> employees) {
 		this.employees = employees;
 	}
+
+	@Override
+	public String toString() {
+		return "EmployeeRole{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", employees=" + employees +
+				'}';
+	}
 }

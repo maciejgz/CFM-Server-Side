@@ -9,7 +9,9 @@ import pl.mg.cfm.domain.EmployeePojo;
 /**
  * Interfejs serwisu operacji wykonywanych na uzytkowniku. Dzieki temu
  * oddzielamy warstwe aplikacji od bazy danych, ale jest to w pewnym sensie
- * skopiowanie funkcjonalnosci repository (nie do konca, ale jednak).
+ * skopiowanie funkcjonalnosci repository (nie do koñca, ale jednak).
+ *
+ * Service operuje na obiektach biznesowych POJO.
  * 
  * @author Maciej Gzik
  *

@@ -1,4 +1,4 @@
-package pl.mg.cfm.ws.pdf;
+package pl.mg.cfm.ws.converter;
 
 import org.apache.fop.apps.*;
 
@@ -13,7 +13,7 @@ import java.io.OutputStream;
 /**
  * Created by m on 2015-03-11.
  */
-public class Xml2PdfConverter {
+public class Xml2PdfConverter implements Converter{
 
 
     private String resultPdfFilePath = "D:/result.pdf";
@@ -33,7 +33,8 @@ public class Xml2PdfConverter {
     ClassLoader classLoader = getClass().getClassLoader();
     File file = new File(classLoader.getResource(stylesheet).getFile());
 
-    public void convertXmlToPdf() {
+    @Override
+    public byte[] convert(String xml) {
         OutputStream out = null;
 
         FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
@@ -71,6 +72,7 @@ public class Xml2PdfConverter {
                 }
             }
         }
+        return null;
     }
 
     public String getResultPdfFilePath() {

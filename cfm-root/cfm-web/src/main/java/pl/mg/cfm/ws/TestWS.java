@@ -1,6 +1,6 @@
 package pl.mg.cfm.ws;
 
-import pl.mg.cfm.ws.pdf.Xml2PdfConverter;
+import pl.mg.cfm.ws.converter.Xml2PdfConverter;
 import pl.mg.cfm.ws.spring.SpringApplicationContext;
 
 import javax.ws.rs.GET;
@@ -21,7 +21,6 @@ public class TestWS {
         String value = "test";
         return Response.status(200).entity(value).build();
     }
-
     @GET
     @Path("/pdf")
     @Produces("application/pdf")
@@ -29,7 +28,7 @@ public class TestWS {
 
         converter = (Xml2PdfConverter) SpringApplicationContext.getBean("xml2PdfConverter");
 
-        converter.convertXmlToPdf();
+        converter.convert(null);
 
         File examplePdf = new File("D:/1.pdf");
 

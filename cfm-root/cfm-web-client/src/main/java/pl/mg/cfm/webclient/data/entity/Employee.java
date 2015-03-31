@@ -61,7 +61,7 @@ public class Employee {
 		return lastName;
 	}
 
-	public void setSecondName(String lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
@@ -89,4 +89,15 @@ public class Employee {
 		this.cars = cars;
 	}
 
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "idemployee=" + idemployee +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", role=" + role +
+                ", password='" + password + '\'' +
+                ", cars=" + cars +
+                '}';
+    }
 }

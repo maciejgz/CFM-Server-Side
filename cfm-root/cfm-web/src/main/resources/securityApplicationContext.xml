@@ -17,11 +17,13 @@
     <!-- bean potrzebny do wstrzyknięcia konfiguracji -->
     <bean class="pl.mg.cfm.ws.spring.SpringApplicationContext"></bean>
 
-    <bean id="xml2PdfConverter" class="pl.mg.cfm.ws.pdf.Xml2PdfConverter" autowire="byType">
+<!--    <bean id="xml2PdfConverter" class="pl.mg.cfm.ws.converter.Xml2PdfConverter" autowire="byType">
         <property name="resultPdfFilePath" value="D:/result.pdf"></property>
         <property name="xmlFilePath" value="D:/projectteam.xml"></property>
         <property name="xslFilePath" value="D:/formatter.xsl"></property>
-    </bean>
+    </bean>-->
+
+
 
     <bean id="roleValidator" class="pl.mg.cfm.ws.security.RoleValidator">
         <property name="functionPermits">

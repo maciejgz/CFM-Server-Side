@@ -30,6 +30,7 @@
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="cfm-localhost"/>
         <property name="dataSource" ref="localhostMysql"/>
+        <property name="packagesToScan" value="pl.mg.cfm.webclient.data.entity" />
     </bean>
 
     <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">

@@ -6,6 +6,7 @@ import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.mg.cfm.domain.CarPojo;
+import pl.mg.cfm.webclient.data.entity.Car;
 import pl.mg.cfm.webclient.data.repository.CarRepository;
 
 import javax.inject.Inject;
@@ -32,9 +33,9 @@ public class SelectEmployeeCarsTest {
             System.out.println("repository is null");
         }
 
-        List<CarPojo> cars = repository.getEmployeeCars("1");
+        List<Car> cars = repository.getEmployeeCars("1");
 
-        for (CarPojo car: cars){
+        for (Car car: cars){
             System.out.println(car);
         }
         assertEquals(3,cars.size());
