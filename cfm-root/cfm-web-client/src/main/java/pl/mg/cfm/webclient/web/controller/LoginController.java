@@ -1,7 +1,5 @@
 package pl.mg.cfm.webclient.web.controller;
 
-import java.security.Principal;
-
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,9 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.security.Principal;
+
 @Controller
 @SessionAttributes(value = { WebConstants.PARAM_EMPLOYEE })
 public class LoginController {
+
 
     Logger logger = Logger.getLogger(this.getClass());
 
@@ -42,4 +43,6 @@ public class LoginController {
         model.addAttribute("logout", true);
         return WebConstants.TEMPLATE_LOGIN;
     }
+
+
 }

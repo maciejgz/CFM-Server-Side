@@ -20,18 +20,17 @@
 		<form-login login-page="/" authentication-failure-url="/login-error"
 			default-target-url="/home" />
 		<logout logout-success-url="/logout" />
+
 		<remember-me />
 	</http>
 
 
 	<authentication-manager>
-
 		<authentication-provider>
 			<jdbc-user-service data-source-ref="localhostMysql"
 				users-by-username-query="select idemployee, password, 'true' as enabled from employee where idemployee=?"
 				authorities-by-username-query="select employee.idemployee, employee_role.name as authorities from employee,employee_role where employee.idemployee=? and employee.role_id=employee_role.id" />
-
-			<!-- <user-service> <user name="admin" password="secret" authorities="ROLE_ADMIN" 
+			<!-- <user-service> <user name="admin" password="secret" authorities="ROLE_ADMIN"
 				/> <user name="user1" password="1111" authorities="ROLE_USER" /> <user name="1" 
 				password="1" authorities="ROLE_USER" /> </user-service> -->
 		</authentication-provider>

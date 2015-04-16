@@ -97,7 +97,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>2.0.1</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>mysql</groupId>
@@ -125,6 +124,13 @@
             <artifactId>cfm-commons</artifactId>
             <version>${cfm.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>18.0</version>
+        </dependency>
+
 
     </dependencies>
 

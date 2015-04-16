@@ -13,6 +13,8 @@
 	<xsl:variable name="typeLabel" select="'TYPE'" />
 	<xsl:variable name="durationLabel" select="'DURATION'" />
 	<xsl:variable name="costLabel" select="'COST'" />
+	<xsl:variable name="uplinkLabel" select="'UPLINK'" />
+	<xsl:variable name="downlinkLabel" select="'DOWNLINK'" />
 
 
 	<xsl:variable name="typeConnect" select="'ROZMOWY'" />
@@ -24,7 +26,8 @@
 	<xsl:variable name="typeServices" select="'SERVICES'" />
 	<xsl:variable name="typeRecharge" select="'DOŁADOWANIA'" />
 	<xsl:variable name="typePayment" select="'OBCIĄŻENIA'" />
-
+	<xsl:variable name="typeOmnix" select="'OMNIX'" />
+	<xsl:variable name="typeOthers" select="'INNE'" />
 
 	<xsl:variable name="labelConnect" select="'Połączenia'" />
 	<xsl:variable name="labelSMS" select="'SMS'" />
@@ -35,6 +38,8 @@
 	<xsl:variable name="labelServices" select="'Pakiety i sługi'" />
 	<xsl:variable name="labelRecharge" select="'Doładowanie'" />
 	<xsl:variable name="labelPayment" select="'Obiążenie'" />
+	<xsl:variable name="labelOmnix" select="'Omnix'" />
+	<xsl:variable name="labelOthers" select="'Inne'" />
 
 
 	<xsl:attribute-set name="historyBorder">
@@ -114,92 +119,130 @@
 								<!-- first row end -->
 
 								<xsl:for-each select="row">
-									<fo:table-row height="10mm" text-align="center">
-										<fo:table-cell xsl:use-attribute-sets="historyBorder"
-											display-align="center">
-											<fo:block>
-												<xsl:if test="boolean(col[@name=$startTimeLabel]/text())">
-													<!-- <xsl:value-of select="concat(substring(col[@name=$startTimeLabel], 
-														1, 4), '.', substring(col[@name=$startTimeLabel], 6, 2), '.', substring(col[@name=$startTimeLabel], 
-														9, 2))"/> -->
+									<xsl:if
+										test="contains(concat($typeConnect,$typeSMS,$typeMMS,$typeData,$typeDataSend,$typeDataReceived,$typeOmnix,$typeRecharge,$typePayment,$typeOthers),col[@name=$typeLabel])">
+										<fo:table-row height="10mm" text-align="center">
+											<fo:table-cell xsl:use-attribute-sets="historyBorder"
+												display-align="center">
+												<fo:block>
+													<xsl:if test="boolean(col[@name=$startTimeLabel]/text())">
+														<!-- <xsl:value-of select="concat(substring(col[@name=$startTimeLabel], 
+															1, 4), '.', substring(col[@name=$startTimeLabel], 6, 2), '.', substring(col[@name=$startTimeLabel], 
+															9, 2))"/> -->
+														<xsl:variable name="startDate"
+															select="col[@name=$startDateLabel]"></xsl:variable>
+															<xsl:variable name="startDateReplaced" select="$startDate"/>
+														<xsl:value-of select="$startDateReplaced" />
+													</xsl:if>
+												</fo:block>
+											</fo:table-cell>
+											<fo:table-cell xsl:use-attribute-sets="historyBorder"
+												display-align="center">
+												<fo:block>
+													<xsl:if test="boolean(col[@name=$startTimeLabel]/text())">
+														<xsl:value-of select="col[@name=$startTimeLabel]" />
+														<!-- <xsl:value-of select="concat(substring(col[@name=$startTimeLabel], 
+															12, 2), ':', substring(col[@name=$startTimeLabel], 15, 2))"/> -->
+													</xsl:if>
+												</fo:block>
+											</fo:table-cell>
+											<fo:table-cell xsl:use-attribute-sets="historyBorder"
+												display-align="center">
+												<fo:block>
+													<xsl:if test="col[@name=$typeLabel]=$typeConnect">
+														<xsl:value-of select="$labelConnect" />
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeSMS">
+														<xsl:value-of select="$labelSMS" />
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeMMS">
+														<xsl:value-of select="$labelMMS" />
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeData">
+														<xsl:value-of select="$labelInternet" />
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeDataSend">
+														<xsl:value-of select="$labelInternetSend" />
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeDataReceived">
+														<xsl:value-of select="$labelInternetReceived" />
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeServices">
+														<xsl:value-of select="$labelServices" />
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeRecharge">
+														<xsl:value-of select="$labelRecharge" />
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typePayment">
+														<xsl:value-of select="$labelPayment" />
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeOmnix">
+														<xsl:value-of select="$labelOmnix" />
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeOthers">
+														<xsl:value-of select="$labelOthers" />
+													</xsl:if>
+												</fo:block>
+											</fo:table-cell>
+											<fo:table-cell xsl:use-attribute-sets="historyBorder"
+												display-align="center">
+												<fo:block>
+													<xsl:value-of select="col[@name=$msisdnLabel]" />
+												</fo:block>
+											</fo:table-cell>
+											<fo:table-cell xsl:use-attribute-sets="historyBorder"
+												display-align="center">
+												<fo:block>
+													<!-- <xsl:value-of select="col[@name=$durationLabel]" /> -->
+													<!-- value -->
+													<xsl:choose>
+														<xsl:when test="col[@name=$typeLabel]=$typeData">
+															<xsl:value-of select="col[@name=$downlinkLabel]" />
+														</xsl:when>
+														<xsl:when test="col[@name=$typeLabel]=$typeDataSend">
+															<xsl:value-of select="col[@name=$uplinkLabel]" />
+														</xsl:when>
+														<xsl:when test="col[@name=$typeLabel]=$typeDataReceived">
+															<xsl:value-of select="col[@name=$downlinkLabel]" />
+														</xsl:when>
+														<xsl:otherwise>
+															<xsl:value-of select="col[@name=$durationLabel]" />
+														</xsl:otherwise>
+													</xsl:choose>
 
-													<xsl:value-of select="col[@name=$startDateLabel]" />
-												</xsl:if>
-											</fo:block>
-										</fo:table-cell>
-										<fo:table-cell xsl:use-attribute-sets="historyBorder"
-											display-align="center">
-											<fo:block>
-												<xsl:if test="boolean(col[@name=$startTimeLabel]/text())">
-													<xsl:value-of select="col[@name=$startTimeLabel]" />
-													<!-- <xsl:value-of select="concat(substring(col[@name=$startTimeLabel], 
-														12, 2), ':', substring(col[@name=$startTimeLabel], 15, 2))"/> -->
-												</xsl:if>
-											</fo:block>
-										</fo:table-cell>
-										<fo:table-cell xsl:use-attribute-sets="historyBorder"
-											display-align="center">
-											<fo:block>
-												<xsl:if test="col[@name=$typeLabel]=$typeConnect">
-													<xsl:value-of select="$labelConnect" />
-												</xsl:if>
-												<xsl:if test="col[@name=$typeLabel]=$typeSMS">
-													<xsl:value-of select="$labelSMS" />
-												</xsl:if>
-												<xsl:if test="col[@name=$typeLabel]=$typeMMS">
-													<xsl:value-of select="$labelMMS" />
-												</xsl:if>
-												<xsl:if test="col[@name=$typeLabel]=$typeData">
-													<xsl:value-of select="$labelInternet" />
-												</xsl:if>
-												<xsl:if test="col[@name=$typeLabel]=$typeDataSend">
-													<xsl:value-of select="$labelInternetSend" />
-												</xsl:if>
-												<xsl:if test="col[@name=$typeLabel]=$typeDataReceived">
-													<xsl:value-of select="$labelInternetReceived" />
-												</xsl:if>
-												<xsl:if test="col[@name=$typeLabel]=$typeServices">
-													<xsl:value-of select="$labelServices" />
-												</xsl:if>
-												<xsl:if test="col[@name=$typeLabel]=$typeRecharge">
-													<xsl:value-of select="$labelRecharge" />
-												</xsl:if>
-												<xsl:if test="col[@name=$typeLabel]=$typePayment">
-													<xsl:value-of select="$labelPayment" />
-												</xsl:if>
-											</fo:block>
-										</fo:table-cell>
-										<fo:table-cell xsl:use-attribute-sets="historyBorder"
-											display-align="center">
-											<fo:block>
-												<xsl:value-of select="col[@name=$msisdnLabel]" />
-											</fo:block>
-										</fo:table-cell>
-										<fo:table-cell xsl:use-attribute-sets="historyBorder"
-											display-align="center">
-											<fo:block>
-												<xsl:value-of select="col[@name=$durationLabel]" />
-												<xsl:if test="col[@name=$typeLabel]=$typeData">
-													MB
-												</xsl:if>
-												<xsl:if test="col[@name=$typeLabel]=$typeDataSend">
-													MB
-												</xsl:if>
-												<xsl:if test="col[@name=$typeLabel]=$typeDataReceived">
-													MB
-												</xsl:if>
-											</fo:block>
-										</fo:table-cell>
-										<fo:table-cell xsl:use-attribute-sets="historyBorder"
-											display-align="center">
-											<fo:block>
-												<xsl:value-of select="col[@name=$costLabel]" />
-												<xsl:if test="string(number(col[@name=$costLabel]))!='NaN'">
-													zł
-												</xsl:if>
-											</fo:block>
-										</fo:table-cell>
-									</fo:table-row>
+													<!-- unit -->
+													<xsl:if test="col[@name=$typeLabel]=$typeData">
+														MB
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeDataSend">
+														MB
+													</xsl:if>
+													<xsl:if test="col[@name=$typeLabel]=$typeDataReceived">
+														MB
+													</xsl:if>
+												</fo:block>
+											</fo:table-cell>
+											<fo:table-cell xsl:use-attribute-sets="historyBorder"
+												display-align="center">
+												<fo:block>
+													<xsl:variable name="costValue"
+														select="number(col[@name=$costLabel])" />
+													<xsl:if test="string($costValue)!='NaN'">
+														<xsl:if test="$costValue &lt; 0">
+															<xsl:value-of select="0  -$costValue" />
+														</xsl:if>
+														<xsl:if test="$costValue &gt; 0">
+															<xsl:value-of select="$costValue" />
+														</xsl:if>
+														<xsl:if test="number(col[@name=$costLabel]) = 0">
+															<xsl:value-of select="$costValue" />
+														</xsl:if>
+														zł
+													</xsl:if>
+												</fo:block>
+											</fo:table-cell>
+										</fo:table-row>
+									</xsl:if>
 								</xsl:for-each>
 							</fo:table-body>
 						</fo:table>
@@ -209,13 +252,4 @@
 
 		</fo:root>
 	</xsl:template>
-	<!-- ========================= -->
-	<!-- child element: member -->
-	<!-- ========================= -->
-	<!-- <xsl:template match="row"> <fo:table-row> <xsl:if test="function = 
-		'lead'"> <xsl:attribute name="font-weight">bold</xsl:attribute> </xsl:if> 
-		<fo:table-cell> <fo:block> <xsl:value-of select="name"/> </fo:block> </fo:table-cell> 
-		<fo:table-cell> <fo:block> <xsl:value-of select="function"/> </fo:block> 
-		</fo:table-cell> <fo:table-cell> <fo:block> <xsl:value-of select="email"/> 
-		</fo:block> </fo:table-cell> </fo:table-row> </xsl:template> -->
 </xsl:stylesheet>

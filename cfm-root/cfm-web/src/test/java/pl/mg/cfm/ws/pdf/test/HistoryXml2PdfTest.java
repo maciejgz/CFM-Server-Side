@@ -30,13 +30,13 @@ public class HistoryXml2PdfTest {
         ClassLoader classLoader = getClass().getClassLoader();
 
         converter.setMimeType("application/pdf");
-        converter.setTemplate("udrHistoryTemplatePdfFull");
+        converter.setTemplate("udrHistoryTemplatePdf");
         converter.setFopConfigurationFile("historyFopConfiguration");
         converter.setDefaultResultFileName("historia_konta.pdf");
 
         File xmlTestFile = null;
         try {
-            xmlTestFile = ResourceUtils.getFile("classpath:xml/udrHistoryExampleFull.xml");
+            xmlTestFile = ResourceUtils.getFile("classpath:xml/udrHistoryExample.xml");
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();
         }

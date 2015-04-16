@@ -106,7 +106,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         entityManager.merge(updatedEmployee);
 
 
-        String sqlQuery = "update employee set first_name=?,last_name=?,password=? where idemployee=?";
+       /* String sqlQuery = "update employee set first_name=?,last_name=?,password=? where idemployee=?";
 
         Query query = entityManager.createNativeQuery(sqlQuery);
         query.setParameter(1, employee.getFirstName());
@@ -115,7 +115,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         query.setParameter(4, employee.getIdemployee());
         logger.debug("query=" + query.toString());
         int rows = query.executeUpdate();
-        logger.debug("updateUser; updated rows=" + rows);
+        logger.debug("updateUser; updated rows=" + rows);*/
     }
 
 }

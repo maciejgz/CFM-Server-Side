@@ -42,6 +42,7 @@ public class EmployeeController {
     public String getDashboard(Model model, @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee,
             SessionStatus status, Principal principal) throws NumberFormatException, EmployeeNotFoundException {
         logger.debug("/employee GET");
+
         addSessionEmployeeIfNull(employee, model, principal);
 
         return WebConstants.TEMPLATE_EMPLOYEE;

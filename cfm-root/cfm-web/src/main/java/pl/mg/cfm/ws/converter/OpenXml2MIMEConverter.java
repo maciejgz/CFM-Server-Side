@@ -42,9 +42,11 @@ public class OpenXml2MIMEConverter {
             File configurationFile = new ClassPathResource(configurationDirectory + "/" + fopConfigurationFile + ".xml")
                     .getFile();
 
-
-            System.out.println(configurationDirectory);
-            System.out.println(fopConfigurationFile);
+            System.out.println("template= " + template);
+            System.out.println("template file= " + templateFile.exists());
+            System.out.println("config file exists= " + configurationFile.exists());
+            System.out.println("config directory = " + configurationDirectory);
+            System.out.println("fop configuration file = " + fopConfigurationFile);
 
             FOURIResolver uriResolver = (FOURIResolver) fopFactory.getURIResolver();
             uriResolver.setCustomURIResolver(new CustomClassPathResolver());
@@ -84,8 +86,8 @@ public class OpenXml2MIMEConverter {
         try {
             templateFile = new ClassPathResource(templateDirectory + "/" + template + ".xsl").getFile();
             System.out.println(templateFile.exists());
-            System.out.println(templateDirectory);
-            System.out.println(template);
+            System.out.println("template directory: " + templateDirectory);
+            System.out.println("template: " + template);
 
 
         } catch (FileNotFoundException e) {

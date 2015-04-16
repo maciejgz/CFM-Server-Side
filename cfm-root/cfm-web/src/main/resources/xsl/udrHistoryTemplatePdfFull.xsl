@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.1"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format"
-                exclude-result-prefixes="fo"
-                xmlns:exsl="http://exslt.org/common"
-                extension-element-prefixes="exsl">
-    <xsl:output method="xml" version="1.0" omit-xml-declaration="no"
-                indent="yes"/>
+<xsl:stylesheet
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+        xmlns:saxon="http://saxon.sf.net/"
+        xmlns:my="http://example.com/my"
+        exclude-result-prefixes="saxon my"
+        xmlns:fo="http://www.w3.org/1999/XSL/Format"
+        version="2.0"
+        >
 
 
     <!-- VARIABLES -->
@@ -44,10 +45,29 @@
     </xsl:attribute-set>
     <!-- VARIABLES END -->
 
+
+    <xsl:output name="my:ser" method="xml" omit-xml-declaration="yes"/>
+
+    <!--  <xsl:template match="/root/row/col[@name='udr_data']">
+          <xsl:copy>
+              <xsl:apply-templates select="@*, node()"/>
+          </xsl:copy>
+      </xsl:template>-->
+
+
+    <xsl:template match="row/row/col[@name='udr_data']">
+        <xsl:variable name="temp">
+            <xsl:apply-templates select="saxon:parse(.)/root"/>
+        </xsl:variable>
+        <xsl:copy>
+            <xsl:value-of select="saxon:serialize($temp, 'my:ser')"/>
+        </xsl:copy>
+    </xsl:template>
+
     <!-- ========================= -->
     <!-- root element -->
     <!-- ========================= -->
-    <xsl:template match="root/row/col[@name='udr_data']">
+    <xsl:template match="root">
         <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format" color="#E10074"
                  font-family="Arial">
             <fo:layout-master-set>
@@ -73,31 +93,28 @@
                     </fo:block>
 
                     <!--  <fo:block>
-                          <xsl:value-of select="."></xsl:value-of>
-                      </fo:block>
-  -->
-                    <fo:block>
-                        break
-                    </fo:block>
+                          <xsl:variable name="collectionRaw" select="."></xsl:variable>
+
+                          <xsl:variable name="node_value" select="exsl:node-set($collectionRaw)"/>
+
+
+                          <xsl:choose>
+                              <xsl:when test="exsl:node-set($node_value)/node()">
+                                  <xsl:copy-of select="$node_value"></xsl:copy-of>
+
+                                  <xsl:for-each select="($node_value)">test</xsl:for-each>
+                              </xsl:when>
+                              <xsl:otherwise>
+                                  <xsl:value-of select="'NO XML DATA AVAILABLE'"></xsl:value-of>
+                              </xsl:otherwise>
+                          </xsl:choose>
+
+                          <xsl:variable name="parsedNode" select="saxon:parse($node_value)"></xsl:variable>
+                      </fo:block>-->
 
                     <fo:block>
-                        <xsl:variable name="collectionRaw" select="."></xsl:variable>
 
-                        <xsl:variable name="node_value" select="exsl:node-set($collectionRaw)"/>
-
-
-                        <xsl:choose>
-                            <xsl:when test="exsl:node-set($node_value)/node()">
-                                <xsl:copy-of select="$node_value"></xsl:copy-of>
-
-                                <xsl:for-each select="($node_value)">test</xsl:for-each>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <xsl:value-of select="'NO XML DATA AVAILABLE'"></xsl:value-of>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                        <xsl:for-each select="$columns">test2</xsl:for-each>
-
+                        <xsl:value-of select="."></xsl:value-of>
                     </fo:block>
 
 
@@ -142,6 +159,11 @@
                                     </fo:table-cell>
                                 </fo:table-row>
                                 <!-- first row end -->
+
+                                <!--  <xsl:variable name="collectionRaw" select="."></xsl:variable>
+
+                                  <xsl:variable name="node_value" select="exsl:node-set($collectionRaw)"/>
+                                  <xsl:variable name="parsedNode" select="saxon:parse($node_value)"></xsl:variable>-->
 
                                 <xsl:for-each select="row">
                                     <fo:table-row height="10mm" text-align="center">
