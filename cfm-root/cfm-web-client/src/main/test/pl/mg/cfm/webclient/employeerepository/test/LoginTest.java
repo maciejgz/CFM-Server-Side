@@ -30,16 +30,10 @@ public class LoginTest {
             System.out.println("repository is null");
         }
         String id = "1";
-        String password = "pass";
+        String password = "pass1";
 
-        try {
             System.out.println(repository.login(id, password));
             assertEquals(repository.login(id, password), true);
-        } catch (EmployeeNotFoundException e) {
-            e.printStackTrace();
-        } catch (InvalidPasswordException e) {
-            e.printStackTrace();
-        }
 
     }
 }

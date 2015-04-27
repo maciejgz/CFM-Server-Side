@@ -32,7 +32,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeePojo getEmployee(String id) throws NumberFormatException, EmployeeNotFoundException {
         try {
             return EmployeeAdapter.fromEntity(repository.getEmployee(Integer.parseInt(id)));
-        } catch (NumberFormatException | EmployeeNotFoundException e) {
+        } catch (NumberFormatException e) {
             logger.error(e.getLocalizedMessage(), e);
             throw e;
         }

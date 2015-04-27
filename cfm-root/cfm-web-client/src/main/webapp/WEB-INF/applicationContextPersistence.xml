@@ -65,8 +65,6 @@
         <property name="url" value="jdbc:mysql://localhost:3306/cfm"/>
         <property name="username" value="admin"/>
         <property name="password" value="qaz123"/>
-       <!-- <property name="maxTotal" value="40"/>-->
     </bean>
-
 
 </beans>
