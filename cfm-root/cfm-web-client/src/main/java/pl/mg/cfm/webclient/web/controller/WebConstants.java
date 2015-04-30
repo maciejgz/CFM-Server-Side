@@ -15,6 +15,7 @@ public class WebConstants {
     public static final String URI_EDIT = "/edit";
     public static final String URI_REDIRECT = "redirect:";
     public static final String URI_EDIT_PASSWORD = "/change_password";
+    public static final String URI_ACCESS_FRBIDDEN = "/access_forbidden";
 
     // thymeleaf templates
     public static final String TEMPLATE_INDEX = "index";
@@ -26,6 +27,7 @@ public class WebConstants {
     public static final String TEMPLATE_CARS = "cars";
     public static final String TEMPLATE_EMPLOYEE_EDIT = "employee_edit";
     public static final String TEMPLATE_CHANGE_PASSWORD = "change_password";
+    public static final String TEMPLATE_ACCESS_FORBIDDEN = "access_forbidden";
 
     // model and session parameters names
     public static final String PARAM_ERROR = "error";
