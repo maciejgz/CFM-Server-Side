@@ -1,14 +1,9 @@
 package pl.mg.cfm.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "car")
@@ -16,27 +11,31 @@ public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-   // @EmbeddedId
-   // private CarPK carPk;
-    
-    
+    // @EmbeddedId
+    // private CarPK carPk;
+
+
     @Id
     @Column(name = "car_id")
     protected String car_id;
-    
-    
+
+
     @Column(name = "distance")
     private Long distance;
-    
-    @Column(name="latitude")
+
+    @Column(name = "latitude")
     private Double latitude;
 
-    @Column(name="longitude")
+    @Column(name = "longitude")
     private Double longitude;
-    
+
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="car_owner_id")
+    @JoinColumn(name = "car_owner_id")
     private Employee owner;
+
+    @Column(name = "registration_date")
+    @Temporal(value = TemporalType.DATE)
+    private Date registrationDate;
 
     /*public CarPK getCarPk() {
         return carPk;
@@ -86,5 +85,12 @@ public class Car implements Serializable {
         this.car_id = car_id;
     }
 
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
 
 }
