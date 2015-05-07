@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 /**
+ * Controller for 403 access-denied code
  * Created by m on 2015-04-30.
  */
 @Controller

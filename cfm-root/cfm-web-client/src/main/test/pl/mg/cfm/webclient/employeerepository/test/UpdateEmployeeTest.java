@@ -33,10 +33,11 @@ public class UpdateEmployeeTest {
 
         EmployeePojo employee = new EmployeePojo();
         employee.setId(10002);
-        employee.setFirstName("testUpdate2");
+        employee.setFirstName("testUpdate3");
         employee.setLastName("testLastNameUpdate2");
         employee.setPassword("testPass2");
         employee.setRoleName("ROLE_USER");
+
         try {
             repository.updateEmployee(EmployeeAdapter.toEntity(employee));
         } catch (EmployeeNotFoundException e) {

@@ -1,6 +1,7 @@
 package pl.mg.cfm.webclient.data.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.*;
 
@@ -13,20 +14,25 @@ public class Car implements Serializable {
     @Id
     @Column(name = "car_id")
     protected String car_id;
-    
-    
+
+
     @Column(name = "distance")
     private Long distance;
-    
-    @Column(name="latitude")
+
+    @Column(name = "latitude")
     private Double latitude;
 
-    @Column(name="longitude")
+    @Column(name = "longitude")
     private Double longitude;
-    
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="car_owner_id")
+
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "car_owner_id")
     private Employee owner;
+
+
+    @Column(name = "registration_date")
+    @Temporal(value = TemporalType.DATE)
+    private Date registrationDate;
 
     /*public CarPK getCarPk() {
         return carPk;
@@ -35,6 +41,7 @@ public class Car implements Serializable {
     public void setCarPk(CarPK carPk) {
         this.carPk = carPk;
     }*/
+
 
     public Long getDistance() {
         return distance;
@@ -76,6 +83,15 @@ public class Car implements Serializable {
         this.car_id = car_id;
     }
 
+    public Date getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+
     @Override
     public String toString() {
         return "Car{" +
@@ -83,7 +99,8 @@ public class Car implements Serializable {
                 ", distance=" + distance +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", owner=" + owner.getIdemployee() +
+                ", registrationDate=" + registrationDate +
                 '}';
     }
+
 }

@@ -1,4 +1,4 @@
-package pl.mg.cfm.webclient.employeerepository.test;
+package pl.mg.cfm.webclient.employeerolerepo.test;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -6,18 +6,20 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import pl.mg.cfm.webclient.data.entity.Employee;
-import pl.mg.cfm.webclient.data.repository.EmployeeRepository;
+import pl.mg.cfm.webclient.data.entity.EmployeeRole;
+import pl.mg.cfm.webclient.data.repository.EmployeeRoleRepository;
+
+import static junit.framework.TestCase.assertNotNull;
 
 /**
  * Created by m on 2015-04-15.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/applicationContext.xml", "file:src/main/webapp/WEB-INF/applicationContextPersistence.xml"})
-public class GetEmployeeCorrectTest {
+public class GetRoleAdminTest {
 
     @Autowired
-    EmployeeRepository repository;
+    EmployeeRoleRepository repository;
 
     @Before
     public void before(){
@@ -26,8 +28,8 @@ public class GetEmployeeCorrectTest {
 
     @Test
     public void test(){
-
-        Employee employee = repository.getEmployee(1);
-        System.out.println(employee);
+        EmployeeRole employeeRole = repository.getRole("ROLE_ADMIN");
+        System.out.println(employeeRole);
+        assertNotNull(employeeRole);
     }
 }

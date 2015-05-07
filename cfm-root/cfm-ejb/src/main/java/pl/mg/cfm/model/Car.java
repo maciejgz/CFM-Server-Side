@@ -11,7 +11,7 @@ public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // @EmbeddedId
+    @EmbeddedId
     // private CarPK carPk;
 
 

@@ -13,6 +13,8 @@ import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.data.entity.Employee;
 import pl.mg.cfm.webclient.data.entity.EmployeeRole;
 
+import java.util.List;
+
 @Repository
 public class EmployeeRepositoryImpl implements EmployeeRepository {
 
@@ -46,7 +48,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true,propagation = Propagation.SUPPORTS)
     public Employee getEmployee(Integer id) {
         //made by sql query to make difference
        /* String sqlQuery = "select * from employee where idemployee like ?";
@@ -55,6 +57,8 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
         /*Employee employee = (Employee) query.getSingleResult();*/
         Employee employee = entityManager.find(Employee.class, id);
+        employee.getCars();
+        employee.getRole();
 
        /* if (employee == null) {
             throw new EmployeeNotFoundException("User not found");
@@ -68,6 +72,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         emPojo.setRoleName(employee.getRole().getName());*/
         return employee;
     }
+
 
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
@@ -100,11 +105,15 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     @Transactional(propagation = Propagation.REQUIRES_NEW, rollbackFor = {EmployeeNotFoundException.class})
     public void updateEmployee(Employee employee) throws EmployeeNotFoundException {
 
-        Employee updatedEmployee = entityManager.find(Employee.class, employee.getIdemployee());
+        //wersja JPA
+        entityManager.merge(employee);
+
+       /* Employee updatedEmployee = entityManager.find(Employee.class, employee.getIdemployee());
 //        entityManager.getTransaction();
         updatedEmployee.setFirstName(employee.getFirstName());
         updatedEmployee.setLastName(employee.getLastName());
         updatedEmployee.setPassword(employee.getPassword());
+
 
         EmployeeRole role = null;
         if (employee.getRole().getName() != null) {
@@ -117,9 +126,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         if (role != null) {
             updatedEmployee.setRole(role);
         }
-        entityManager.merge(updatedEmployee);
+        entityManager.merge(updatedEmployee);*/
 
 
+
+        // wersja SQL
        /* String sqlQuery = "update employee set first_name=?,last_name=?,password=? where idemployee=?";
 
         Query query = entityManager.createNativeQuery(sqlQuery);
@@ -130,6 +141,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         logger.debug("query=" + query.toString());
         int rows = query.executeUpdate();
         logger.debug("updateUser; updated rows=" + rows);*/
+    }
+
+    @Override
+    public List<Employee> findEmployee() {
+        return null;
     }
 
 }

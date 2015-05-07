@@ -7,6 +7,8 @@ import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.domain.EmployeeRolePojo;
 import pl.mg.cfm.webclient.data.entity.Employee;
 
+import java.util.List;
+
 /**
  * Methods don't throw errors because it is not well fashioned to throw exceptions when business case happen.
  */
@@ -21,4 +23,5 @@ public interface EmployeeRepository {
 
     public void updateEmployee(Employee employee)throws EmployeeNotFoundException;
 
+    public List<Employee> findEmployee();
 }

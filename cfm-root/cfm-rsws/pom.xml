@@ -14,6 +14,7 @@
 	<description>
 		WebService SOAP zbudowany na spring BOOT z SPring DATA JPA.
         Bootowanie powinno być wyłączone i trzeba wrzucać wara na serwer.
+		Autentykacja poprzez httpBasic z uzyciem springa
 	</description>
 	<dependencies>
 		<dependency>

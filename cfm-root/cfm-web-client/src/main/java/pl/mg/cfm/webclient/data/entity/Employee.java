@@ -22,14 +22,14 @@ public class Employee {
 
     // relacja jest wiele do jednego, bo wielu pracowników moze byc przypisanych
     // do jednego typu
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "role_id")
     private EmployeeRole role;
 
     @Column(name = "password")
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.LAZY)
     private Collection<Car> cars = new ArrayList<Car>();
 
     public Integer getIdemployee() {
