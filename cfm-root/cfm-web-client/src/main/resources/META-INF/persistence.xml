@@ -22,4 +22,24 @@
 
     </persistence-unit>
 
+    <persistence-unit name="cfm-openshift">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>pl.mg.cfm.webclient.data.entity.Car</class>
+        <class>pl.mg.cfm.webclient.data.entity.Employee</class>
+        <class>pl.mg.cfm.webclient.data.entity.EmployeeRole</class>
+
+
+        <properties>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://127.0.0.1:3306/cfm"/>
+            <property name="hibernate.connection.username" value="adminrY3BB9F"/>
+            <property name="hibernate.connection.password" value="zTzJwHKsd7BP"/>
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+
+        </properties>
+
+    </persistence-unit>
+
 </persistence>
