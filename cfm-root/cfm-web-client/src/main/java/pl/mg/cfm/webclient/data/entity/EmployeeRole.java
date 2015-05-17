@@ -1,8 +1,13 @@
 package pl.mg.cfm.webclient.data.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -21,8 +26,9 @@ public class EmployeeRole implements Serializable {
     @Column(name = "name")
     private String name;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "role", fetch = FetchType.EAGER)
-    private Collection<Employee> employees = new ArrayList<Employee>();
+    private Set<Employee> employees = new HashSet<Employee>();
 
     public int getId() {
         return id;
@@ -44,7 +50,7 @@ public class EmployeeRole implements Serializable {
         return employees;
     }
 
-    public void setEmployees(Collection<Employee> employees) {
+    public void setEmployees(Set<Employee> employees) {
         this.employees = employees;
     }
 

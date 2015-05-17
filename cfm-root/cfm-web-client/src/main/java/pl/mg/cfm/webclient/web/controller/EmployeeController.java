@@ -45,6 +45,9 @@ public class EmployeeController {
 
         addSessionEmployeeIfNull(employee, model, principal);
 
+        logger.debug(employee);
+
+
         return WebConstants.TEMPLATE_EMPLOYEE;
     }
 

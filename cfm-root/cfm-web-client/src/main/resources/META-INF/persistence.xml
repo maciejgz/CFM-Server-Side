@@ -22,7 +22,7 @@
 
     </persistence-unit>
 
-    <persistence-unit name="cfm-openshift">
+    <!--<persistence-unit name="cfm-openshift">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>pl.mg.cfm.webclient.data.entity.Car</class>
         <class>pl.mg.cfm.webclient.data.entity.Employee</class>
@@ -40,6 +40,6 @@
 
         </properties>
 
-    </persistence-unit>
+    </persistence-unit>-->
 
 </persistence>

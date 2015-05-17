@@ -8,7 +8,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
+import pl.mg.cfm.webclient.data.adapter.CarAdapter;
 import pl.mg.cfm.webclient.data.adapter.EmployeeAdapter;
+import pl.mg.cfm.webclient.data.adapter.PojoAdapter;
 import pl.mg.cfm.webclient.data.repository.EmployeeRepository;
 
 /**
@@ -21,6 +23,9 @@ public class UpdateEmployeeTest {
 
     @Autowired
     EmployeeRepository repository;
+
+    @Autowired
+    private EmployeeAdapter adapter;
 
     @Before
     public void before() {
@@ -39,7 +44,7 @@ public class UpdateEmployeeTest {
         employee.setRoleName("ROLE_USER");
 
         try {
-            repository.updateEmployee(EmployeeAdapter.toEntity(employee));
+            repository.updateEmployee(adapter.toEntity(employee));
         } catch (EmployeeNotFoundException e) {
             e.printStackTrace();
         }

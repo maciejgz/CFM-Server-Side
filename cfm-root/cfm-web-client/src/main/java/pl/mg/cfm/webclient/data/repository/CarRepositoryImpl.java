@@ -1,24 +1,15 @@
 package pl.mg.cfm.webclient.data.repository;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import org.jboss.logging.Logger;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import pl.mg.cfm.webclient.data.entity.Car;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
-
-import org.jboss.logging.Logger;
-import org.springframework.stereotype.Repository;
-
-import pl.mg.cfm.domain.CarPojo;
-import pl.mg.cfm.domain.EmployeePojo;
-import pl.mg.cfm.webclient.data.entity.Car;
-import pl.mg.cfm.webclient.data.entity.Employee;
+import java.util.List;
 
 /**
  * Repozytorium dla klienta webowego zrealizowane na JPA (w implementacji
@@ -31,7 +22,7 @@ public class CarRepositoryImpl implements CarRepository {
 
     private Logger logger = Logger.getLogger(CarRepositoryImpl.class);
 
-    @PersistenceContext
+    @PersistenceContext(name = "cfm-localhost")
     private EntityManager entityManager;
 
     @Override
@@ -90,6 +81,7 @@ public class CarRepositoryImpl implements CarRepository {
     }
 
     @Override
+    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<Car> getEmployeeCars(String employeeId) throws UnsupportedOperationException {
       /*  String queryString = "select * from car where car_owner_id like ?";
 
@@ -100,7 +92,7 @@ public class CarRepositoryImpl implements CarRepository {
 
 
         //CriteriaBuilder
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        /*CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery();
         Root root = cq.from(Car.class);
 
@@ -109,8 +101,11 @@ public class CarRepositoryImpl implements CarRepository {
 
         List<Car> resultCriteria = criteriaQuery.getResultList();
 
-        return resultCriteria;
-    }
+        return resultCriteria;*/
 
+
+        //NamedQuery version
+        return entityManager.createNamedQuery("car.getEmployeeCars").setParameter("employee_id", Integer.valueOf(employeeId)).getResultList();
+    }
 
 }

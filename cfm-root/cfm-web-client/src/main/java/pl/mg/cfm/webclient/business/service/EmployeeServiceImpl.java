@@ -23,6 +23,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository repository;
 
+    @Autowired
+    private EmployeeAdapter adapter;
+
     @Override
     public boolean login(String id, String password) throws EmployeeNotFoundException, InvalidPasswordException {
         return repository.login(id, password);
@@ -31,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeePojo getEmployee(String id) throws NumberFormatException, EmployeeNotFoundException {
         try {
-            return EmployeeAdapter.fromEntity(repository.getEmployee(Integer.parseInt(id)));
+            return adapter.fromEntity(repository.getEmployee(Integer.parseInt(id)));
         } catch (NumberFormatException e) {
             logger.error(e.getLocalizedMessage(), e);
             throw e;
@@ -58,7 +61,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                     + newFirstName + ",lastName=" + newLastName + ",password=" + newPassword);
             throw new InvalidInputDataException();
         }
-        EmployeePojo oldEmployeePojo = EmployeeAdapter.fromEntity(repository.getEmployee(id));
+        EmployeePojo oldEmployeePojo = adapter.fromEntity(repository.getEmployee(id));
 
         if (!oldEmployeePojo.getFirstName().equals(newFirstName)) {
             oldEmployeePojo.setFirstName(newFirstName);
@@ -73,7 +76,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         }
         //        logger.debug("updating employee-" + oldEmployeePojo.toString());
 
-        repository.updateEmployee(EmployeeAdapter.toEntity(oldEmployeePojo));
+        repository.updateEmployee(adapter.toEntity(oldEmployeePojo));
 
     }
 
@@ -90,6 +93,6 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new InvalidInputDataException();
         }
         employeePojo.setPassword(newPassword);
-        this.repository.updateEmployee(EmployeeAdapter.toEntity(employeePojo));
+        this.repository.updateEmployee(adapter.toEntity(employeePojo));
     }
 }

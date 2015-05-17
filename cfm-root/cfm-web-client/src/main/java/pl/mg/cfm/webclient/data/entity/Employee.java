@@ -1,7 +1,11 @@
 package pl.mg.cfm.webclient.data.entity;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 import javax.persistence.*;
 
@@ -29,8 +33,9 @@ public class Employee {
     @Column(name = "password")
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.LAZY)
-    private Collection<Car> cars = new ArrayList<Car>();
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner", fetch = FetchType.EAGER)
+    private Collection<Car> cars = new HashSet<Car>();
 
     public Integer getIdemployee() {
         return idemployee;

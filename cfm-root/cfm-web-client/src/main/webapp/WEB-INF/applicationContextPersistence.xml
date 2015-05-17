@@ -29,7 +29,7 @@
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceUnitName" value="cfm-localhost"/>
-        <property name="dataSource" ref="localhostPoolable"/>
+        <property name="dataSource" ref="localhostMysql"/>
         <property name="packagesToScan" value="pl.mg.cfm.webclient.data.entity"/>
     </bean>
 
@@ -60,11 +60,11 @@
         <property name="password" value="qaz123"/>
     </bean>
 
-    <bean id="localhostPoolable" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+   <!-- <bean id="localhostPoolable" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/cfm"/>
         <property name="username" value="admin"/>
         <property name="password" value="qaz123"/>
-    </bean>
+    </bean>-->
 
 </beans>

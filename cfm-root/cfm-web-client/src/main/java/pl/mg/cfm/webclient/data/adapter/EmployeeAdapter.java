@@ -1,5 +1,6 @@
 package pl.mg.cfm.webclient.data.adapter;
 
+import org.springframework.stereotype.Component;
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.domain.Role;
 import pl.mg.cfm.webclient.data.entity.Employee;
@@ -8,9 +9,11 @@ import pl.mg.cfm.webclient.data.entity.EmployeeRole;
 /**
  * Created by m on 2015-03-30.
  */
-public class EmployeeAdapter {
+@Component
+public class EmployeeAdapter implements PojoAdapter<EmployeePojo, Employee> {
 
-    public static EmployeePojo fromEntity(Employee employee) {
+    @Override
+    public EmployeePojo fromEntity(Employee employee) {
         if (employee == null) {
             return null;
         } else {
@@ -33,7 +36,8 @@ public class EmployeeAdapter {
      * @param employee
      * @return
      */
-    public static Employee toEntity(EmployeePojo employee) {
+    @Override
+    public Employee toEntity(EmployeePojo employee) {
         if (employee == null) {
             return null;
         } else {

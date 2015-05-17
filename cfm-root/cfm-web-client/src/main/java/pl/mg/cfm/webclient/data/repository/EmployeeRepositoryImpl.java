@@ -59,17 +59,6 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         Employee employee = entityManager.find(Employee.class, id);
         employee.getCars();
         employee.getRole();
-
-       /* if (employee == null) {
-            throw new EmployeeNotFoundException("User not found");
-        }*/
-        // logger.debug(employee.toString());
-       /* EmployeePojo emPojo = new EmployeePojo();
-        emPojo.setId(employee.getIdemployee());
-        emPojo.setFirstName(employee.getFirstName());
-        emPojo.setLastName(employee.getLastName());
-        emPojo.setPassword(employee.getPassword());
-        emPojo.setRoleName(employee.getRole().getName());*/
         return employee;
     }
 

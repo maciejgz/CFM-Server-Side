@@ -7,6 +7,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "car")
+@NamedQueries(value = {@NamedQuery(name = "car.getEmployeeCars", query = "Select c FROM Car c WHERE owner.idemployee = :employee_id")})
 public class Car implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,7 +26,7 @@ public class Car implements Serializable {
     @Column(name = "longitude")
     private Double longitude;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "car_owner_id")
     private Employee owner;
 
