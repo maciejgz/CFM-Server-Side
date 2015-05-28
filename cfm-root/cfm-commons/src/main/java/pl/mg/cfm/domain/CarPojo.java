@@ -1,6 +1,7 @@
 package pl.mg.cfm.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class CarPojo implements Serializable {
 
@@ -10,6 +11,9 @@ public class CarPojo implements Serializable {
     private Double latitude;
     private Double longitude;
     private Integer ownerId;
+
+
+    private Date registrationDate;
 
     public CarPojo() {
 
@@ -63,10 +67,23 @@ public class CarPojo implements Serializable {
         this.ownerId = ownerId;
     }
 
-    @Override
-    public String toString() {
-        return "CarPojo [carId=" + carId + ", distance=" + distance + ", latitude=" + latitude + ", longitude="
-                + longitude + ", ownerId=" + ownerId + "]";
+    public Date getRegistrationDate() {
+        return registrationDate;
     }
 
+    public void setRegistrationDate(Date registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+    @Override
+    public String toString() {
+        return "CarPojo{" +
+                "carId='" + carId + '\'' +
+                ", distance=" + distance +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", ownerId=" + ownerId +
+                ", registrationDate=" + registrationDate +
+                '}';
+    }
 }

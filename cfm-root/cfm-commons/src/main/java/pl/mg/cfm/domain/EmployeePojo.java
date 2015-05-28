@@ -1,6 +1,7 @@
 package pl.mg.cfm.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -66,12 +67,6 @@ public class EmployeePojo implements Serializable {
         this.roleName = roleName;
     }
 
-    @Override
-    public String toString() {
-        return "EmployeePojo [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", roleName="
-                + roleName + ", password=" + password + "]";
-    }
-
     public String getPassword() {
         return password;
     }
@@ -80,4 +75,14 @@ public class EmployeePojo implements Serializable {
         this.password = password;
     }
 
+    @Override
+    public String toString() {
+        return "EmployeePojo{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", roleName='" + roleName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

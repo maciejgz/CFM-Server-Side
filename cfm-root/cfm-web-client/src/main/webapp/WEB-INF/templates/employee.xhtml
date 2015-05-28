@@ -4,6 +4,46 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}"/>
 
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBtZQOsXtYn5mV3j86aDmB3Obvb3mO0QlY"></script>
+    <script type="text/javascript">
+        function initialize() {
+
+            var myCenter = new google.maps.LatLng(52.160262, 21.010744);
+            var mapProp = {
+                center: new google.maps.LatLng(52.160262, 21.010744),
+                zoom: 4,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+
+            var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+
+            var marker = new google.maps.Marker({
+                position: myCenter,
+                label: "center",
+                map: map
+            });
+            /*marker.setMap(map);*/
+
+            TestMarker();
+        }
+
+        function addMarker(location) {
+            marker = new google.maps.Marker({
+                position: location,
+                map: map
+            });
+        }
+
+        function TestMarker() {
+            CentralPark = new google.maps.LatLng(51.508742, 20.010744);
+            addMarker(CentralPark);
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
 </head>
 <body>
 <div th:include="home :: header"></div>
@@ -84,7 +124,41 @@
                 </div>
             </TD>
         </TR>
+
+        <tr th:each="car : ${employeeCars}">
+            <td th:text="${car.carId}">Numer rejestracyjny_1</td>
+            <td th:text="${car.distance}">Numer rejestracyjny_1</td>
+            <td th:text="${car.latitude} + ':' + ${car.latitude}">polozenie</td>
+            <td th:text="'edit button'">edytuj</td>
+
+        </tr>
     </TABLE>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var message = [[${test_variable}]];
+        console.log(message);
+
+
+      /*  var arrayOfObjects = [{"id": 28, "Title": "Sweden"}, {"id": 56, "Title": "USA"}, {
+            "id": 89,
+            "Title": "England"
+        }];*/
+
+
+        var arrayOfObjects = [[${markers}]];
+        console.log(arrayOfObjects);
+        for (var i = 0; i < arrayOfObjects.length; i++) {
+            var object = arrayOfObjects[i];
+            for (var property in object) {
+                console.log('item ' + i + ': ' + property + '=' + object[property]);
+            }
+            // If property names are known beforehand, you can also just do e.g.
+            // alert(object.id + ',' + object.Title);
+        }
+        /*]]>*/
+    </script>
+    <div id="googleMap" style="width:500px;height:380px;"></div>
 </section>
 </body>
 </html>

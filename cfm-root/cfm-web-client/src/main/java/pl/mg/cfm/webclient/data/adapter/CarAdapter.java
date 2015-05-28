@@ -1,5 +1,6 @@
 package pl.mg.cfm.webclient.data.adapter;
 
+import org.springframework.stereotype.Component;
 import pl.mg.cfm.domain.CarPojo;
 import pl.mg.cfm.webclient.data.entity.Car;
 import pl.mg.cfm.webclient.data.entity.Employee;
@@ -7,6 +8,7 @@ import pl.mg.cfm.webclient.data.entity.Employee;
 /**
  * Created by m on 2015-05-17.
  */
+@Component
 public class CarAdapter implements PojoAdapter<CarPojo, Car> {
     @Override
     public CarPojo fromEntity(Car entity) {
