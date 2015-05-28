@@ -1,0 +1,26 @@
+CREATE TABLE car
+(
+    car_id VARCHAR(7) PRIMARY KEY NOT NULL,
+    distance INT NOT NULL,
+    latitude DOUBLE,
+    longitude DOUBLE,
+    car_owner_id INT
+);
+CREATE TABLE employee
+(
+    idemployee INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    role_id INT,
+    password CHAR(128) NOT NULL
+);
+CREATE TABLE employee_role
+(
+    id INT PRIMARY KEY NOT NULL,
+    name VARCHAR(45)
+);
+ALTER TABLE car ADD FOREIGN KEY (car_owner_id) REFERENCES employee (idemployee);
+CREATE UNIQUE INDEX carid_UNIQUE ON car (car_id);
+CREATE INDEX fk_car_owner_id_idx ON car (car_owner_id);
+ALTER TABLE employee ADD FOREIGN KEY (role_id) REFERENCES employee_role (id) ON DELETE CASCADE;
+CREATE INDEX fk_role_id_idx ON employee (role_id);
