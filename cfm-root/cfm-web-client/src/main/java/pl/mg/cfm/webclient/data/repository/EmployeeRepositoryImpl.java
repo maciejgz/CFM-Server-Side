@@ -57,6 +57,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
         /*Employee employee = (Employee) query.getSingleResult();*/
         Employee employee = entityManager.find(Employee.class, id);
+        // get jest wymagany do wstêpnego pobrania zaleznoœci
         employee.getCars();
         employee.getRole();
         return employee;

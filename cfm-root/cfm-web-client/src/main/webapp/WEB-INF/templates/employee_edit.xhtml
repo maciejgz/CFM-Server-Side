@@ -25,15 +25,14 @@
 			<TABLE id="employee_data_table" align="center">
 				<TR>
 					<TD><div id="table_header">
-							<LABEL th:text="#{employee.first_name_label}">ID</LABEL>
+							<LABEL th:text="#{employee.first_name_label}">Imie</LABEL>
 						</div></TD>
-					<TD><input type="text" id="firstName" name="firstName"
-						th:value="*{firstName}" /></TD>
+					<TD><input type="text" name="firstName" th:value="*{firstName}" /></TD>
 				</TR>
 
 				<TR>
 					<TD><div id="table_header">
-							<LABEL th:text="#{employee.last_name_label}">ID</LABEL>
+							<LABEL th:text="#{employee.last_name_label}">Nazwisko</LABEL>
 						</div></TD>
 					<TD><input type="text" th:id="lastName" name="lastName" th:value="*{lastName}" /></TD>
 				</TR>

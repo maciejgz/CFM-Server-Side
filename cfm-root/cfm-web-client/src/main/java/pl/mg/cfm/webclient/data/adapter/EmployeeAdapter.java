@@ -36,6 +36,7 @@ public class EmployeeAdapter implements PojoAdapter<EmployeePojo, Employee> {
      * @param employee
      * @return
      */
+    @Deprecated
     @Override
     public Employee toEntity(EmployeePojo employee) {
         if (employee == null) {

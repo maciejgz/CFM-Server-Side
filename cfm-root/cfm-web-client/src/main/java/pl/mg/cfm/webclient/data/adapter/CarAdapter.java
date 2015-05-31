@@ -25,6 +25,7 @@ public class CarAdapter implements PojoAdapter<CarPojo, Car> {
     }
 
     @Override
+    @Deprecated
     public Car toEntity(CarPojo pojo) {
         if (pojo == null) {
             return null;

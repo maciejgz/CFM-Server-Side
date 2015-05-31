@@ -10,8 +10,6 @@ import pl.mg.cfm.webclient.data.entity.EmployeeRole;
 import pl.mg.cfm.webclient.data.repository.EmployeeRoleRepository;
 
 import static junit.framework.Assert.assertNull;
-import static junit.framework.TestCase.assertNotNull;
-import static junit.framework.TestCase.assertTrue;
 
 /**
  * Created by m on 2015-04-15.

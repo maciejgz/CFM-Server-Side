@@ -10,6 +10,10 @@ div#header {
 }
 
 div#table_header{
+	 font-weight: bold;
+ }
+
+div#row_header{
 	font-weight: bold;
 }
 

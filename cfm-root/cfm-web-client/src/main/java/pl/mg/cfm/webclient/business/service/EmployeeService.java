@@ -31,4 +31,5 @@ public interface EmployeeService {
     public void updatePassword(EmployeePojo employeePojo, String newPassword, String newPasswordConfirm)
             throws InvalidInputDataException, EmployeeNotFoundException;
 
+    public void changeEmployeeRole(Integer id, String roleName) throws InvalidInputDataException, EmployeeNotFoundException;
 }

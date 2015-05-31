@@ -63,15 +63,6 @@ public class EmployeeController {
         if (cars != null) {
             model.addAttribute("employeeCars", cars);
         }
-        logger.debug(employee);
-
-
-        model.addAttribute("markers", "[{\"longitude\": 28, \"latitude\": \"28\"}, {\"longitude\": \"-28\", \"latitude\": \"-28\"}]");
-
-
-        model.addAttribute("test_variable", "test");
-
-
         return WebConstants.TEMPLATE_EMPLOYEE;
     }
 

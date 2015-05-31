@@ -1,11 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}"/>
 </head>
 <body>
-	<div th:include="home :: header"></div>
-	<div th:include="home :: menu"></div>
+<div th:include="home :: header"></div>
+<div th:include="home :: menu"></div>
+
+
+<div id="title_div" align="center"
+     th:text="#{employees.search_employee_label}">Okresl kryteria wyszukiwania pracowników
+</div>
+
+<form action="#" th:action="@{/employees}" method="post"
+      th:object="${search_employee_criteria}">
+    <table id="search_employee_table" align="center">
+        <tr>
+            <td>
+                <div id="row_header">
+                    <label th:text="#{employees.id_label}">ID</label>
+                    <TD><input type="text" id="firstName" name="firstName"
+                               th:value="*{id}"/></TD>
+                </div>
+            </td>
+        </tr>
+    </table>
+</form>
+
 </body>
 </html>

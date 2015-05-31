@@ -2,7 +2,6 @@ package pl.mg.cfm.webclient.business.service;
 
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import pl.mg.cfm.business.exception.InvalidInputDataException;
@@ -13,7 +12,9 @@ import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.validator.EmployeeValidator;
 import pl.mg.cfm.webclient.data.adapter.EmployeeAdapter;
 import pl.mg.cfm.webclient.data.entity.Employee;
+import pl.mg.cfm.webclient.data.entity.EmployeeRole;
 import pl.mg.cfm.webclient.data.repository.EmployeeRepository;
+import pl.mg.cfm.webclient.data.repository.EmployeeRoleRepository;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -25,6 +26,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Autowired
     private EmployeeAdapter adapter;
+
+    @Autowired
+    private EmployeeRoleRepository roleRepository;
 
     @Override
     public boolean login(String id, String password) throws EmployeeNotFoundException, InvalidPasswordException {
@@ -55,14 +59,17 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void updateEmployee(Integer id, String newFirstName, String newLastName, String newPassword)
             throws EmployeeNotFoundException, InvalidInputDataException {
-        if (!EmployeeValidator.validateId(id.toString()) || !EmployeeValidator.validateFirstName(newFirstName)
+        if (!EmployeeValidator.validateId(id) || !EmployeeValidator.validateFirstName(newFirstName)
                 || !EmployeeValidator.validateLastName(newLastName) || !EmployeeValidator.validatePassword(newPassword)) {
             logger.error("ErrorDuring validation input data during employee update. id=" + id + ",firstName="
                     + newFirstName + ",lastName=" + newLastName + ",password=" + newPassword);
             throw new InvalidInputDataException();
         }
-        EmployeePojo oldEmployeePojo = adapter.fromEntity(repository.getEmployee(id));
 
+        Employee oldEmployeePojo = repository.getEmployee(id);
+        if (oldEmployeePojo == null) {
+            throw new EmployeeNotFoundException();
+        }
         if (!oldEmployeePojo.getFirstName().equals(newFirstName)) {
             oldEmployeePojo.setFirstName(newFirstName);
         }
@@ -74,9 +81,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         if (!oldEmployeePojo.getPassword().equals(newPassword)) {
             oldEmployeePojo.setPassword(newPassword);
         }
-        //        logger.debug("updating employee-" + oldEmployeePojo.toString());
-
-        repository.updateEmployee(adapter.toEntity(oldEmployeePojo));
+        repository.updateEmployee(oldEmployeePojo);
 
     }
 
@@ -92,7 +97,27 @@ public class EmployeeServiceImpl implements EmployeeService {
                 || !EmployeeValidator.validatePassword(newPasswordConfirm)) {
             throw new InvalidInputDataException();
         }
-        employeePojo.setPassword(newPassword);
-        this.repository.updateEmployee(adapter.toEntity(employeePojo));
+        Employee oldEmployee = repository.getEmployee(employeePojo.getId());
+
+
+        oldEmployee.setPassword(newPassword);
+        this.repository.updateEmployee(oldEmployee);
+    }
+
+    @Override
+    public void changeEmployeeRole(Integer id, String roleName) throws InvalidInputDataException, EmployeeNotFoundException {
+        logger.debug("employeeService.changeRole");
+        if (!EmployeeValidator.validateId(id)) {
+            throw new InvalidInputDataException();
+        }
+        Employee oldEmployee = repository.getEmployee(id);
+        if (oldEmployee != null && !oldEmployee.getRole().getName().equals(roleName)) {
+            EmployeeRole newRole = roleRepository.getRole(roleName);
+            if (roleName != null) {
+                oldEmployee.setRole(newRole);
+                repository.updateEmployee(oldEmployee);
+            }
+        }
+
     }
 }

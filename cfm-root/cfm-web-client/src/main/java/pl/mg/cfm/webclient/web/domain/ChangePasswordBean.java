@@ -3,6 +3,9 @@ package pl.mg.cfm.webclient.web.domain;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+/**
+ * Backed bean for change password form.
+ */
 @Component
 @Scope("request")
 public class ChangePasswordBean {

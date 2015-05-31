@@ -3,6 +3,9 @@ package pl.mg.cfm.webclient.web.domain;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+/**
+ * Error message backed bean.
+ */
 @Component
 @Scope("session")
 public class ErrorMessage {

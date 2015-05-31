@@ -5,7 +5,7 @@ package pl.mg.cfm.webclient.business.validator;
  */
 public class EmployeeValidator {
 
-    public static boolean validateId(String id) {
+    public static boolean validateId(Integer id) {
         // TODO implement!
         return true;
     }
