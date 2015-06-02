@@ -39,6 +39,7 @@ public class WebConstants {
     public static final String PARAM_UPDATE_SUCCESS = "update_success";
     public static final String PARAM_CHANGE_PASSWORD = "change_password_bean";
     public static final String PARAM_SEARCH_EMPLOYEE_CRITERIA = "search_employee_criteria";
+    public static final String PARAM_ROLES = "employee_roles";
 
     // POST PARAMS
     public static final String POST_PARAM_REGISTER = "register";

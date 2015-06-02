@@ -20,11 +20,50 @@
             <td>
                 <div id="row_header">
                     <label th:text="#{employees.id_label}">ID</label>
-                    <TD><input type="text" id="firstName" name="firstName"
-                               th:value="*{id}"/></TD>
                 </div>
             </td>
+            <TD><input type="text" name="id"
+                       th:value="*{id}"/></TD>
         </tr>
+
+        <tr>
+            <td>
+                <div id="row_header">
+                    <label th:text="#{employees.first_name_label}">Imie</label>
+                </div>
+            </td>
+            <TD><input type="text" name="firstName"
+                       th:value="*{firstName}"/></TD>
+        </tr>
+
+        <tr>
+            <td>
+                <div id="row_header">
+                    <label th:text="#{employees.last_name_label}">Nazwisko</label>
+                </div>
+            </td>
+            <TD><input type="text" name="lastName"
+                       th:value="*{lastName}"/></TD>
+        </tr>
+
+
+        <tr>
+            <td>
+                <div id="row_header">
+                    <label th:text="#{employees.role_label}">Rola pracownika</label>
+                </div>
+            </td>
+            <TD>
+                <select th:field="*{roleName}">
+                    <option th:each="entry : ${employee_roles.entrySet()}" th:value="${entry.key}"
+                            th:text="${entry.value}">
+                        This will be replaced - is only used for natural templating
+                    </option>
+                </select>
+            </TD>
+        </tr>
+
+
     </table>
 </form>
 

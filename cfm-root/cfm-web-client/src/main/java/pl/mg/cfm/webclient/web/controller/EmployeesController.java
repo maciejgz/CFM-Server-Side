@@ -15,6 +15,8 @@ import pl.mg.cfm.webclient.web.domain.EmployeeSearchCriteriaBean;
 
 import javax.inject.Inject;
 import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Controller for class editing and searching employees
@@ -32,6 +34,16 @@ public class EmployeesController {
     @ModelAttribute(WebConstants.PARAM_EMPLOYEE)
     public EmployeePojo populateMockEmployee() {
         return new EmployeePojo();
+    }
+
+    @ModelAttribute(WebConstants.PARAM_ROLES)
+    public HashMap<String, String> getRoles() {
+        HashMap<String, String> roles = new HashMap<String, String>();
+        roles.put("ALL", "ALL");
+        roles.put("ADMIN", "ROLE_ADMIN");
+        roles.put("USER", "ROLE_USER");
+
+        return roles;
     }
 
     @RequestMapping(method = RequestMethod.GET)
