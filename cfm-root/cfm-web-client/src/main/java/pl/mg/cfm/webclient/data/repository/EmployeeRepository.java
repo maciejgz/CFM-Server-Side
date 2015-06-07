@@ -14,14 +14,14 @@ import java.util.List;
  */
 public interface EmployeeRepository {
 
-    
+
     public boolean login(String id, String password);
 
     public Employee getEmployee(Integer id);
-    
-    public Integer registerEmployee(String firstName, String lastName,String password) throws RegisterEmployeeException;
 
-    public void updateEmployee(Employee employee)throws EmployeeNotFoundException;
+    public Integer registerEmployee(String firstName, String lastName, String password) throws RegisterEmployeeException;
 
-    public List<Employee> findEmployee();
+    public void updateEmployee(Employee employee) throws EmployeeNotFoundException;
+
+    public List<Employee> findEmployee(EmployeeCriteria criteria);
 }

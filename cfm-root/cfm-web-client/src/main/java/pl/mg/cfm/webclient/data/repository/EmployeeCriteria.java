@@ -7,10 +7,12 @@ package pl.mg.cfm.webclient.data.repository;
 public class EmployeeCriteria {
 
     private String firstName = null;
+    private String firstNameOperator = null;
     private String lastName = null;
+    private String lastNameOperator = null;
 
-    private String carId = null;
-
+    private String employeeId = null;
+    private String employeeIdOperator = null;
 
     public EmployeeCriteria() {
     }
@@ -31,11 +33,4 @@ public class EmployeeCriteria {
         this.lastName = lastName;
     }
 
-    public String getCarId() {
-        return carId;
-    }
-
-    public void setCarId(String carId) {
-        this.carId = carId;
-    }
 }

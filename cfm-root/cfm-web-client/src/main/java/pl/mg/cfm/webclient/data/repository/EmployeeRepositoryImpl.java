@@ -1,18 +1,16 @@
 package pl.mg.cfm.webclient.data.repository;
 
-import javax.persistence.*;
-
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import pl.mg.cfm.dao.exceptions.InvalidPasswordException;
 import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
-import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.data.entity.Employee;
 import pl.mg.cfm.webclient.data.entity.EmployeeRole;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository
@@ -48,7 +46,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    @Transactional(readOnly = true,propagation = Propagation.SUPPORTS)
+    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
     public Employee getEmployee(Integer id) {
         //made by sql query to make difference
        /* String sqlQuery = "select * from employee where idemployee like ?";
@@ -63,7 +61,6 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         return employee;
     }
 
-
     @Override
     @Transactional(propagation = Propagation.REQUIRED)
     public Integer registerEmployee(String firstName, String lastName, String password) {
@@ -74,8 +71,6 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         query.setParameter(2, lastName);
         query.setParameter(3, password);
 
-
-
         int id = (int) query.getSingleResult();*/
 
         Employee employee = new Employee();
@@ -83,8 +78,10 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         employee.setLastName(lastName);
         employee.setPassword(password);
 
-        entityManager.persist(employee);
+        EmployeeRole role = entityManager.find(EmployeeRole.class, 1);
+        employee.setRole(role);
 
+        entityManager.persist(employee);
 
         int id = employee.getIdemployee();
         logger.debug("registerEmployee repository. result=" + id);
@@ -119,7 +116,6 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         entityManager.merge(updatedEmployee);*/
 
 
-
         // wersja SQL
        /* String sqlQuery = "update employee set first_name=?,last_name=?,password=? where idemployee=?";
 
@@ -134,7 +130,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    public List<Employee> findEmployee() {
+    public List<Employee> findEmployee(EmployeeCriteria criteria) {
         return null;
     }
 
