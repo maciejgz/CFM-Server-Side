@@ -11,6 +11,9 @@ import pl.mg.cfm.webclient.data.entity.EmployeeRole;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -131,7 +134,37 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
 
     @Override
     public List<Employee> findEmployee(EmployeeCriteria criteria) {
-        return null;
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Employee> cq = cb.createQuery(Employee.class);
+        Root<Employee> emp = cq.from(Employee.class);
+
+        List<Predicate> criteriaList = new ArrayList<Predicate>();
+        //ParameterExpression<String> p = cb.parameter(String.class, )
+
+        if (criteria.getEmployeeId() != null) {
+            SearchOperator operator = SearchOperator.valueOf(criteria.getEmployeeIdOperator());
+
+            switch (operator) {
+                case EQ:
+                    cq.where(cb.equal(emp.get("idemployee"), criteria.getEmployeeId()));
+                    break;
+                case GTEQ:
+                    Expression<String> idemployee = emp.get("idemployee");
+                    Expression<String> idemployeeParam = cb.parameter(String.class);
+                   /* Predicate eq1 = cb.gt
+                    cq.where(eq1);*/
+                    break;
+                case GT:
+                   /* cb.gt()
+                    cq.where(cb.gt(emp.get("idemployee"), 12));*/
+                    break;
+                default:
+                    break;
+            }
+        }
+        cq.select(emp);
+        TypedQuery<Employee> q = entityManager.createQuery(cq);
+        return q.getResultList();
     }
 
 }

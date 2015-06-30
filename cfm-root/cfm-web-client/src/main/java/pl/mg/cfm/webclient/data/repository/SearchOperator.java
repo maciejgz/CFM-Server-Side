@@ -4,8 +4,8 @@ package pl.mg.cfm.webclient.data.repository;
  * Operators for search operations.
  * Created by maciek on 2015-06-07.
  */
-public enum SearchOperators {
+public enum SearchOperator {
 
-    EQ, GTEQ, LTEQ, LIKE;
+    GT, EQ, GTEQ, LTEQ, LIKE, NOTLIKE;
 
 }
