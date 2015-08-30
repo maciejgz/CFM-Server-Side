@@ -7,7 +7,7 @@ public class CarPojo implements Serializable {
 
     private static final long serialVersionUID = 2891337374918898870L;
     private String carId;
-    private Long distance;
+    private Double distance;
     private Double latitude;
     private Double longitude;
     private Integer ownerId;
@@ -19,7 +19,7 @@ public class CarPojo implements Serializable {
 
     }
 
-    public CarPojo(String carId, Long distance, Double latitude, Double longitude, Integer ownerId) {
+    public CarPojo(String carId, Double distance, Double latitude, Double longitude, Integer ownerId) {
         this.carId = carId;
         this.distance = distance;
         this.latitude = latitude;
@@ -35,11 +35,11 @@ public class CarPojo implements Serializable {
         this.carId = carId;
     }
 
-    public Long getDistance() {
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(Long distance) {
+    public void setDistance(Double distance) {
         this.distance = distance;
     }
 

@@ -36,14 +36,14 @@ public class UpdateEmployeeStepTest {
 
 
         Employee empForUpdate = repository.getEmployee(2);
-        empForUpdate.setFirstName("nowe2");
+        empForUpdate.setFirstName("nowe4");
         try {
             repository.updateEmployee(empForUpdate);
         } catch (EmployeeNotFoundException e) {
             e.printStackTrace();
         }
 
-        empForUpdate.setLastName("last2");
+        empForUpdate.setLastName("last4");
         try {
             repository.updateEmployee(empForUpdate);
         } catch (EmployeeNotFoundException e) {

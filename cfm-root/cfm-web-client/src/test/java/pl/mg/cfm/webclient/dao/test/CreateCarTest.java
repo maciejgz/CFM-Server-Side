@@ -29,7 +29,7 @@ public class CreateCarTest {
         }
         CarPojo car = new CarPojo();
         car.setCarId("2");
-        car.setDistance(0L);
+        car.setDistance(0D);
         car.setLatitude(null);
         car.setLongitude(null);
         car.setOwnerId(null);

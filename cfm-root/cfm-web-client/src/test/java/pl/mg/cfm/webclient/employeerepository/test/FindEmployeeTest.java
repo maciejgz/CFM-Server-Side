@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/applicationContext.xml", "file:src/main/webapp/WEB-INF/applicationContextPersistence.xml"})
-public class FindIdEmployeeTest {
+public class FindEmployeeTest {
 
     @Autowired
     EmployeeRepository repository;
@@ -30,7 +30,7 @@ public class FindIdEmployeeTest {
     public void before() {
     }
 
-    @Test
+    //    @Test
     public void equalsId() {
         EmployeeCriteria criteria = new EmployeeCriteria();
         criteria.setEmployeeId(1);
@@ -45,18 +45,32 @@ public class FindIdEmployeeTest {
         assertEquals(employees.get(0).getIdemployee().intValue(), 1);
     }
 
-    @Test
+    //    @Test
     public void greaterThanId() {
         EmployeeCriteria criteria = new EmployeeCriteria();
-        criteria.setEmployeeId(5);
-        criteria.setEmployeeIdOperator(SearchOperator.GTEQ.toString());
+        criteria.setEmployeeId(10017);
+        criteria.setEmployeeIdOperator(SearchOperator.NOTLIKE.name());
 
 
         List<Employee> employees = repository.findEmployee(criteria);
 
-        System.out.println("GTEQ");
         for (Employee emp : employees) {
             System.out.println(emp);
         }
     }
+
+    @Test
+    public void equalsFirstName() {
+        EmployeeCriteria criteria = new EmployeeCriteria();
+        criteria.setFirstName("Maciej");
+        criteria.setFirstNameOperator(SearchOperator.LIKE.name());
+
+
+        List<Employee> employees = repository.findEmployee(criteria);
+
+        for (Employee emp : employees) {
+            System.out.println(emp);
+        }
+    }
+
 }

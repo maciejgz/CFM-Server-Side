@@ -15,7 +15,8 @@
     </properties>
 
     <description>
-        WEB Service REST - załozeniem jest zbudownie serwisu w pełni zgodnego z wymogami i specyfikacją REST.
+        WEB Service REST API - załozeniem jest zbudownie serwisu w pełni zgodnego z wymogami i specyfikacją REST
+        umożliwiającego zarządzanie flotą. Docelowo API będzie wykorzystywane w aplikacji.
         WEB Service zbudowany na implementacji RESTEasy w JBossie z logowaniem http basic
         Zapis/odczyt danych poprzez obiekty JSON
         Komunikacja po https
@@ -87,7 +88,6 @@
             <version>${spring.version}</version>
             <scope>provided</scope>
         </dependency>
-
 
 
         <!-- Apache FOP -->

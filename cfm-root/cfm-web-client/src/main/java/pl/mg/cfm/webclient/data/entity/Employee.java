@@ -91,7 +91,7 @@ public class Employee {
                 "idemployee=" + idemployee +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", role=" + role.getName() +
+                ", role=" + role +
                 ", password='" + password + '\'' +
                 ", cars=" + cars +
                 '}';

@@ -26,7 +26,7 @@ public class GetRoleUnknownTest {
 
     }
 
-    @Test
+    @Test()
     public void test() {
         EmployeeRole employeeRole = repository.getRole("test");
         assertNull(employeeRole);

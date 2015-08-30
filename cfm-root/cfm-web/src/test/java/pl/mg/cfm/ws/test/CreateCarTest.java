@@ -18,7 +18,7 @@ public class CreateCarTest {
     @Test
     public void test() {
         String carId = "wscap50";
-        CarPojo carToInsert = new CarPojo(carId, 0L, -50.23232, 0.012, null);
+        CarPojo carToInsert = new CarPojo(carId, 0D, -50.23232, 0.012, null);
 
         Client client = AllTrustingClientFactory.createAlltrustedClient();
         WebTarget target = client.target("https://localhost:8444/cfm-web/car/" + carId);

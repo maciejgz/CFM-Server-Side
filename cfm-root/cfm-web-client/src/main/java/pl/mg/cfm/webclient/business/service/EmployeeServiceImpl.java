@@ -24,11 +24,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     private EmployeeRepository repository;
 
-    @Autowired
-    private EmployeeAdapter adapter;
+    private static EmployeeAdapter adapter = new EmployeeAdapter();
 
     @Autowired
     private EmployeeRoleRepository roleRepository;
+
 
     @Override
     public boolean login(String id, String password) throws EmployeeNotFoundException, InvalidPasswordException {

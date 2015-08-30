@@ -30,7 +30,7 @@ public class RegisterEmployeeTest {
     public void test(){
 
         try {
-            int id = repository.registerEmployee("testName", "lastName", "password");
+            int id = repository.registerEmployee("t1", "lastName", "password");
             System.out.println(id);
             assertTrue(id!=0);
         } catch (RegisterEmployeeException e) {

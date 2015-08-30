@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
+import pl.mg.cfm.dao.exceptions.OperationNotAllowedException;
 import pl.mg.cfm.webclient.data.entity.Employee;
 import pl.mg.cfm.webclient.data.entity.EmployeeRole;
 
@@ -138,31 +139,71 @@ public class EmployeeRepositoryImpl implements EmployeeRepository {
         CriteriaQuery<Employee> cq = cb.createQuery(Employee.class);
         Root<Employee> emp = cq.from(Employee.class);
 
-        List<Predicate> criteriaList = new ArrayList<Predicate>();
-        //ParameterExpression<String> p = cb.parameter(String.class, )
+        List<Predicate> predicates = new ArrayList<Predicate>();
 
+        //employeeId
         if (criteria.getEmployeeId() != null) {
             SearchOperator operator = SearchOperator.valueOf(criteria.getEmployeeIdOperator());
-
             switch (operator) {
                 case EQ:
-                    cq.where(cb.equal(emp.get("idemployee"), criteria.getEmployeeId()));
+                    predicates.add(cb.equal(emp.<Integer>get("idemployee"), criteria.getEmployeeId()));
                     break;
                 case GTEQ:
-                    Expression<String> idemployee = emp.get("idemployee");
-                    Expression<String> idemployeeParam = cb.parameter(String.class);
-                   /* Predicate eq1 = cb.gt
-                    cq.where(eq1);*/
+                    predicates.add(cb.greaterThanOrEqualTo(emp.<Integer>get("idemployee"), criteria.getEmployeeId()));
                     break;
                 case GT:
-                   /* cb.gt()
-                    cq.where(cb.gt(emp.get("idemployee"), 12));*/
+                    predicates.add(cb.greaterThan(emp.<Integer>get("idemployee"), criteria.getEmployeeId()));
+                    break;
+                case LTEQ:
+                    predicates.add(cb.lessThanOrEqualTo(emp.<Integer>get("idemployee"), criteria.getEmployeeId()));
+                    break;
+                case LT:
+                    predicates.add(cb.lessThan(emp.<Integer>get("idemployee"), criteria.getEmployeeId()));
+                    break;
+                case NOTLIKE:
+                    predicates.add(cb.notEqual(emp.<Integer>get("idemployee"), criteria.getEmployeeId()));
                     break;
                 default:
-                    break;
+                    logger.error("Operation=" + operator.toString() + " on employee id search is not allowed! Expression will be omitted.");
             }
         }
-        cq.select(emp);
+
+        //firstName
+        if (criteria.getFirstName() != null && !criteria.getFirstName().equals("")) {
+            SearchOperator operator = SearchOperator.valueOf(criteria.getFirstNameOperator());
+            switch (operator) {
+                case EQ:
+                    predicates.add(cb.equal(emp.<String>get("firstName"), criteria.getFirstName()));
+                    break;
+                case LIKE:
+                    predicates.add(cb.like(emp.<String>get("firstName"), criteria.getFirstName()));
+                    break;
+                case NOTLIKE:
+                    predicates.add(cb.notLike(emp.<String>get("firstName"), criteria.getFirstName()));
+                    break;
+                default:
+                    logger.error("Operation=" + operator.toString() + " on employee first name search is not allowed! Expression will be omitted.");
+            }
+        }
+
+        //lastName
+        if (criteria.getLastName() != null && !criteria.getLastName().equals("")) {
+            SearchOperator operator = SearchOperator.valueOf(criteria.getLastNameOperator());
+            switch (operator) {
+                case EQ:
+                    predicates.add(cb.equal(emp.<String>get("lastName"), criteria.getLastName()));
+                    break;
+                case LIKE:
+                    predicates.add(cb.like(emp.<String>get("lastName"), criteria.getLastName()));
+                    break;
+                case NOTLIKE:
+                    predicates.add(cb.notLike(emp.<String>get("lastName"), criteria.getLastName()));
+                    break;
+                default:
+                    logger.error("Operation=" + operator.toString() + " on employee last name search is not allowed! Expression will be omitted.");
+            }
+        }
+        cq.select(emp).where(predicates.toArray(new Predicate[]{}));
         TypedQuery<Employee> q = entityManager.createQuery(cq);
         return q.getResultList();
     }

@@ -5,10 +5,17 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import pl.mg.cfm.webclient.data.entity.Car;
+import pl.mg.cfm.webclient.data.entity.Employee;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -74,10 +81,60 @@ public class CarRepositoryImpl implements CarRepository {
 
     @Override
     public List<Car> findCars(CarCriteria criteria) throws UnsupportedOperationException {
-        StringBuffer sqlQuery = new StringBuffer();
-        sqlQuery.append("select * from car, employee where ");
-        // TODO implement
-        return null;
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Car> cq = cb.createQuery(Car.class);
+        Root<Car> emp = cq.from(Car.class);
+
+        List<Predicate> predicates = new ArrayList<Predicate>();
+
+        if(criteria.getCarId()!=null && !criteria.getCarId().equals("")){
+            SearchOperator operator = criteria.getCarIdOperator();
+            switch (operator) {
+                case EQ:
+                    predicates.add(cb.equal(emp.<String>get("car_id"), criteria.getCarId()));
+                    break;
+                case GTEQ:
+                    predicates.add(cb.greaterThanOrEqualTo(emp.<String>get("car_id"), criteria.getCarId()));
+                    break;
+                case GT:
+                    predicates.add(cb.greaterThan(emp.<String>get("car_id"), criteria.getCarId()));
+                    break;
+                case LTEQ:
+                    predicates.add(cb.lessThanOrEqualTo(emp.<String>get("car_id"), criteria.getCarId()));
+                    break;
+                case LT:
+                    predicates.add(cb.lessThan(emp.<String>get("car_id"), criteria.getCarId()));
+                    break;
+                case NOTLIKE:
+                    predicates.add(cb.notEqual(emp.<String>get("car_id"), criteria.getCarId()));
+                    break;
+                default:
+                    logger.error("Operation=" + operator.toString() + " on car id search is not allowed! Expression will be omitted.");
+            }
+        }
+
+        // TODO zrobiæ zagnie¿d¿one queries
+        if (criteria.getOwnerEmployeeFirstName() != null && !criteria.getOwnerEmployeeFirstName().equals("")) {
+            SearchOperator operator = criteria.getOwnerEmployeeFirstNameOperator();
+            switch (operator) {
+                case EQ:
+                    predicates.add(cb.equal(emp.<String>get("owner.firstName"), criteria.getOwnerEmployeeFirstName()));
+                    break;
+                case LIKE:
+                    predicates.add(cb.like(emp.<String>get("owner.firstName"), criteria.getOwnerEmployeeFirstName()));
+                    break;
+                case NOTLIKE:
+                    predicates.add(cb.notLike(emp.<String>get("owner.firstName"), criteria.getOwnerEmployeeFirstName()));
+                    break;
+                default:
+                    logger.error("Operation=" + operator.toString() + " on employee first name search is not allowed! Expression will be omitted.");
+            }
+        }
+
+        cq.select(emp).where(predicates.toArray(new Predicate[]{}));
+        TypedQuery<Car> q = entityManager.createQuery(cq);
+        return q.getResultList();
+
     }
 
     @Override

@@ -6,6 +6,6 @@ package pl.mg.cfm.webclient.data.repository;
  */
 public enum SearchOperator {
 
-    GT, EQ, GTEQ, LTEQ, LIKE, NOTLIKE;
+    GT, EQ, GTEQ, LT, LTEQ, LIKE, NOTLIKE;
 
 }

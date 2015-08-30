@@ -22,7 +22,7 @@ public class CarSerializer implements JsonDeserializer<CarPojo> {
 
         final JsonObject jsonObject = json.getAsJsonObject();
         String carId = null;
-        Long distance = null;
+        Double distance = null;
         Double latitude = null;
         Double longitude = null;
         Integer ownerId = null;
@@ -32,7 +32,7 @@ public class CarSerializer implements JsonDeserializer<CarPojo> {
         }
 
         if (!jsonObject.get("distance").isJsonNull()) {
-            distance = jsonObject.get("distance").getAsLong();
+            distance = jsonObject.get("distance").getAsDouble();
         }
         if (!jsonObject.get("latitude").isJsonNull()) {
             latitude = jsonObject.get("latitude").getAsDouble();

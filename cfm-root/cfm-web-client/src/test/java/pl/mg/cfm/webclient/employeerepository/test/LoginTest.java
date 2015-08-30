@@ -30,7 +30,7 @@ public class LoginTest {
             System.out.println("repository is null");
         }
         String id = "1";
-        String password = "pass1";
+        String password = "newPass";
 
             System.out.println(repository.login(id, password));
             assertEquals(repository.login(id, password), true);

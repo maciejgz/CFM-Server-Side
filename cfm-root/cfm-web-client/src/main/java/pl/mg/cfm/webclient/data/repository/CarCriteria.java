@@ -7,6 +7,7 @@ package pl.mg.cfm.webclient.data.repository;
 public class CarCriteria {
 
     private String carId = null;
+    private SearchOperator carIdOperator = null;
 
 
     private Long minDistance = null;
@@ -17,19 +18,54 @@ public class CarCriteria {
     private Double maxLatitude = null;
     private Double minLongitude = null;
     private Double maxLongitude = null;
+    private SearchOperator ownerEmployeeFirstNameOperator = null;
 
-
-    private String ownerEmplyeeFirstName = null;
     private String ownerEmployeeLastName = null;
+    private SearchOperator ownerEmployeeLastNameOperator = null;
     private Integer ownerId = null;
+    private SearchOperator ownerIdOperator = null;
 
+    private String ownerEmployeeFirstName = null;
 
-    public String getOwnerEmplyeeFirstName() {
-        return ownerEmplyeeFirstName;
+    public SearchOperator getOwnerEmployeeFirstNameOperator() {
+        return ownerEmployeeFirstNameOperator;
     }
 
-    public void setOwnerEmplyeeFirstName(String ownerEmplyeeFirstName) {
-        this.ownerEmplyeeFirstName = ownerEmplyeeFirstName;
+    public void setOwnerEmployeeFirstNameOperator(SearchOperator ownerEmployeeFirstNameOperator) {
+        this.ownerEmployeeFirstNameOperator = ownerEmployeeFirstNameOperator;
+    }
+
+    public SearchOperator getCarIdOperator() {
+        return carIdOperator;
+    }
+
+    public void setCarIdOperator(SearchOperator carIdOperator) {
+        this.carIdOperator = carIdOperator;
+    }
+
+    public SearchOperator getOwnerEmployeeLastNameOperator() {
+        return ownerEmployeeLastNameOperator;
+    }
+
+    public void setOwnerEmployeeLastNameOperator(SearchOperator ownerEmployeeLastNameOperator) {
+        this.ownerEmployeeLastNameOperator = ownerEmployeeLastNameOperator;
+    }
+
+    public SearchOperator getOwnerIdOperator() {
+        return ownerIdOperator;
+    }
+
+    public void setOwnerIdOperator(SearchOperator ownerIdOperator) {
+        this.ownerIdOperator = ownerIdOperator;
+    }
+
+
+    public String getOwnerEmployeeFirstName() {
+        return ownerEmployeeFirstName;
+    }
+
+    public void setOwnerEmployeeFirstName(String ownerEmplyeeFirstName) {
+        this.ownerEmployeeFirstName = ownerEmplyeeFirstName;
     }
 
     public String getOwnerEmployeeLastName() {
@@ -40,8 +76,6 @@ public class CarCriteria {
         this.ownerEmployeeLastName = ownerEmployeeLastName;
     }
 
-    public CarCriteria() {
-    }
 
     public String getCarId() {
         return carId;

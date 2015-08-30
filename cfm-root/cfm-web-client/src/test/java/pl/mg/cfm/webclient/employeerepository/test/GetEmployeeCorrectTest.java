@@ -9,6 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import pl.mg.cfm.webclient.data.entity.Employee;
 import pl.mg.cfm.webclient.data.repository.EmployeeRepository;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Created by m on 2015-04-15.
  */
@@ -29,5 +31,6 @@ public class GetEmployeeCorrectTest {
 
         Employee employee = repository.getEmployee(1);
         System.out.println(employee);
+        assertEquals(employee.getIdemployee().intValue(), 1);
     }
 }

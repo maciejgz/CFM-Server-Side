@@ -24,12 +24,12 @@ import pl.mg.cfm.webclient.web.domain.ErrorMessage;
 
 /**
  * Potrzebne jest rozdzielenie kontrolerów do obsługi błędów.
- * @author m
  *
+ * @author m
  */
 @Controller
 @RequestMapping(value = WebConstants.URI_EMPLOYEE)
-@SessionAttributes({ WebConstants.PARAM_EMPLOYEE })
+@SessionAttributes({WebConstants.PARAM_EMPLOYEE})
 public class EmployeeEditController {
 
     Logger logger = Logger.getLogger(EmployeeEditController.class);
@@ -49,7 +49,7 @@ public class EmployeeEditController {
 
     @RequestMapping(method = RequestMethod.GET, value = WebConstants.URI_EDIT)
     public String editEmployeeDataGet(Model model, Principal principal,
-            @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee) throws NumberFormatException,
+                                      @ModelAttribute(WebConstants.PARAM_EMPLOYEE) EmployeePojo employee) throws NumberFormatException,
             EmployeeNotFoundException {
         logger.debug("employee/edit/ GET");
         EmployeePojo employeeToEditEmployeePojo = new EmployeePojo(employee);
@@ -58,10 +58,10 @@ public class EmployeeEditController {
         return WebConstants.TEMPLATE_EMPLOYEE_EDIT;
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = WebConstants.URI_EDIT, params = { WebConstants.POST_PARAM_UPDATE_DATA })
+    @RequestMapping(method = RequestMethod.POST, value = WebConstants.URI_EDIT, params = {WebConstants.POST_PARAM_UPDATE_DATA})
     public String editEmployeeDataPost(Model model, Principal principal,
-            @ModelAttribute(WebConstants.PARAM_EMPLOYEE_TO_EDIT) EmployeePojo employeeToEdit,
-            HttpServletRequest request, final RedirectAttributes redirectAttributes) throws NumberFormatException,
+                                       @ModelAttribute(WebConstants.PARAM_EMPLOYEE_TO_EDIT) EmployeePojo employeeToEdit,
+                                       HttpServletRequest request, final RedirectAttributes redirectAttributes) throws NumberFormatException,
             EmployeeNotFoundException, InvalidInputDataException {
         logger.debug("employee/edit/ POST");
         EmployeePojo sessionEmployee = (EmployeePojo) request.getSession().getAttribute(WebConstants.PARAM_EMPLOYEE);
@@ -76,7 +76,7 @@ public class EmployeeEditController {
         return WebConstants.URI_REDIRECT + WebConstants.URI_EMPLOYEE;
     }
 
-    @ExceptionHandler(value = { InvalidInputDataException.class, NumberFormatException.class })
+    @ExceptionHandler(value = {InvalidInputDataException.class, NumberFormatException.class})
     public ModelAndView invalidInput(Exception e, HttpServletRequest request) {
         logger.debug("employee/edit/ ExceptionHandler: " + e.getClass().toString());
         ModelAndView mav = new ModelAndView();

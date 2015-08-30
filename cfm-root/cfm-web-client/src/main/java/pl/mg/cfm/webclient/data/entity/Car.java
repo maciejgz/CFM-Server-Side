@@ -18,7 +18,7 @@ public class Car implements Serializable {
 
 
     @Column(name = "distance")
-    private Long distance;
+    private Double distance;
 
     @Column(name = "latitude")
     private Double latitude;
@@ -44,11 +44,11 @@ public class Car implements Serializable {
     }*/
 
 
-    public Long getDistance() {
+    public Double getDistance() {
         return distance;
     }
 
-    public void setDistance(long distance) {
+    public void setDistance(double distance) {
         this.distance = distance;
     }
 
