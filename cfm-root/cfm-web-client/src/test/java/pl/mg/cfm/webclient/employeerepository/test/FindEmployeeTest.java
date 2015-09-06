@@ -45,11 +45,11 @@ public class FindEmployeeTest {
         assertEquals(employees.get(0).getIdemployee().intValue(), 1);
     }
 
-    //    @Test
+    @Test
     public void greaterThanId() {
         EmployeeCriteria criteria = new EmployeeCriteria();
-        criteria.setEmployeeId(10017);
-        criteria.setEmployeeIdOperator(SearchOperator.NOTLIKE.name());
+        criteria.setEmployeeId(3);
+        criteria.setEmployeeIdOperator(SearchOperator.GTEQ.name());
 
 
         List<Employee> employees = repository.findEmployee(criteria);
@@ -59,7 +59,7 @@ public class FindEmployeeTest {
         }
     }
 
-    @Test
+//    @Test
     public void equalsFirstName() {
         EmployeeCriteria criteria = new EmployeeCriteria();
         criteria.setFirstName("Maciej");

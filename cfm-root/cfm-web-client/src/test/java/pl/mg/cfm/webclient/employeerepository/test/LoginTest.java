@@ -29,8 +29,8 @@ public class LoginTest {
         if (repository == null) {
             System.out.println("repository is null");
         }
-        String id = "1";
-        String password = "newPass";
+        String id = "3";
+        String password = "password";
 
             System.out.println(repository.login(id, password));
             assertEquals(repository.login(id, password), true);

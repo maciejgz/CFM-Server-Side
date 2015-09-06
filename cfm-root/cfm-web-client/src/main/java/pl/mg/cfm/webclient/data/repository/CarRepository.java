@@ -1,9 +1,10 @@
 package pl.mg.cfm.webclient.data.repository;
 
-import java.util.List;
-
-import pl.mg.cfm.domain.CarPojo;
+import pl.mg.cfm.dao.exceptions.ObjectAlreadyExists;
 import pl.mg.cfm.webclient.data.entity.Car;
+
+import java.util.Date;
+import java.util.List;
 
 public interface CarRepository {
 
@@ -14,4 +15,6 @@ public interface CarRepository {
     public List<Car> findCars(CarCriteria criteria) throws UnsupportedOperationException;
 
     public List<Car> getEmployeeCars(String employeeId) throws UnsupportedOperationException;
+
+    public String createCar(String carId, Integer ownerId, Double distance, Date registrationDate) throws UnsupportedOperationException, ObjectAlreadyExists;
 }

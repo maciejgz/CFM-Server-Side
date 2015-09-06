@@ -15,8 +15,9 @@
 
 
     <description>
-        Webowy klient do zarządzania w cfm stworzony na springu z integracją thymeleafa.
+        Webowy klient do zarządzania w cfm stworzony na springu MVC z integracją thymeleafa.
         Zawiera własne DAO zbudoawne na JPA w SpringData ze wsparciem wyszukiwania w Spring Data Elasticsearch (ważne)
+        Logowanie przy pomocy SpringSecurity z połączeniem do bazy danych
     </description>
 
     <dependencies>
@@ -146,8 +147,8 @@
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>

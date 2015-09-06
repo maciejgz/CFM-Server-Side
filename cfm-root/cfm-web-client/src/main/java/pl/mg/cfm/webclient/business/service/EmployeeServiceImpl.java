@@ -53,6 +53,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 || !EmployeeValidator.validateLastName(lastName)) {
             throw new InvalidInputDataException();
         }
+        // TODO check alreadyExists exception
         return repository.registerEmployee(firstName, lastName, password);
     }
 

@@ -4,6 +4,7 @@ import org.jboss.logging.Logger;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import pl.mg.cfm.dao.exceptions.ObjectAlreadyExists;
 import pl.mg.cfm.webclient.data.entity.Car;
 import pl.mg.cfm.webclient.data.entity.Employee;
 
@@ -16,6 +17,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,6 +33,7 @@ public class CarRepositoryImpl implements CarRepository {
 
     @PersistenceContext(name = "cfm-localhost")
     private EntityManager entityManager;
+
 
     @Override
     public List<Car> getAllCars() throws UnsupportedOperationException {
@@ -87,7 +90,7 @@ public class CarRepositoryImpl implements CarRepository {
 
         List<Predicate> predicates = new ArrayList<Predicate>();
 
-        if(criteria.getCarId()!=null && !criteria.getCarId().equals("")){
+        if (criteria.getCarId() != null && !criteria.getCarId().equals("")) {
             SearchOperator operator = criteria.getCarIdOperator();
             switch (operator) {
                 case EQ:
@@ -113,7 +116,7 @@ public class CarRepositoryImpl implements CarRepository {
             }
         }
 
-        // TODO zrobiæ zagnie¿d¿one queries
+        // TODO zrobiæ zagnie¿d¿one queries dla ownerId
         if (criteria.getOwnerEmployeeFirstName() != null && !criteria.getOwnerEmployeeFirstName().equals("")) {
             SearchOperator operator = criteria.getOwnerEmployeeFirstNameOperator();
             switch (operator) {
@@ -165,4 +168,37 @@ public class CarRepositoryImpl implements CarRepository {
         return entityManager.createNamedQuery("car.getEmployeeCars").setParameter("employee_id", Integer.valueOf(employeeId)).getResultList();
     }
 
+    @Override
+    @Transactional(rollbackFor = {ObjectAlreadyExists.class})
+    public String createCar(String carId, Integer ownerId, Double distance, Date registrationDate) throws UnsupportedOperationException, ObjectAlreadyExists {
+        try {
+
+            Car car1 = entityManager.find(Car.class, carId);
+
+            if (car1 != null) {
+                logger.debug("car already exists");
+                throw new ObjectAlreadyExists("car already exists-" + carId);
+            }
+            Car car = new Car();
+            car.setCar_id(carId);
+            if (ownerId != null) {
+                Employee employee = entityManager.find(Employee.class, ownerId);
+                car.setOwner(employee);
+            }
+            if (distance != null) {
+                car.setDistance(distance);
+            }
+            if (registrationDate != null) {
+                car.setRegistrationDate(registrationDate);
+            }
+
+
+            entityManager.persist(car);
+            entityManager.flush();
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            throw new ObjectAlreadyExists(e.getMessage());
+        }
+        return carId;
+    }
 }
