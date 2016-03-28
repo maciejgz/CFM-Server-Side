@@ -22,7 +22,7 @@ import java.util.List;
 
 /**
  * Repozytorium dla klienta webowego zrealizowane na JPA (w implementacji
- * Hibernate) ze wsparciem Springa
+ * Hibernate) ze wsparciem Springa. Konfiugracja bazy danych po stronie Hibernate JPA (duplikacja wzglÄ™dem Spring Data JPA w obiektach DAO, tylko do testÃ³w).
  *
  * @author Maciej Gzik
  */
@@ -116,7 +116,7 @@ public class CarRepositoryImpl implements CarRepository {
             }
         }
 
-        // TODO zrobiæ zagnie¿d¿one queries dla ownerId
+        // TODO zrobiï¿½ zagnieï¿½dï¿½one queries dla ownerId
         if (criteria.getOwnerEmployeeFirstName() != null && !criteria.getOwnerEmployeeFirstName().equals("")) {
             SearchOperator operator = criteria.getOwnerEmployeeFirstNameOperator();
             switch (operator) {
