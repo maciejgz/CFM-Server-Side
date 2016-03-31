@@ -18,51 +18,62 @@ import java.util.List;
 @Repository
 public class EmployeeRoleRepositoryImpl implements EmployeeRoleRepository {
 
-    @PersistenceContext(name = "cfm-localhost")
-    private EntityManager entityManager;
+	@PersistenceContext(name = "cfm-localhost")
+	private EntityManager entityManager;
 
+	Logger logger = Logger.getLogger(this.getClass());
 
-    Logger logger = Logger.getLogger(this.getClass());
+	/**
+	 * Searching employee role using JPA Criteria API.
+	 *
+	 * @param roleName
+	 *            name of the role
+	 * @return
+	 */
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public EmployeeRole getRole(String roleName) {
+		EmployeeRole resultRole = null;
+		CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+		CriteriaQuery<EmployeeRole> criteriaQuery = cb.createQuery(EmployeeRole.class);
 
-    /**
-     * Searching employee role using JPA Criteria API.
-     *
-     * @param roleName name of the role
-     * @return
-     */
-    @Override
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public EmployeeRole getRole(String roleName) {
-        EmployeeRole resultRole = null;
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<EmployeeRole> criteriaQuery = cb.createQuery(EmployeeRole.class);
+		Root<EmployeeRole> root = criteriaQuery.from(EmployeeRole.class);
+		criteriaQuery.select(root).where(cb.equal(root.get("name"), roleName));
+		TypedQuery<EmployeeRole> query = entityManager.createQuery(criteriaQuery);
 
-        Root<EmployeeRole> root = criteriaQuery.from(EmployeeRole.class);
-        criteriaQuery.select(root)
-                .where(cb.equal(root.get("name"), roleName));
-        TypedQuery<EmployeeRole> query = entityManager.createQuery(criteriaQuery);
+		try {
+			resultRole = query.getSingleResult();
+		} catch (NoResultException e) {
+			logger.debug("employeeRole not found");
+			logger.error(e.getMessage(), e);
+		} catch (NonUniqueResultException e) {
+			logger.debug("employeeRole not found");
+			logger.error(e.getMessage(), e);
+		} catch (Exception e) {
+			logger.debug("connection error");
+			logger.error(e.getMessage(), e);
+		}
 
-        try {
-            resultRole = query.getSingleResult();
-        } catch (NoResultException e) {
-            logger.debug("employeeRole not found");
-            logger.error(e.getMessage(), e);
-        } catch (NonUniqueResultException e) {
-            logger.debug("employeeRole not found");
-            logger.error(e.getMessage(), e);
-        } catch (Exception e) {
-            logger.debug("connection error");
-            logger.error(e.getMessage(), e);
-        }
+		return resultRole;
+	}
 
-        return resultRole;
-    }
+	@Override
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<EmployeeRole> getAllRoles() {
+		return entityManager.createNamedQuery("employeeRole.getAll", EmployeeRole.class).getResultList();
+	}
 
-    @Override
-    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public List<EmployeeRole> getAllRoles() {
-        return entityManager.createNamedQuery("employeeRole.getAll", EmployeeRole.class).getResultList();
-    }
-
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	public EmployeeRole addRole(int id, String name) {
+		System.out.println("employee role creation.");
+		EmployeeRole role = new EmployeeRole();
+		role.setId(id);
+		role.setName(name);
+		entityManager.persist(role);
+		logger.debug("employee role with name created. " + role.toString());
+		System.out.println("employee role with name created. " + role.toString());
+		return role;
+	}
 
 }

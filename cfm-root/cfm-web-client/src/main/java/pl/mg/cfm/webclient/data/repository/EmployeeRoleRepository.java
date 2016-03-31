@@ -8,7 +8,9 @@ import java.util.List;
  * Created by m on 2015-04-28.
  */
 public interface EmployeeRoleRepository {
-    EmployeeRole getRole(String roleName);
+    public EmployeeRole getRole(String roleName);
 
-    List<EmployeeRole> getAllRoles();
+    public List<EmployeeRole> getAllRoles();
+    
+    public EmployeeRole addRole(int roleId, String name);
 }
