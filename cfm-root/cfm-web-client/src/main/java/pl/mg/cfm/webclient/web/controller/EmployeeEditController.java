@@ -1,26 +1,20 @@
 package pl.mg.cfm.webclient.web.controller;
 
-import java.security.Principal;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import pl.mg.cfm.business.exception.InvalidInputDataException;
 import pl.mg.cfm.dao.exceptions.EmployeeNotFoundException;
 import pl.mg.cfm.domain.EmployeePojo;
 import pl.mg.cfm.webclient.business.service.EmployeeService;
 import pl.mg.cfm.webclient.web.domain.ErrorMessage;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 /**
  * Potrzebne jest rozdzielenie kontrolerów do obsługi błędów.

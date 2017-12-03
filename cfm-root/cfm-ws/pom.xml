@@ -1,40 +1,40 @@
 <?xml version="1.0"?>
 <project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>pl.mg</groupId>
-		<artifactId>cfm-root</artifactId>
-        <version>0.0.1</version>
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>pl.mg</groupId>
+        <artifactId>cfm-root</artifactId>
+        <version>0.0.2</version>
         <relativePath>../pom.xml</relativePath>
-	</parent>
-	<artifactId>cfm-rsws</artifactId>
-	<packaging>war</packaging>
-	<description>
-		WebService SOAP zbudowany na spring BOOT z SPring DATA JPA.
+    </parent>
+    <artifactId>cfm-rsws</artifactId>
+    <packaging>war</packaging>
+    <description>
+        WebService SOAP zbudowany na spring BOOT z SPring DATA JPA.
         Bootowanie powinno być wyłączone i trzeba wrzucać wara na serwer.
-		Autentykacja poprzez httpBasic z uzyciem springa po SSL.
-		Mozliwe dodanie autentykacji w oparciu o autentykację amazon s3
-	</description>
-	<dependencies>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
-	<build>
-		<finalName>cfm-rsws</finalName>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+        Autentykacja poprzez httpBasic z uzyciem springa po SSL.
+        Mozliwe dodanie autentykacji w oparciu o autentykację amazon s3
+    </description>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>cfm-rsws</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

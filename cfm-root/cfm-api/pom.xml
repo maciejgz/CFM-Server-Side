@@ -3,22 +3,21 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pl.mg.cfm</groupId>
+    <groupId>pl.mg</groupId>
     <artifactId>cfm-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>${cfm.version}</version>
     <packaging>war</packaging>
 
     <name>cfm-api</name>
     <description>
         Car fleet manager backend API.
-
     </description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.9.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
 
     <properties>
@@ -28,6 +27,16 @@
     </properties>
 
     <dependencies>
+        <!-- local dependencies -->
+        <dependency>
+            <groupId>pl.mg</groupId>
+            <artifactId>cfm-service</artifactId>
+            <version>0.0.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <!-- local dependencies -->
+
+        <!-- sprin -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -62,6 +71,16 @@
             <scope>test</scope>
         </dependency>
 
+            <!-- spring security OAuth2.0 -->
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-jwt</artifactId>
+        </dependency>
+        <!-- spring security OAuth2.0 -->
 
         <!-- logging -->
         <dependency>
@@ -76,7 +95,6 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
         </dependency>
-
 
         <!-- tests -->
         <dependency>
@@ -96,6 +114,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>pl.mg</groupId>
     <artifactId>cfm-root</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <packaging>pom</packaging>
     <name>cfm-root</name>
     <modules>
@@ -15,12 +15,13 @@
         <module>cfm-web-client</module>
         <module>cfm-ws</module>
         <module>cfm-api</module>
+        <module>cfm-service</module>
     </modules>
 
 
     <properties>
         <junit.version>4.11</junit.version>
-        <cfm.version>0.0.1</cfm.version>
+        <cfm.version>0.0.2</cfm.version>
         <spring.version>4.1.3.RELEASE</spring.version>
         <spring.security.version>3.2.5.RELEASE</spring.security.version>
         <hibernate.version>4.3.6.Final</hibernate.version>

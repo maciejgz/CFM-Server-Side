@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>pl.mg</groupId>
 		<artifactId>cfm-root</artifactId>
-		<version>0.0.1</version>
+		<version>0.0.2</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>cfm-web-client</artifactId>
@@ -123,7 +123,7 @@
 		<dependency>
 			<groupId>pl.mg</groupId>
 			<artifactId>cfm-commons</artifactId>
-			<version>${cfm.version}</version>
+			<version>0.0.2</version>
 		</dependency>
 
 		<dependency>
