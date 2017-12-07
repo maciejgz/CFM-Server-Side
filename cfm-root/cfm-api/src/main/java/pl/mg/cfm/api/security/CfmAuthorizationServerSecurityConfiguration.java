@@ -12,7 +12,7 @@ import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.endpoint.FrameworkEndpointHandlerMapping;
 
 /**
- * Custom COS2 authorization server security configuration due to lack of permissions on OPTIONS method for pre-flight methods.
+ * Custom CFM authorization server security configuration due to lack of permissions on OPTIONS method for pre-flight methods.
  *
  * @author Maciej Gzik
  */
